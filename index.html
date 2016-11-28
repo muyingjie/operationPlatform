@@ -139,9 +139,13 @@
     <!--过滤器-->
     <script src="js/CommonFilter.js"></script>
     <!--服务-->
+    <script src="js/service/LocalStorageService.js"></script>
+    <script src="js/service/InitService.js"></script>
+    <script src="js/service/MsService.js"></script>
+    <script src="js/service/RoleService.js"></script>
     <script src="js/service/MenuService.js"></script>
     <!--控制器-->
-    <!--<script src="/js/controller/GoodsListController.js"></script>-->
+    <script src="js/controller/RoleOperatingController.js"></script>
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
 
@@ -149,7 +153,7 @@
         .il-par{ font-size: 0;}
         .il{ display: inline-block; font-size: 12px;}
         .operate-platform-wrap{ background: #fff; min-height: 500px; padding: 10px;}
-        .operate-platform-wrap .cur-position{ line-height: 30px;}
+        .operate-platform-wrap .cur-position{ line-height: 30px; padding-left: 30px;}
     </style>
 </head>
 <body class="page-body skin-white" ng-app="operApp">

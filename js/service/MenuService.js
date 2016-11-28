@@ -1,7 +1,7 @@
 /**
  * Created by yj on 2016/11/6.
  */
-operApp.service("MenuService",["$q",function($q){
+operApp.service("MenuService", ["$q", function($q){
     function getMenuList(){
         var deferred = $q.defer();
         var menuData = [{
