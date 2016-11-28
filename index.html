@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+
+    <title>易企卖运营后台</title>
+
+    <link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-3.3.0.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap-3.3.0.js"></script>
+
+    <script src="js/angular-1.2.32.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/ui-bootstrap-0.12.0.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+
+    <script>
+        var operApp = angular.module("operApp",["ui.router"]);
+        operApp.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise("/index");
+            //首页
+            $stateProvider.state("index",{
+                url:"/index",
+                templateUrl: "template/index.html",
+                data: {
+                    title: "首页",
+                    subTitle: ""
+                }
+            });
+            //系统管理
+            $stateProvider.state("roleOperating", {
+                url:"/roleOperating",
+                templateUrl: "template/roleOperating.html",
+                data: {
+                    title: "系统管理",
+                    subTitle: "角色管理"
+                }
+            }).state("addAccount",{
+                url:"/addAccount",
+                templateUrl: "template/addAccount.html",
+                data: {
+                    title: "系统管理",
+                    subTitle: "添加账号"
+                }
+            }).state("systemAccountList",{
+                url:"/systemAccountList",
+                templateUrl: "template/systemAccountList.html",
+                data: {
+                    title: "系统管理",
+                    subTitle: "系统账号"
+                }
+            });
+
+            //订单管理
+            $stateProvider.state("orderList", {
+                url:"/orderList",
+                templateUrl: "template/orderList.html",
+                data: {
+                    title: "订单管理",
+                    subTitle: "订单列表"
+                }
+            }).state("createSandBoxOrder", {
+                url:"/createSandBoxOrder",
+                templateUrl: "template/createSandBoxOrder.html",
+                data: {
+                    title: "订单管理",
+                    subTitle: "生成沙箱订单"
+                }
+            });
+
+            //产品管理
+            $stateProvider.state("memberList", {
+
+            });
+        }]);
+        operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
+            MenuService.getMenuList().then(function(menuData){
+                console.log(menuData);
+                $scope.menuData = menuData;
+            });
+
+            $scope.pageData = {
+                title: "首页",
+                subTitle: ""
+            };
+
+            $scope.goToPage = function (parentIndex, index) {
+                var par = $scope.menuData[parentIndex];
+                $scope.pageData.title = par.name;
+                var child = par.items[index];
+                $scope.pageData.subTitle = child.name;
+            };
+
+            $scope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
+                //更换右侧标题和副标题
+                $scope.pageData.title=toState.data.title;
+                $scope.pageData.subTitle=toState.data.subTitle;
+            });
+        }]);
+        operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
+            MenuService.getMenuList().then(function(menuData){
+                console.log(menuData);
+                $scope.menuData = menuData;
+            });
+
+            $scope.pageData = {
+                title: "首页",
+                subTitle: ""
+            };
+
+            $scope.goToPage = function (parentIndex, index) {
+                var par = $scope.menuData[parentIndex];
+                $scope.pageData.title = par.name;
+                var child = par.items[index];
+                $scope.pageData.subTitle = child.name;
+            };
+
+            $scope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
+                //更换右侧标题和副标题
+                $scope.pageData.title=toState.data.title;
+                $scope.pageData.subTitle=toState.data.subTitle;
+            });
+        }]);
+    </script>
+    <!--过滤器-->
+    <script src="js/CommonFilter.js"></script>
+    <!--服务-->
+    <script src="js/service/MenuService.js"></script>
+    <!--控制器-->
+    <!--<script src="/js/controller/GoodsListController.js"></script>-->
+    <!--指令-->
+    <!--<script src="/js/directive/TableDirective.js"></script>-->
+
+    <style>
+        .il-par{ font-size: 0;}
+        .il{ display: inline-block; font-size: 12px;}
+        .operate-platform-wrap{ background: #fff; min-height: 500px; padding: 10px;}
+        .operate-platform-wrap .cur-position{ line-height: 30px;}
+    </style>
+</head>
+<body class="page-body skin-white" ng-app="operApp">
+<div class="page-container" ng-controller="MainController">
+    <div class="sidebar-menu toggle-others fixed">
+
+        <div class="sidebar-menu-inner">
+
+            <div class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="javascript:;" class="logo-expanded">
+                        <img src="img/loginLogo.png" alt="" width="120" />
+                    </a>
+                </div>
+
+                <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <ul id="main-menu" class="main-menu">
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li class="opened" ng-repeat="menu in menuData track by $index">
+                    <a href="javascript:;">
+                        <i class="linecons-cog"></i>
+                        <span class="title">{{menu.name}}</span>
+                    </a>
+                    <ul>
+                        <li class="active" ng-repeat="item in menu.items">
+                            <a href="#/{{item.hash}}" ng-click="goToPage($parent.$index,$index)">
+                                <span class="title">{{item.name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+        <!-- User Info, Notifications and Menu Bar -->
+        <div class="navbar user-info-navbar" role="navigation">
+            <ul class="user-info-menu right-links list-inline list-unstyled">
+                <li class="dropdown user-profile">
+                    <a href="#">
+                        <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                        <span>admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="修改密码">
+                        <i class="fa-edit"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="退出">
+                        <i class="fa-lock"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="operate-platform-wrap">
+            <div class="cur-position il-par">
+                <div class="position-txt il">当前位置：</div>
+                <div class="title il">{{pageData.title}}</div>
+                <div class="gt il">&nbsp;&gt;&nbsp;</div>
+                <div class="sub-title il">{{pageData.subTitle}}</div>
+            </div>
+            <div class="ui-view"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
