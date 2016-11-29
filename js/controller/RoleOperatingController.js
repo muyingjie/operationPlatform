@@ -52,7 +52,6 @@ operApp.controller("RoleOperatingController", ["$scope", "RoleService", "$state"
 
     //跳转权限页面
     $scope.goToAuthorityManagement = function (roleId) {
-        console.log($state, roleId);
         $state.go("authorityManagement", {roleId: roleId});
     };
 }]);

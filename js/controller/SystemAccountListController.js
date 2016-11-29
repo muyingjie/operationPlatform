@@ -80,7 +80,7 @@ operApp.controller("SystemAccountListController", ["$scope", function ($scope) {
                 extendAccountList();
                 break;
             default:
-                console.log("未知的操作类型");
+                console.error("未知的操作类型");
         }
         account.isEdit = editStatus;
     };
