@@ -18,12 +18,7 @@ operApp.service("LocalStorageService", [function () {
         set: function (key, val) {
             var res;
             try{
-                var list = JSON.parse(localStorage[key]).data;
-                list.push(val);
-                localStorage[key] = JSON.stringify({
-                    status: true,
-                    data: list
-                });
+                localStorage[key] = JSON.stringify(val);
                 res = {
                     status: true,
                     msg: "操作成功"

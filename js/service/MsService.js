@@ -49,7 +49,9 @@ operApp.service("ms", ["$q", "LocalStorageService", function ($q, LocalStorageSe
                         res = LocalStorageService.get("roleList");
                         break;
                     case "addRole":
-                        res = LocalStorageService.set("roleList", data);
+                        var roleList = LocalStorageService.get("roleList");
+                        roleList.data.push(data);
+                        res = LocalStorageService.set("roleList", roleList);
                         break;
                 }
                 break;
