@@ -17,9 +17,7 @@
                 <label class="cbr-inline">状态：</label>
             </div>
             <div class="form-group">
-                <select class="form-control" name="role" ng-model="pageData.curStatusItem.id">
-                    <option ng-value="roleStatus.id" ng-repeat="roleStatus in roleStatusList track by $index" ng-selected="pageData.curStatusItem.id == roleStatus.id">{{roleStatus.txt}}</option>
-                </select>
+                <select class="form-control" name="role" ng-model="pageData.curStatusItem" ng-options="roleStatus.txt for roleStatus in roleStatusList" ng-change="changeRoleStatus()"></select>
             </div>
             <div class="form-group">
                 <button class="btn btn-secondary btn-single" ng-click="search()">搜索</button>

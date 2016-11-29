@@ -84,4 +84,8 @@ operApp.controller("SystemAccountListController", ["$scope", function ($scope) {
         }
         account.isEdit = editStatus;
     };
+
+    $scope.changeRoleStatus = function () {
+        console.log($scope.pageData.curStatusItem);
+    };
 }]);
