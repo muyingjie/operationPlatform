@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/28.
  */
-operApp.controller("RoleOperatingController", ["$scope", "RoleService", function ($scope, RoleService) {
+operApp.controller("RoleOperatingController", ["$scope", "RoleService", "$state", function ($scope, RoleService, $state) {
     //列表渲染
     getRoleList();
     function getRoleList(){
@@ -48,5 +48,11 @@ operApp.controller("RoleOperatingController", ["$scope", "RoleService", function
                 $scope.validate.roleName.promptAttr = "default";
             });
         }
+    };
+
+    //跳转权限页面
+    $scope.goToAuthorityManagement = function (roleId) {
+        console.log($state, roleId);
+        $state.go("authorityManagement", {roleId: roleId});
     };
 }]);

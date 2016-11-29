@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/28.
  */
-operApp.service("ms", ["$q", "LocalStorageService", function ($q, LocalStorageService) {
+operApp.service("ms", ["$q", "LocalStorageService", "CommonService", function ($q, LocalStorageService, CommonService) {
     return function (servicePointfnName, data){
         var server = servicePointfnName.split(".");
         var service = server[0];
@@ -49,6 +49,32 @@ operApp.service("ms", ["$q", "LocalStorageService", function ($q, LocalStorageSe
                         res = LocalStorageService.get("roleList");
                         break;
                     case "addRole":
+                        data.id = CommonService.rnd();
+                        data.authorityList = [
+                            {
+                                systemConfig: {
+                                    name: "系统管理",
+                                    authorized: false,
+                                    items: [
+                                        {
+                                            roleOperating: {
+                                                name: "角色管理",
+                                                authorized: false
+                                            },
+                                            addAccount: {
+                                                name: "添加账号",
+                                                authorized: true
+                                            },
+                                            systemAccountList: {
+                                                name: "系统账号",
+                                                authorized: false
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ];
+                        data.accountList = [];
                         var roleList = LocalStorageService.get("roleList");
                         roleList.data.push(data);
                         res = LocalStorageService.set("roleList", roleList);

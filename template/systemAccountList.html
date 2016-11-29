@@ -1,1 +1,72 @@
-系统账号
+<div class="panel panel-default" ng-controller="SystemAccountListController">
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="roleForm">
+            <div class="form-group">
+                <label class="cbr-inline">姓名：</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="name" ng-model="roleItem.roleName" />
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">用户名：</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="username" ng-model="roleItem.roleName" />
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">状态：</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.curStatusItem.id">
+                    <option ng-value="roleStatus.id" ng-repeat="roleStatus in roleStatusList track by $index" ng-selected="pageData.curStatusItem.id == roleStatus.id">{{roleStatus.txt}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">搜索</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>姓名</th>
+                    <th>角色</th>
+                    <th>添加时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="middle-align">
+                <tr ng-repeat="account in accountList track by $index">
+                    <td>
+                        <span ng-if="!account.isEdit">{{account.username}}</span>
+                        <input ng-if="account.isEdit" type="text" class="form-control" name="username" ng-model="account.username" />
+                    </td>
+                    <td>
+                        <span ng-if="!account.isEdit">{{account.name}}</span>
+                        <input ng-if="account.isEdit" type="text" class="form-control" name="username" ng-model="account.name" />
+                    </td>
+                    <td>
+                        <span ng-if="!account.isEdit">{{account.roleTxt}}</span>
+                        <select ng-if="account.isEdit" class="form-control" name="role">
+                            <option>Option 1</option>
+                        </select>
+                    </td>
+                    <td>{{account.createTime|date:'yyyy-MM-dd'}}</td>
+                    <td ng-class="{'text-danger': account.status != 1}">{{account.statusTxt}}</td>
+                    <td>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left" ng-if="account.isEdit" ng-click="oper('save', account)">保存</a>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left" ng-if="account.isEdit" ng-click="oper('cancel', account)">取消</a>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left" ng-if="!account.isEdit" ng-click="oper('edit', account)">编辑</a>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left">修改密码</a>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left" ng-if="account.status==2" ng-click="oper('enable', account)">启用</a>
+                        <a href="javascript:;" class="btn btn-secondary btn-sm btn-icon icon-left" ng-if="account.status==1" ng-click="oper('disable', account)">停用</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
