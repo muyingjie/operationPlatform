@@ -4,8 +4,25 @@
  *
 */
 
-body {	
+.nav.nav-tabs{
+    border-bottom: 2px solid #4587db;
 }
-
-a {
+.nav.nav-tabs>li>a{
+    border: 1px solid #999;
+    background-color: #fff;
+    border-bottom: none;
+    color: #555;
+}
+.nav.nav-tabs>li>a:hover{
+    border: 1px solid #999;
+    border-bottom: none;
+    background-color: #fff;
+    color: #4587db;
+}
+.nav.nav-tabs>li>a.selected{
+    border: 2px solid #4587db;
+    border-bottom: none;
+    padding: 8px 19px 10px;
+    background-color: #fff;
+    color: #4587db;
 }
