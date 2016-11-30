@@ -1,0 +1,98 @@
+<div class="panel panel-default" ng-controller="OrderListController">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="javascript:;">
+                <span class="visible-xs"><i class="fa-home"></i></span>
+                <span class="hidden-xs">全部订单</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <span class="visible-xs"><i class="fa-user"></i></span>
+                <span class="hidden-xs">待支付订单</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <span class="visible-xs"><i class="fa-envelope-o"></i></span>
+                <span class="hidden-xs">已支付订单</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <span class="visible-xs"><i class="fa-cog"></i></span>
+                <span class="hidden-xs">已失效订单</span>
+            </a>
+        </li>
+    </ul>
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="roleForm">
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="name" ng-model="roleItem.roleName" placeholder="会员手机"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="username" ng-model="roleItem.roleName" placeholder="名称"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="username" ng-model="roleItem.roleName" placeholder="二级域"/>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">下单时间：</label>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">分类：</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.curOrderStatusItem" ng-options="item.txt for item in statusList.orderStatusList"></select>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">协议状态：</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.curprotocolStatusItem" ng-options="item.txt for item in statusList.protocolStatusList"></select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">搜索</button>
+            </div>
+        </form>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr role="row">
+                <th>会员</th>
+                <th>名称</th>
+                <th>二级域名</th>
+                <th>下单时间</th>
+                <th>分类</th>
+                <th>商品</th>
+                <th>金额</th>
+                <th>期限</th>
+                <th>生效日期</th>
+                <th>支付状态</th>
+                <th>交付状态</th>
+                <th>协议状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="account in accountList track by $index">
+                <td class="sorting_1">{{account.member}}</td>
+                <td>{{account.memberName}}</td>
+                <td>{{account.twoLevelDomainName}}</td>
+                <td>{{account.orderTime}}</td>
+                <td>{{account.classify}}</td>
+                <td>{{account.commodity}}</td>
+                <td>{{account.cost}}</td>
+                <td>{{account.timeLimit}}</td>
+                <td>{{account.effectiveDate}}</td>
+                <td>{{account.payStatus}}</td>
+                <td>{{account.deliveryStatus}}</td>
+                <td>{{account.protocolState}}</td>
+                <td><a href="javascript:;">{{account.operation}}</a></td>
+            </tr>
+           </tbody>
+        </table>
+    </div>
+
+</div>
