@@ -8,8 +8,16 @@ operApp.service("RoleService", ["ms", function (ms) {
     function addRole(data){
         return ms("Role.addRole", data);
     }
+    function getRoleInfo(roleId){
+        return ms("Role.getRoleInfo", roleId);
+    }
+    function setRoleAuthority(id, authList){
+        return ms("Role.setRoleAuthority", id, authList);
+    }
     return {
         getRoleList: getRoleList,
-        addRole: addRole
+        addRole: addRole,
+        getRoleInfo: getRoleInfo,
+        setRoleAuthority: setRoleAuthority
     };
 }]);

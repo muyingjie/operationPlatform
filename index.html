@@ -146,6 +146,7 @@
     <!--过滤器-->
     <script src="js/CommonFilter.js"></script>
     <!--服务-->
+    <script src="js/service/ToolService.js"></script>
     <script src="js/service/LocalStorageService.js"></script>
     <script src="js/service/CommonService.js"></script>
     <script src="js/service/InitService.js"></script>
@@ -156,6 +157,8 @@
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>
     <script src="js/controller/OrderListController.js"></script>
+    <script src="js/controller/AddAcountController.js"></script>
+    <script src="js/controller/AuthorityManagement.js"></script>
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
 
@@ -164,13 +167,18 @@
         .il-par{ font-size: 0;}
         .il{ display: inline-block; font-size: 12px;}
 
+        .ft12{ font-size: 12px;}
+        .ft14{ font-size: 14px;}
+
         /* 系统管理 */
         .operate-platform-wrap{ background: #fff; min-height: 500px; padding: 10px 10px 10px 30px;}
         .operate-platform-wrap .current-page-title{ font-family: 黑体;}
         .operate-platform-wrap .cur-position{ line-height: 30px;}
         .prompt-info{ line-height: 30px;}
 
-        .panel{ padding: 20px 30px 20px 0;}
+        .panel{ padding: 20px 30px 20px 0; border-radius: 0;}
+        .panel .panel-heading{ border-bottom: none;}
+        .panel .panel-body{ padding-top: 0;}
 
         .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td, .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th{ padding: 5px 15px;}
         .table .form-control{ height: 24px; padding: 0 12px;}

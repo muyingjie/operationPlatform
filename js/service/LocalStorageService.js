@@ -10,7 +10,9 @@ operApp.service("LocalStorageService", [function () {
             }catch(e){
                 res = {
                     status: false,
-                    msg: "本地读取数据失败"
+                    data: {
+                        msg: "本地读取数据失败"
+                    }
                 };
             }
             return res;
@@ -21,12 +23,16 @@ operApp.service("LocalStorageService", [function () {
                 localStorage[key] = JSON.stringify(val);
                 res = {
                     status: true,
-                    msg: "操作成功"
+                    data: {
+                        msg: "操作成功"
+                    }
                 };
             }catch(e){
                 res = {
                     status: false,
-                    msg: "本地存储数据失败"
+                    data: {
+                        msg: "本地存储数据失败"
+                    }
                 };
             }
             return res;
