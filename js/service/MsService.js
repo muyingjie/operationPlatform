@@ -37,6 +37,14 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                     case "setRoleAuthority":
                         var roleId = data;
                         var authList = arguments[2];
+                        var roleList = LocalStorageService.get("roleList");
+                        angular.forEach(roleList.data, function (o, i) {
+                            if(roleId == o.id){
+                                o.authorityList = authList;
+                                return false;
+                            }
+                        });
+                        res = LocalStorageService.set("roleList", roleList);
                 }
                 break;
             default:

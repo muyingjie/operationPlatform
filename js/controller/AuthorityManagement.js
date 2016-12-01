@@ -42,7 +42,7 @@ operApp.controller("AuthorityManagement", ["$scope", "$state", "$stateParams", "
     $scope.oper = function (operName) {
         switch(operName){
             case "save":
-                RoleService.setRoleAuthority(roleInfo.id, roleInfo.authorityList);
+                RoleService.setRoleAuthority($scope.roleInfo.id, $scope.roleInfo.authorityList);
                 break;
             case "return":
                 break;

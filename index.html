@@ -120,7 +120,6 @@
         }]);
         operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
             MenuService.getMenuList().then(function(menuData){
-                console.log(menuData);
                 $scope.menuData = menuData;
             });
 
@@ -178,7 +177,7 @@
 
         .panel{ padding: 20px 30px 20px 0; border-radius: 0;}
         .panel .panel-heading{ border-bottom: none;}
-        .panel .panel-body{ padding-top: 0;}
+        /*.panel .panel-body{ padding-top: 0;}*/
 
         .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td, .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th{ padding: 5px 15px;}
         .table .form-control{ height: 24px; padding: 0 12px;}
