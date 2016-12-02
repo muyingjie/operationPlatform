@@ -1,23 +1,8 @@
 <div class="panel panel-default" ng-controller="OrderListController">
     <ul class="nav nav-tabs">
-        <li class="active">
-            <a href="javascript:;" class="selected">
-                <span class="hidden-xs">全部订单</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="javascript:;">
-                <span class="hidden-xs">待支付订单</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="javascript:;">
-                <span class="hidden-xs">已支付订单</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="javascript:;">
-                <span class="hidden-xs">已失效订单</span>
+        <li class="active" ng-repeat="menu in tabMenus">
+            <a href="javascript:;" ng-click="selectedMenu($index)" ng-class="{selected: $index == selectedTab}">
+                <span class="hidden-xs">{{menu.menuName}}</span>
             </a>
         </li>
     </ul>
@@ -41,10 +26,10 @@
             <div class="form-group">
                 <select class="form-control" name="role" ng-model="pageData.curOrderStatusItem" ng-options="item.txt for item in statusList.orderStatusList"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="menuStateShow">
                 <label class="cbr-inline">协议状态：</label>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="menuStateShow">
                 <select class="form-control" name="role" ng-model="pageData.curprotocolStatusItem" ng-options="item.txt for item in statusList.protocolStatusList"></select>
             </div>
             <div class="form-group">
@@ -85,10 +70,9 @@
                 <td>{{account.payStatus}}</td>
                 <td>{{account.deliveryStatus}}</td>
                 <td>{{account.protocolState}}</td>
-                <td><a href="javascript:;">{{account.operation}}</a></td>
+                <td><a href="#orderDetails">{{account.operation}}</a></td>
             </tr>
            </tbody>
         </table>
     </div>
-
 </div>

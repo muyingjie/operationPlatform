@@ -3,7 +3,13 @@
  * Apply your custom CSS here
  *
 */
-
+ul,ol,dl,dt,dd,li{
+    list-style: none;
+}
+.fl{
+  float: left;
+}
+.clear:after{ clear: both; display: block; content: "";}
 .nav.nav-tabs{
     border-bottom: 2px solid #4587db;
 }
@@ -25,4 +31,37 @@
     padding: 8px 19px 10px;
     background-color: #fff;
     color: #4587db;
+}
+
+/*¶©µ¥ÏêÇé*/
+.liItem{
+    width: 45%;
+    height: 35px;
+    line-height: 35px;
+}
+.liItem>.left{
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+    padding-right: 10px;
+}
+.liItem>button{
+    display: inline-block;
+    height: 23px;
+    vertical-align: middle;
+    line-height: 18px;
+    margin-left: 50px;
+}
+.detailsTitle{
+    font-weight: bold;
+    color: #333;
+    padding-left: 57px;
+}
+.paymentVoucherTitle{
+    color:red;
+    padding-left: 57px;
+}
+.layoutCommon{
+    border-bottom: 1px dashed #313437;
+    margin-bottom: 15px;
 }

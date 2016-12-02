@@ -2,6 +2,7 @@
  * Created by lenovo on 2016/11/30.
  */
 operApp.controller("OrderListController",["$scope", function ($scope) {
+    //select
     $scope.statusList = {
         orderStatusList:[
             {
@@ -61,6 +62,22 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
         curprotocolStatusItem: $scope.statusList.protocolStatusList[0]
     };
 
+    //tabs && 是否显示协议状态
+    $scope.menuStateShow = false;
+    $scope.tabMenus = [
+        {menuName:'全部订单'},
+        {menuName:'待支付订单'},
+        {menuName:'已支付订单'},
+        {menuName:'已失效订单'}
+    ];
+    $scope.selectedTab = 0;
+    $scope.selectedMenu = function (row) {
+        $scope.selectedTab = row;
+        //判断是否显示协议状态
+        $scope.menuStateShow = $scope.tabMenus[row].menuName === "已支付订单" ? true : false;
+    };
+
+    //table
     renderSystemAccountList();
     function renderSystemAccountList(){
         $scope.accountList = [
@@ -77,7 +94,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
                 payStatus:'已支付',
                 deliveryStatus:'已交付',
                 protocolState:"执行中",
-                operation:'操作'
+                operation:'详情'
             },
             {
                 member: "13750854360",
@@ -92,7 +109,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
                 payStatus:'已支付',
                 deliveryStatus:'已交付',
                 protocolState:"执行中",
-                operation:'操作'
+                operation:'详情'
             },
             {
                 member: "13750854360",
@@ -107,7 +124,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
                 payStatus:'已支付',
                 deliveryStatus:'已交付',
                 protocolState:"执行中",
-                operation:'操作'
+                operation:'详情'
             },
             {
                 member: "13750854360",
@@ -122,7 +139,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
                 payStatus:'已支付',
                 deliveryStatus:'已交付',
                 protocolState:"执行中",
-                operation:'操作'
+                operation:'详情'
             }
         ];
     }

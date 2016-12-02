@@ -87,6 +87,13 @@
                     title: "订单管理",
                     subTitle: "生成沙箱订单"
                 }
+            }).state("/orderDetails",{
+                url:"/orderDetails",
+                templateUrl:"template/orderDetails.html",
+                data:{
+                    title:"订单管理 > 订单列表",
+                    subTitle:"订单详情"
+                }
             });
 
             //产品管理
@@ -156,6 +163,7 @@
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>
     <script src="js/controller/OrderListController.js"></script>
+    <script src="js/controller/OrderDetailsController.js"></script>
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
 

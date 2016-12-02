@@ -1,0 +1,147 @@
+<div class="panel panel-default" ng-controller="OrderDetailsController">
+    <div class="layoutCommon">
+        <p class="detailsTitle">订单信息</p>
+        <ul class="clear">
+            <li class="fl liItem">
+                <span class="left">订单编号：</span>
+                <span>{{orderInfor.orderNumber}}</span>
+            </li>
+            <li class="fl liItem">
+                <span class="left">下单时间：</span>
+                <span>{{orderInfor.orderTime}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">分类：</span>
+                <span>{{orderInfor.classify}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">金额：</span>
+                <span>{{orderInfor.cost}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">状态：</span>
+                <span>{{orderInfor.payStatus}}</span>
+                <button ng-show="commitState">提交支付凭证</button>
+            </li>
+        </ul>
+        <p class="paymentVoucherTitle">支付凭证</p>
+        <ul class="clear">
+            <li class="fl liItem">
+                <span class="left">支付方式：</span>
+                <span>{{paymentVoucherInfor.paymentWay}}</span>
+            </li>
+            <li class="fl liItem">
+                <span class="left">支付账号：</span>
+                <span>{{paymentVoucherInfor.paymentAccount}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">支付金额：</span>
+                <span>{{paymentVoucherInfor.paymentAmount}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">支付时间：</span>
+                <span>{{paymentVoucherInfor.paymentTime}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">备注：</span>
+                <span>{{paymentVoucherInfor.remarks}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="layoutCommon">
+        <p class="detailsTitle">会员信息</p>
+        <ul class="clear">
+            <li class="fl liItem">
+                <span class="left">会员ID：</span>
+                <span>{{memberInfor.memberID}}</span>
+            </li>
+            <li class="fl liItem">
+                <span class="left">手机号：</span>
+                <span>{{memberInfor.cellphone}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">名称：</span>
+                <span>{{memberInfor.name}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">邮箱：</span>
+                <span>{{memberInfor.email}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">二级域：</span>
+                <span>{{memberInfor.twoLevelDomainName}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="layoutCommon">
+        <p class="detailsTitle">商品信息</p>
+        <ul class="clear">
+            <li class="fl liItem">
+                <span class="left">商品编号：</span>
+                <span>{{commodityInfor.commodityNumber}}</span>
+            </li>
+            <li class="fl liItem">
+                <span class="left">期限：</span>
+                <span>{{commodityInfor.term}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">商品名称：</span>
+                <span>{{commodityInfor.commodity}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">生效日期：</span>
+                <span>{{commodityInfor.effectiveDate}}</span>
+
+            </li>
+            <li class="fl liItem">
+                <span class="left">交付状态：</span>
+                <span>{{commodityInfor.deliveryStatus}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="layoutCommon">
+        <p class="detailsTitle">服务信息</p>
+        <div style="padding: 0 60px">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr role="row">
+                    <th width="65">序号</th>
+                    <th>工单编号</th>
+                    <th>工单类型</th>
+                    <th>生成时间</th>
+                    <th>商品标识</th>
+                    <th>商品名称</th>
+                    <th>版本</th>
+                    <th>状态</th>
+                    <th>完成时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="account in accountList track by $index">
+                    <td class="sorting_1">{{account.member}}</td>
+                    <td>{{account.memberName}}</td>
+                    <td>{{account.twoLevelDomainName}}</td>
+                    <td>{{account.orderTime}}</td>
+                    <td>{{account.classify}}</td>
+                    <td>{{account.commodity}}</td>
+                    <td>{{account.cost}}</td>
+                    <td>{{account.timeLimit}}</td>
+                    <td>{{account.effectiveDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
