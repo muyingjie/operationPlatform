@@ -1,1 +1,53 @@
-权限管理
+<div class="panel panel-default" ng-controller="AuthorityManagement">
+    <div class="panel-heading">
+        <h5 class="panel-title">当前角色：{{roleInfo.roleName}}</h5>
+    </div>
+    <div class="panel-body" style="padding-left: 20px;">
+        <div class="panel panel-default panel-border" style="padding-left: 30px;">
+            <div class="panel-heading" style="font-size: 14px;">菜单权限设置</div>
+            <div class="panel-body">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="auth-item" ng-repeat="auth in roleInfo.authorityList.menu track by $index">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-1">
+                                    <label class="cbr-inline">
+                                        <div ng-class="{'cbr-replaced': true, 'cbr-checked': auth.authoritative}" ng-click="authClick(auth)">
+                                            <div class="cbr-state">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        {{auth.name}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-1" ng-repeat="subAuth in auth.items track by $index">
+                                    <label class="cbr-inline ft12">
+                                        <div ng-class="{'cbr-replaced': true, 'cbr-checked': subAuth.authoritative}" ng-click="authClick(auth, subAuth)">
+                                            <div class="cbr-state">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        {{subAuth.name}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-info btn-single" ng-click="oper('save')">保存</button>
+                                <button type="button" class="btn btn-gray btn-single" ng-click="oper('return')">返回</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

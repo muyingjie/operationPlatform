@@ -6,7 +6,7 @@ operApp.controller("RoleOperatingController", ["$scope", "RoleService", "$state"
     getRoleList();
     function getRoleList(){
         RoleService.getRoleList().then(function (data){
-            $scope.roleList = data.data;
+            $scope.roleList = data;
         });
     }
 
