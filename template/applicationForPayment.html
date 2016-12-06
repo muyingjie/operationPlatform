@@ -1,0 +1,41 @@
+<div class="panel panel-default" ng-controller="OrderDetailsController">
+    <p class="detailsTitle">订单信息</p>
+    <ul class="clear">
+        <li class="fl liItem">
+            <span class="left">订单编号：</span>
+            <span>{{orderInfor.orderNumber}}</span>
+        </li>
+        <li class="fl liItem">
+            <span class="left">下单时间：</span>
+            <span>{{orderInfor.orderTime}}</span>
+
+        </li>
+        <li class="fl liItem">
+            <span class="left">分类：</span>
+            <span>{{orderInfor.classify}}</span>
+
+        </li>
+        <li class="fl liItem">
+            <span class="left">金额：</span>
+            <span>{{orderInfor.cost}}</span>
+
+        </li>
+        <li class="fl liItem">
+            <span class="left">状态：</span>
+            <span>{{orderInfor.payStatus}}</span>
+            <button ng-show="commitState" ng-click="goPage()">提交支付凭证</button>
+        </li>
+    </ul>
+
+    <p class="detailsTitle">提交付款凭证</p>
+    <dl>
+        <dt class="fl">
+            <span class="col-f00">*</span>
+            支付方式
+        </dt>
+        <dd class="fl">
+            <input type="radio" name="paymentWay"/>支付宝
+            <input type="radio" name="paymentWay"/>微信
+        </dd>
+    </dl>
+</div>
