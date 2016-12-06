@@ -24,11 +24,11 @@
             <li class="fl liItem">
                 <span class="left">状态：</span>
                 <span>{{orderInfor.payStatus}}</span>
-                <button ng-show="commitState">提交支付凭证</button>
+                <button ng-show="commitState" ng-click="goPage()">提交支付凭证</button>
             </li>
         </ul>
-        <p class="paymentVoucherTitle">支付凭证</p>
-        <ul class="clear">
+        <p class="paymentVoucherTitle" ng-if="isPaymentVoucher">支付凭证</p>
+        <ul class="clear" ng-if="isPaymentVoucher">
             <li class="fl liItem">
                 <span class="left">支付方式：</span>
                 <span>{{paymentVoucherInfor.paymentWay}}</span>
@@ -128,20 +128,50 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="account in accountList track by $index">
-                    <td class="sorting_1">{{account.member}}</td>
-                    <td>{{account.memberName}}</td>
-                    <td>{{account.twoLevelDomainName}}</td>
-                    <td>{{account.orderTime}}</td>
-                    <td>{{account.classify}}</td>
-                    <td>{{account.commodity}}</td>
-                    <td>{{account.cost}}</td>
-                    <td>{{account.timeLimit}}</td>
-                    <td>{{account.effectiveDate}}</td>
+                <tr ng-repeat="infor in serviceInfor track by $index">
+                    <td class="sorting_1">{{$index}}</td>
+                    <td>{{infor.workOrderNum}}</td>
+                    <td>{{infor.workOrderClassify}}</td>
+                    <td>{{infor.generationTime}}</td>
+                    <td>{{infor.productID}}</td>
+                    <td>{{infor.commodityName}}</td>
+                    <td>{{infor.version}}</td>
+                    <td>{{infor.state}}</td>
+                    <td>{{infor.completionTime}}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
     </div>
+    <div class="layoutCommon">
+        <p class="detailsTitle">附加信息</p>
+        <dl class="clear dl-item">
+            <dt class="fl">参加活动：</dt>
+            <dd class="fl">（编号：147258） 1分钱活动，买10个月送2个月，本活动不退款；</dd>
+        </dl>
+
+        <dl class="clear dl-item" ng-repeat="remark in remarksInfor">
+            <dt class="fl">备注{{$index+1}}：</dt>
+            <dd class="fl">{{remark}}</dd>
+        </dl>
+    </div>
+    <div class="btn-layout">
+        <button class="btn-first" ng-click="leftBtnMethod(leftBtn.state)" ng-show="rightBtn.btnShow">{{leftBtn.txt}}</button>
+        <button ng-click="rightBtnMethod(rightBtn.state)">{{rightBtn.txt}}</button>
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{items.title}}商城</h3>
+        </div>
+        <p class="dialog-p">请输入{{items.title}}商城的原因</p>
+        <div class="modal-body">
+            <textarea name="reson" id="" cols="73" rows="8"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">提交</button>
+            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+        </div>
+    </script>
 </div>

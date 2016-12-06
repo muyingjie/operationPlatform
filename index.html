@@ -87,12 +87,19 @@
                     title: "订单管理",
                     subTitle: "生成沙箱订单"
                 }
-            }).state("/orderDetails",{
+            }).state("orderDetails",{
                 url:"/orderDetails",
                 templateUrl:"template/orderDetails.html",
                 data:{
                     title:"订单管理 > 订单列表",
                     subTitle:"订单详情"
+                }
+            }).state("applicationForPayment",{
+                url:"/applicationForPayment",
+                templateUrl:"template/applicationForPayment.html",
+                data:{
+                    title:"订单管理  >  订单列表  >  订单详情",
+                    subTitle:"已支付申请"
                 }
             });
 

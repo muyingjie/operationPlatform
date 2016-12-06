@@ -1,13 +1,13 @@
 /**
  * Created by lenovo on 2016/12/1.
  */
-operApp.controller("OrderDetailsController",["$scope", function ($scope) {
+operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",function ($scope,$modal,$log,$state) {
     $scope.orderInfor = {
         orderNumber: "111110010050",
         memberName: "张三",
         twoLevelDomainName: "abc123.shopce.cn",
         orderTime: "2016-11-30 16:30:24",
-        classify: "注册",
+        classify: "沙箱",
         commodity: "试用版",
         cost:"297.00",
         timeLimit:'365天',
@@ -19,7 +19,9 @@ operApp.controller("OrderDetailsController",["$scope", function ($scope) {
     };
     $scope.commitState = false;
     $scope.commitState = $scope.orderInfor.payStatus === "未支付" ? true : false;
-
+    $scope.goPage = function(){
+        $state.go("applicationForPayment");
+    };
     $scope.paymentVoucherInfor = {
         paymentWay:'支付宝',
         paymentAccount:'laorui@163.com',
@@ -27,6 +29,8 @@ operApp.controller("OrderDetailsController",["$scope", function ($scope) {
         paymentTime:'2016-11-30 16:30:24',
         remarks:'这是备注信息'
     };
+    $scope.isPaymentVoucher = $scope.paymentVoucherInfor ? true : false;
+
     $scope.memberInfor = {
         memberID:'100000008',
         cellphone:'12354786951',
@@ -46,7 +50,117 @@ operApp.controller("OrderDetailsController",["$scope", function ($scope) {
             workOrderNum:'111110010050',
             workOrderClassify:'商城开通',
             generationTime:'2016-11-21 17:47',
-            productID:'xyz12'
+            productID:'xyz12',
+            commodityName:'B2C',
+            version:'V1.0',
+            state:'待执行',
+            completionTime:'2016-11-21 17:47'
+        },
+        {
+            workOrderNum:'111110010050',
+            workOrderClassify:'商城开通',
+            generationTime:'2016-11-21 17:47',
+            productID:'xyz12',
+            commodityName:'B2C',
+            version:'V1.0',
+            state:'待执行',
+            completionTime:'2016-11-21 17:47'
+        },
+        {
+            workOrderNum:'111110010050',
+            workOrderClassify:'商城开通',
+            generationTime:'2016-11-21 17:47',
+            productID:'xyz12',
+            commodityName:'B2C',
+            version:'V1.0',
+            state:'待执行',
+            completionTime:'2016-11-21 17:47'
         }
-    ]
+    ];
+
+    $scope.remarksInfor = [
+        '2016-11-21 17:47 因商品有问题，商城关闭；',
+        '2016-11-21 17:47 商城重新开启；',
+        '2016-11-21 17:47 服务到期，商城关闭；'
+    ];
+    $scope.leftBtn= {
+        state:'stop',
+        txt:'暂停'
+    };
+    $scope.rightBtn = $scope.orderInfor.classify === '沙箱' ? {state:"closeSandBox",txt:"关闭沙箱"} : {state:"close",txt:'关闭'};
+
+    $scope.leftBtnMethod = function (state) {
+        $scope.items.title = $scope.leftBtn.txt;
+        $scope.items.btnMethod = $scope.leftBtn;
+        $scope.open();
+
+    };
+    $scope.btnShow = $scope.rightBtn.state === 'openSandBox' ? false : true;
+    $scope.rightBtn.btnShow = true;
+    $scope.rightBtnMethod = function (state) {
+        $scope.items.title = $scope.rightBtn.txt;
+        $scope.items.btnMethod = $scope.rightBtn;
+        $scope.open();
+
+    };
+    $scope.items = {
+        itemsData: ['测试信息1', '测试信息2', '测试信息3']
+    };
+    $scope.open = function (size) {
+        var modalInstance = $modal.open({
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+}]);
+operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items.itemsData[0]
+    };
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+        switch ($scope.items.btnMethod.state){
+            case 'stop':
+                $scope.items.btnMethod.state = 'start';
+                $scope.items.btnMethod.txt = '开启';
+                break;
+            case 'start':
+                $scope.items.btnMethod.state = 'stop';
+                $scope.items.btnMethod.txt = '暂停';
+                break;
+            case 'closeSandBox':
+                $scope.items.btnMethod.state =  'openSandBox';
+                $scope.items.btnMethod.txt = '开启沙箱';
+                $scope.items.btnMethod.btnShow = false;
+                break;
+            case 'close':
+                $scope.items.btnMethod.state =  'open';
+                $scope.items.btnMethod.txt = '申请退款';
+                $scope.items.btnMethod.btnShow = true;
+                break;
+            case 'openSandBox':
+                $scope.items.btnMethod.state =  'closeSandBox';
+                $scope.items.btnMethod.txt = '关闭沙箱';
+                $scope.items.btnMethod.btnShow = true;
+                break;
+        }
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }]);

@@ -10,6 +10,9 @@ ul,ol,dl,dt,dd,li{
   float: left;
 }
 .clear:after{ clear: both; display: block; content: "";}
+.col-f00{
+    color: #f00;
+}
 .nav.nav-tabs{
     border-bottom: 2px solid #4587db;
 }
@@ -64,4 +67,28 @@ ul,ol,dl,dt,dd,li{
 .layoutCommon{
     border-bottom: 1px dashed #313437;
     margin-bottom: 15px;
+}
+.dl-item{
+    padding-left: 40px;
+}
+.dl-item>dt{
+    width: 100px;
+    text-align: right;
+    font-weight: normal;
+}
+.btn-layout{
+    text-align: center;
+
+}
+.btn-layout>button{
+    width: 100px;
+    margin-left: 50px;
+}
+.btn-layout>.btn-first{
+    margin: 0;
+}
+.dialog-p{
+    padding-top: 15px;
+    margin-bottom: -10px;
+    color: #333;
 }
