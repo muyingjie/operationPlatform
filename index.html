@@ -125,7 +125,7 @@
                 $scope.pageData.subTitle=toState.data.subTitle;
             });
         }]);
-        operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
+        operApp.controller("MainController",["$scope","$rootScope","MenuService", function ($scope, $rootScope, MenuService) {
             MenuService.getMenuList().then(function(menuData){
                 $scope.menuData = menuData;
             });
@@ -147,6 +147,29 @@
                 $scope.pageData.title=toState.data.title;
                 $scope.pageData.subTitle=toState.data.subTitle;
             });
+
+            $rootScope.inputBlurFn = function (vali, err, fn) {
+                for(var attr in err){
+                    if(err[attr]==true){
+                        vali.promptAttr = attr;
+                        return false;
+                    }
+                }
+                //两次密码输入不一致
+                var selfRes = true;
+                if(fn){
+                    selfRes = fn();
+                }
+                if(selfRes === false){
+                    return false;
+                }
+                vali.promptAttr="pass";
+                return true;
+            };
+
+            $rootScope.passwordInputFocusFn = function (vali) {
+                vali.eleType = "password";
+            };
         }]);
     </script>
     <!--过滤器-->

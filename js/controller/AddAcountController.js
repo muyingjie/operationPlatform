@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/30.
  */
-operApp.controller("AddAcountController", ["$scope", "RoleService", function ($scope, RoleService) {
+operApp.controller("AddAcountController", ["$scope", "RoleService", "ToolService", function ($scope, RoleService, ToolService) {
     $scope.account = {
         username: "",
         password: "",
@@ -14,21 +14,9 @@ operApp.controller("AddAcountController", ["$scope", "RoleService", function ($s
         $scope.roleList = data;
         $scope.account.role = $scope.roleList[0];
     });
-    function change(inputItem, err){
-        for(var attr in err){
-            if(err[attr]==true){
-                $scope.validateList[inputItem].promptAttr = attr;
-                return false;
-            }
-        }
-        $scope.validateList[inputItem].promptAttr="pass";
-        return true;
-    }
-    $scope.validateList = [
-        {
-            name: "姓名",
-            ele: "input",
-            eleType: "text",
+    $scope.validateList = {
+        "username": {
+            name: "用户名",
             validateItems: {
                 required: true
             },
@@ -37,15 +25,10 @@ operApp.controller("AddAcountController", ["$scope", "RoleService", function ($s
                 {attr: "default", tip: ""},
                 {attr: "required", tip: "用户名不能为空"},
                 {attr: "pass", tip: "√"}
-            ],
-            change: function (err) {
-                change("username", err);
-            }
+            ]
         },
-        {
+        "password":{
             name: "密码",
-            ele: "input",
-            eleType: "password",
             validateItems: {
                 required: true
             },
@@ -54,15 +37,10 @@ operApp.controller("AddAcountController", ["$scope", "RoleService", function ($s
                 {attr: "default", tip: ""},
                 {attr: "required", tip: "密码不能为空"},
                 {attr: "pass", tip: "√"}
-            ],
-            change: function (err) {
-                change("password", err);
-            }
+            ]
         },
-        {
+        "passwordagain":{
             name: "确认密码",
-            ele: "input",
-            eleType: "password",
             validateItems: {
                 required: true
             },
@@ -70,31 +48,28 @@ operApp.controller("AddAcountController", ["$scope", "RoleService", function ($s
             promptList: [
                 {attr: "default", tip: ""},
                 {attr: "required", tip: "密码不能为空"},
+                {attr: "passwordSame", tip: "两次密码输入不一致"},
                 {attr: "pass", tip: "√"}
-            ],
-            change: function (err) {
-                change("passwordagain", err);
-            }
+            ]
         },
-        {
+        "name":{
             name: "姓名",
-            ele: "input",
-            eleType: "text",
             validateItems: {
                 required: true
             },
             promptAttr: "default",
             promptList: [
                 {attr: "default", tip: ""},
-                {attr: "required", tip: "密码不能为空"},
+                {attr: "required", tip: "姓名不能为空"},
                 {attr: "pass", tip: "√"}
-            ],
-            change: function (err) {
-                change("password", err);
-            }
+            ]
         }
-    ];
-    $scope.change = change;
+    };
+
+    $scope.passwordIsSame = function () {
+        $scope.validateList.passwordagain.promptAttr = "passwordSame";
+        return $scope.account.password == $scope.account.passwordagain;
+    };
 
     $scope.save = function () {
 
