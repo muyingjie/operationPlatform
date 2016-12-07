@@ -65,7 +65,7 @@ ul,ol,dl,dt,dd,li{
     padding-left: 57px;
 }
 .layoutCommon{
-    border-bottom: 1px dashed #313437;
+    border-bottom: 1px dashed #ccc;
     margin-bottom: 15px;
 }
 .dl-item{
@@ -91,4 +91,19 @@ ul,ol,dl,dt,dd,li{
     padding-top: 15px;
     margin-bottom: -10px;
     color: #333;
+}
+
+.btn-layout.item{
+    width: 55%;
+    padding-top: 50px;
+}
+
+.ger-order-layout{
+    margin: 20px auto;
+    width: 980px;
+}
+
+.ger-order-layout>dl>dt{
+    width: 100px;
+    text-align: right;
 }

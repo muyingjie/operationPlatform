@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="OrderDetailsController">
+<div class="panel panel-default" ng-controller="ApplicationForPayment">
     <p class="detailsTitle">订单信息</p>
     <ul class="clear">
         <li class="fl liItem">
@@ -23,19 +23,60 @@
         <li class="fl liItem">
             <span class="left">状态：</span>
             <span>{{orderInfor.payStatus}}</span>
-            <button ng-show="commitState" ng-click="goPage()">提交支付凭证</button>
         </li>
     </ul>
 
     <p class="detailsTitle">提交付款凭证</p>
-    <dl>
-        <dt class="fl">
-            <span class="col-f00">*</span>
-            支付方式
-        </dt>
-        <dd class="fl">
-            <input type="radio" name="paymentWay"/>支付宝
-            <input type="radio" name="paymentWay"/>微信
-        </dd>
-    </dl>
+    <div class="ui-view ng-scope">
+        <form name="accountForm" role="form" class="form-horizontal ng-scope ng-pristine ng-invalid ng-invalid-required" style="margin-top: 30px;">
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><span class="col-f00">*</span>支付方式：</label>
+                <div class="col-sm-10">
+                    <p>
+                        <label class="radio-inline">
+                            <input name="radio-2" checked="" type="radio">
+                            支付宝
+                        </label>
+                        <label class="radio-inline">
+                            <input name="radio-2" type="radio">
+                            微信
+                        </label>
+                    </p>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><span class="col-f00">*</span>支付账号：</label>
+                <div class="col-sm-3">
+                    <input name="username" type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="account.username" ng-required="validateList.username.validateItems.required" ng-blur="inputBlurFn(validateList.username, accountForm.username.$error)" required="required">
+                </div>
+            <!-- ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr --><div class="col-sm-3 text-danger ng-binding ng-scope" ng-repeat="re in validateList.username.promptList|filter:validateList.username.promptAttr">用户名不能为空</div><!-- end ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr -->
+        </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><span class="col-f00">*</span>支付金额：</label>
+                <div class="col-sm-3">
+                    <input name="username" type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="account.username" ng-required="validateList.username.validateItems.required" ng-blur="inputBlurFn(validateList.username, accountForm.username.$error)" required="required">
+                </div>
+            <!-- ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr --><div class="col-sm-3 text-danger ng-binding ng-scope" ng-repeat="re in validateList.username.promptList|filter:validateList.username.promptAttr">用户名不能为空</div><!-- end ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr -->
+        </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><span class="col-f00">*</span>支付时间：</label>
+                <div class="col-sm-3">
+                    <input name="username" type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="account.username" ng-required="validateList.username.validateItems.required" ng-blur="inputBlurFn(validateList.username, accountForm.username.$error)" required="required">
+                </div>
+            <!-- ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr --><div class="col-sm-3 text-danger ng-binding ng-scope" ng-repeat="re in validateList.username.promptList|filter:validateList.username.promptAttr">用户名不能为空</div><!-- end ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr -->
+        </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">备注：</label>
+                <div class="col-sm-3">
+                    <input name="username" type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="account.username" ng-required="validateList.username.validateItems.required" ng-blur="inputBlurFn(validateList.username, accountForm.username.$error)" required="required">
+                </div>
+            <!-- ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr --><div class="col-sm-3 text-danger ng-binding ng-scope" ng-repeat="re in validateList.username.promptList|filter:validateList.username.promptAttr">用户名不能为空</div><!-- end ngRepeat: re in validateList.username.promptList|filter:validateList.username.promptAttr -->
+        </div>
+            <div class="btn-layout item">
+                <button class="btn-first" ng-click="submitApplication()">提交</button>
+                <button ng-click="cancelSubmitApplication()">取消</button>
+            </div>
+        </form>
+    </div>
 </div>

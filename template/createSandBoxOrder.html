@@ -1,0 +1,76 @@
+<div class="panel panel-default" ng-controller="CreateSandBoxOrderController">
+    <form role="form" class="form-inline ng-pristine ng-invalid ng-invalid-required" novalidate="" name="roleForm">
+        <div class="form-group">
+            <label class="cbr-inline">查找会员：</label>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="会员ID">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="手机号">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="邮箱">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-secondary btn-single" ng-click="addRole()">查找</button>
+        </div>
+    </form>
+
+    <h4>会员信息</h4>
+    <div style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 20px">
+        <p style="color: #f00" ng-if="!checkedMember">没找到会员</p>
+        <table class="table table-striped" ng-if="checkedMember">
+            <tbody>
+            <tr ng-repeat="menber in members track by $index">
+                <td>{{menber.memberID}}</td>
+                <td>{{menber.cellphone}}</td>
+                <td>{{menber.email}}</td>
+                <td>{{menber.twoLevelDomainName}}</td>
+                <td>{{menber.memberClassify}}</td>
+                <td width="150">
+                    <button style="width: 100px" ng-click="getOrder()">下订单</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ger-order-layout">
+        <p class="col-f00">下订单</p>
+        <dl class="clear">
+            <dt class="fl">会员ID：</dt>
+            <dd class="fl">18752456542</dd>
+        </dl>
+        <dl class="clear">
+            <dt class="fl">会员手机：</dt>
+            <dd class="fl">18752456542</dd>
+        </dl>
+        <dl class="clear">
+            <dt class="fl">版本：</dt>
+            <dd class="fl">
+                <select class="form-control" name="role" ng-model="pageDate.curVersionStatusItem" ng-options="item.txt for item in statusList.versionList"></select>
+            </dd>
+        </dl>
+        <dl class="clear">
+            <dt class="fl">有效期至：</dt>
+            <dd class="fl">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateData.dt" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" date-disabled="dateData.disabled(date, mode)" ng-required="true" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)"/>
+                </p>
+            </dd>
+        </dl>
+        <dl class="clear">
+            <dt class="fl">二级域：</dt>
+            <dd class="fl">
+                <span>http://</span>
+                <div class="" style="display: inline-block">
+                    <input type="text" class="form-control" size="15" name="username" ng-model="roleItem.roleName" placeholder=""/>
+                </div>
+                <div style="display: inline-block">
+                    <select class="form-control" name="role" ng-model="pageDate.curDomainSuffixStatusItem" ng-options="item.txt for item in statusList.domainSuffixList"></select>
+                </div>
+            </dd>
+        </dl>
+        <div class="btn-layout item">
+            <button class="btn-first" ng-click="submitSandBoxOrder()">提交</button>
+            <button ng-click="cancelSandBoxOrder()">取消</button>
+        </div>
+    </div>
+</div>

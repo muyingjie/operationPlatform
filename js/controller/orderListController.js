@@ -59,7 +59,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
     };
     $scope.pageData = {
         curOrderStatusItem: $scope.statusList.orderStatusList[0],
-        curprotocolStatusItem: $scope.statusList.protocolStatusList[0]
+        curProtocolStatusItem: $scope.statusList.protocolStatusList[0]
     };
 
     //tabs && 是否显示协议状态
@@ -76,7 +76,42 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
         //判断是否显示协议状态
         $scope.menuStateShow = $scope.tabMenus[row].menuName === "已支付订单" ? true : false;
     };
+    //时间选择
+    $scope.dateDataStart = {
+        dt: new Date(),
+        opened: false,
+        format: "yyyy-MM-dd",
+        language:'cn',
+        dateOptions: {
+            startingDay: 0
+        },
+        mixDate: null,
+        maxDate: null,
+        open: function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
 
+            $scope.dateDataStart.opened = true;
+        },
+        closeTxt: "关闭"
+    };
+    $scope.dateDataEnd = {
+        dt: new Date(),
+        opened: false,
+        format: "yyyy-MM-dd",
+        dateOptions: {
+            startingDay: 0
+        },
+        mixDate: null,
+        maxDate: null,
+        open: function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.dateDataEnd.opened = true;
+        },
+        closeTxt: "关闭"
+    };
     //table
     renderSystemAccountList();
     function renderSystemAccountList(){
