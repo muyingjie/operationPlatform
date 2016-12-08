@@ -104,8 +104,27 @@
             });
 
             //产品管理
-            $stateProvider.state("memberList", {
-
+            $stateProvider.state("productPackage", {
+                url:"/productPackage",
+                templateUrl:"template/productPackage.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"产品套餐列表"
+                }
+            }).state("addProductPackage",{
+                url:"/addProductPackage",
+                templateUrl:"template/addProductPackage.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"产品套餐列表"
+                }
+            }).state("productPackageDetails",{
+                url:"/productPackageDetails",
+                templateUrl:"template/productPackageDetails.html",
+                data:{
+                    title:"产品管理 > 产品套餐列表",
+                    subTitle:"套餐详情"
+                }
             });
         }]);
         operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
@@ -198,6 +217,9 @@
     <script src="js/controller/AuthorityManagement.js"></script>
     <script src="js/controller/ApplicationForPayment.js"></script>
     <script src="js/controller/CreateSandBoxOrderController.js"></script>
+    <script src="js/controller/ProductPackageController.js"></script>
+    <script src="js/controller/AddProductPackageController.js"></script>
+    <script src="js/controller/ProductPackageDetailsController.js"></script>
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
 

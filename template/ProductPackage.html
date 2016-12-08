@@ -1,0 +1,48 @@
+<div class="panel panel-default" ng-controller="ProductPackageController">
+    <div style="border-bottom: 2px solid #4587db;padding-bottom: 5px">
+        <button ng-click="addProductPackage()">添加套餐包</button>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr role="row">
+                <th>套餐编号</th>
+                <th>套餐名称</th>
+                <th>价格</th>
+                <th>优先级</th>
+                <th>备注</th>
+                <th>发布时间</th>
+                <th>状态</th>
+                <th>售出</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="ng-scope" ng-repeat="product in productPackageListInfor track by $index">
+                <td class="ng-binding">{{product.productPackageNum}}</td>
+                <td class="ng-binding">{{product.productPackageName}}</td>
+                <td class="ng-binding">{{product.price}}</td>
+                <td class="ng-binding">{{product.priority}}</td>
+                <td class="ng-binding">{{product.remarks}}</td>
+                <td class="ng-binding">{{product.releaseTime}}</td>
+                <td class="ng-binding">{{product.state}}</td>
+                <td class="ng-binding">{{product.sold}}</td>
+                <td class="ng-binding"><a href="javascript:;" ng-click="handleShelves()">上架</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="details()">详情</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{items.title}}商城</h3>
+        </div>
+        <p class="dialog-p">请输入{{items.title}}商城的原因</p>
+        <div class="modal-body">
+            <textarea name="reson" id="" cols="73" rows="8"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">提交</button>
+            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+        </div>
+    </script>
+</div>

@@ -103,9 +103,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
         $scope.open();
 
     };
-    $scope.items = {
-        itemsData: ['测试信息1', '测试信息2', '测试信息3']
-    };
+    $scope.items = {};
     $scope.open = function (size) {
         var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',
@@ -127,10 +125,6 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
 }]);
 operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
     $scope.items = items;
-    $scope.selected = {
-        item: $scope.items.itemsData[0]
-    };
-
     $scope.ok = function () {
         $modalInstance.close($scope.selected.item);
         switch ($scope.items.btnMethod.state){

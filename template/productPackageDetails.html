@@ -1,0 +1,125 @@
+<div class="panel panel-default" ng-controller="ProductPackageDetailsController">
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead style="background-color: #f5f5f5">
+            <th style="border: none">添加套餐包</th>
+            <th style="border: none"></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td width="180" class="col-2c2e2f text-r">产品配置</td>
+                <td class="text-l"></td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">商城应用：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.applicationMall}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">容器：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.docker}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">存储空间：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.storage}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">带宽：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.bandwidth}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">模板：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.template}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">应用：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.application}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">短信：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.messages}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">邮件：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.emails}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="col-2c2e2f text-r">销售信息</td>
+                <td class="text-l"></td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">状态：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.state}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">编号：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.identifier}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">套餐名称：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.productPackageName}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">价格：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.price}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">优先级：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.priority}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">备注：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.remarks}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">发布时间：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.releaseTime}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">最后修改时间：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.lastModifiedTime}}
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r">售出：</td>
+                <td class="text-l">
+                    {{productPackageDetailsDate.sold}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-layout item">
+        <button class="btn-first" ng-click="back()">返回</button>
+    </div>
+</div>
