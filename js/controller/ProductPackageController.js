@@ -65,8 +65,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     $scope.items = {};
     $scope.open = function (size) {
         var modalInstance = $modal.open({
-            templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
+            templateUrl: 'myModalContentq.html',
+            controller: 'ModalInstanceCtrlq',
             size: size,
             resolve: {
                 items: function () {
@@ -91,10 +91,10 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     }
 }]);
 
-operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
+operApp.controller('ModalInstanceCtrlq', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
     $scope.items = items;
     $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+        $modalInstance.close();
     };
 
     $scope.cancel = function () {

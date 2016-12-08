@@ -156,7 +156,7 @@
             <dd class="fl">{{remark}}</dd>
         </dl>
     </div>
-    <div class="btn-layout">
+    <div class="btn-layout" ng-if="showAllBtn">
         <button class="btn-first" ng-click="leftBtnMethod(leftBtn.state)" ng-show="rightBtn.btnShow">{{leftBtn.txt}}</button>
         <button ng-click="rightBtnMethod(rightBtn.state)">{{rightBtn.txt}}</button>
     </div>
