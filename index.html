@@ -126,6 +126,24 @@
                     subTitle:"套餐详情"
                 }
             });
+            //日志管理  @liqin
+            $stateProvider.state("loginLog", {
+                url:"/loginLog",
+                templateUrl: "template/loginLog.html",
+                data: {
+                    title: "日志管理",
+                    subTitle: "登录日志"
+                }
+            }).state("operationLog", {
+                url:"/operationLog",
+                templateUrl: "template/operationLog.html",
+                data: {
+                    title: "日志管理",
+                    subTitle: "操作日志"
+                }
+            })
+            //日志管理结束
+
         }]);
         operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
             MenuService.getMenuList().then(function(menuData){
@@ -211,7 +229,7 @@
     <!--控制器-->
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>
-    <script src="js/controller/OrderListController.js"></script>
+    <script src="js/controller/orderListController.js"></script>
     <script src="js/controller/OrderDetailsController.js"></script>
     <script src="js/controller/AddAcountController.js"></script>
     <script src="js/controller/AuthorityManagement.js"></script>
@@ -220,6 +238,10 @@
     <script src="js/controller/ProductPackageController.js"></script>
     <script src="js/controller/AddProductPackageController.js"></script>
     <script src="js/controller/ProductPackageDetailsController.js"></script>
+
+    <script src="js/controller/loginLogController.js"></script>
+    <script src="js/controller/operationLogController.js"></script>
+
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
 

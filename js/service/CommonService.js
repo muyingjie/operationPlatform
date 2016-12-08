@@ -54,7 +54,7 @@ operApp.service("CommonService", ["$q", function ($q) {
                         },
                         {
                             name: "操作日志",
-                            hash: "operatingLog"
+                            hash: "operationLog"
                         }
                     ]
                 }

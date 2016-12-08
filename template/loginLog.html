@@ -1,0 +1,72 @@
+<div class="panel panel-default" ng-controller="loginLogController">
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="roleForm">
+            <div class="form-group">
+                <label class="cbr-inline">登录时间：</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}"  ng-model="dateData.dt" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)" />
+              <!--  <input type="text" class="form-control" size="25" name="name" ng-model="login.timef" />-->
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">至</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateData2.dt" is-open="dateData2.opened" min-date="dateData2.minDate" max-date="dateData2.maxDate" datepicker-options="dateData2.dateOptions" close-text="{{dateData2.closeTxt}}"  ng-click="dateData2.open($event)" />
+            <!--    <input type="text" class="form-control" size="25" name="username" ng-model="login.timel" />-->
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">管理员：</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="username" ng-model="login.name" />
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.curStatusItem" ng-options="logStatus.txt for logStatus in logStatusList" ng-change="changeRoleStatus()"></select>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">查询</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th width="80">ID</th>
+                <th width="150">账号</th>
+                <th>管理员</th>
+                <th>登录时间</th>
+                <th>IP</th>
+                <th width="300">结果</th>
+            </tr>
+            </thead>
+            <tbody class="middle-align">
+            <tr ng-repeat="log in logList track by $index">
+                <td>
+                    <span>{{log.id}}</span>
+                </td>
+                <td>
+                    <span>{{log.account}}</span>
+                </td>
+                <td>
+                    <span>{{log.name}}</span>
+                </td>
+                <td>
+                    <span>{{log.createTime|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                </td>
+                <td>
+                    <span> {{log.ip}}</span>
+                </td>
+                <td>
+                    <span>{{log.result}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
