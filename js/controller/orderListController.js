@@ -90,7 +90,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
         open: function($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
+            $scope.dateDataEnd.opened = false;
             $scope.dateDataStart.opened = true;
         },
         closeTxt: "关闭"
@@ -107,7 +107,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
         open: function($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
+            $scope.dateDataStart.opened =false;
             $scope.dateDataEnd.opened = true;
         },
         closeTxt: "关闭"
