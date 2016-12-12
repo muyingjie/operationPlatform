@@ -7,7 +7,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
         memberName: "张三",
         twoLevelDomainName: "abc123.shopce.cn",
         orderTime: "2016-11-30 16:30:24",
-        classify: "沙箱",
+        classify: "注册",
         commodity: "试用版",
         cost:"297.00",
         timeLimit:'365天',
@@ -88,7 +88,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
         txt:'暂停'
     };
     $scope.rightBtn = $scope.orderInfor.classify === '沙箱' ? {state:"closeSandBox",txt:"关闭沙箱"} : {state:"close",txt:'关闭'};
-
+    $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
     $scope.leftBtnMethod = function (state) {
         $scope.items.title = $scope.leftBtn.txt;
         $scope.items.btnMethod = $scope.leftBtn;
@@ -126,7 +126,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
 operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
     $scope.items = items;
     $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+        $modalInstance.close();
         switch ($scope.items.btnMethod.state){
             case 'stop':
                 $scope.items.btnMethod.state = 'start';

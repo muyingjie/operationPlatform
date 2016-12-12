@@ -125,6 +125,20 @@
                     title:"产品管理 > 产品套餐列表",
                     subTitle:"套餐详情"
                 }
+            }).state("meteringProduct",{
+                url:"/meteringProduct",
+                templateUrl:"template/meteringProduct.html",
+                data:{
+                    title:"产品管理 > 技术产品",
+                    subTitle:"计量产品"
+                }
+            }).state("techniqueProduct",{
+                url:"/techniqueProduct",
+                templateUrl:"template/techniqueProduct.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"技术产品"
+                }
             });
             //日志管理  @liqin
             $stateProvider.state("loginLog", {
@@ -229,7 +243,7 @@
     <!--控制器-->
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>
-    <script src="js/controller/orderListController.js"></script>
+    <script src="js/controller/OrderListController.js"></script>
     <script src="js/controller/OrderDetailsController.js"></script>
     <script src="js/controller/AddAcountController.js"></script>
     <script src="js/controller/AuthorityManagement.js"></script>
@@ -238,6 +252,7 @@
     <script src="js/controller/ProductPackageController.js"></script>
     <script src="js/controller/AddProductPackageController.js"></script>
     <script src="js/controller/ProductPackageDetailsController.js"></script>
+    <script src="js/controller/TechniqueProductController.js"></script>
 
     <script src="js/controller/loginLogController.js"></script>
     <script src="js/controller/operationLogController.js"></script>
