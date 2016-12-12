@@ -81,6 +81,13 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+    $scope.params = {
+        popTitle: "操作提示",
+        popBodyTpl: "确认要上架吗？",
+        onConfirmClick: function () {
+            alert("确定时触发");
+        }
+    };
     //编辑
     $scope.edit = function () {
         $state.go("addProductPackage")

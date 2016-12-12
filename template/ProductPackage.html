@@ -27,7 +27,11 @@
                 <td class="ng-binding">{{product.releaseTime}}</td>
                 <td class="ng-binding">{{product.state}}</td>
                 <td class="ng-binding">{{product.sold}}</td>
-                <td class="ng-binding"><a href="javascript:;" ng-click="handleShelves()">上架</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="details()">详情</a></td>
+                <!--<td class="ng-binding"><a href="javascript:;" ng-click="handleShelves()">上架</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="details()">详情</a></td>-->
+                <td class="ng-binding">
+                    <prompt-box params="params" ext-data="product"></prompt-box>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="javascript:;" ng-click="details()">详情</a></td>
             </tr>
             </tbody>
         </table>

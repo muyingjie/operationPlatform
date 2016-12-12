@@ -141,7 +141,7 @@
                     title: "日志管理",
                     subTitle: "操作日志"
                 }
-            })
+            });
             //日志管理结束
 
         }]);
@@ -244,6 +244,7 @@
 
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
+    <script src="js/directive/PromptBoxDirective.js"></script>
 
     <style>
         input,select,textarea{ border-radius: 0 !important;}
@@ -349,6 +350,25 @@
             <div class="ui-view"></div>
         </div>
     </div>
+
+    <script type="text/ng-template" id="promptBoxBtnTpl.html">
+        <a href="javascript:;" ng-if="params.btn.ele == 'a'" class="text-{{params.btn.theme}}" ng-style="params.btnStyle" ng-click="open()">上架</a>
+    </script>
+    <script type="text/ng-template" id="promptBoxContentTpl.html">
+        <div class="modal-header" style="border: none;">
+            <h4 class="modal-title">{{params.popTitle}}</h4>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+            <ng-include src='bodyParams.templateUrl' ng-if="bodyParams.isUrl"></ng-include>
+            <div ng-if="!bodyParams.isUrl" ng-bind-html="bodyParams.template"></div>
+        </div>
+        <div class="modal-footer" style="border: none;">
+            <!--<button class="btn btn-info">确认</button>-->
+            <!--<button class="btn btn-gray">取消</button>-->
+            <button class="btn btn-{{btn.style}}" ng-repeat="btn in params.popBtns" ng-click="btn.clickFn();closePop();">{{btn.txt}}</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="popBodyTpl.html">未传入模板</script>
 </div>
 
 </body>
