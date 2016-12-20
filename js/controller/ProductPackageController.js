@@ -71,7 +71,10 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
         currentPage: 5,
         total:18895,
         pageSize:20,
-        pagesLength: 5
+        pagesLength: 5,
+        upDateInterFace: function (date) {
+            console.log()
+        }
     };
 
     //编辑

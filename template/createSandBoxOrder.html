@@ -19,13 +19,13 @@
         <table class="table table-striped" ng-if="checkedMember">
             <tbody>
             <tr ng-repeat="menber in members track by $index">
-                <td>{{menber.memberID}}</td>
-                <td>{{menber.cellphone}}</td>
-                <td>{{menber.email}}</td>
-                <td>{{menber.twoLevelDomainName}}</td>
-                <td>{{menber.memberClassify}}</td>
+                <td><span>会员ID：</span>{{menber.memberID}}</td>
+                <td><span>手机号：</span>{{menber.cellphone}}</td>
+                <td><span>邮箱：</span>{{menber.email}}</td>
+                <td><span>二级域名：</span>{{menber.twoLevelDomainName}}</td>
+                <td><span>会员类型：</span>{{menber.memberClassify}}</td>
                 <td width="150">
-                    <button style="width: 100px" ng-click="getOrder()">下订单</button>
+                    <button style="width: 100px" ng-click="getOrder($index)">下订单</button>
                 </td>
             </tr>
             </tbody>
@@ -36,11 +36,11 @@
         <p class="col-f00">下订单</p>
         <dl class="clear">
             <dt class="fl">会员ID：</dt>
-            <dd class="fl">18752456542</dd>
+            <dd class="fl">{{getOrderMemID}}</dd>
         </dl>
         <dl class="clear">
             <dt class="fl">会员手机：</dt>
-            <dd class="fl">18752456542</dd>
+            <dd class="fl">{{getOrderMemCellphone}}</dd>
         </dl>
         <dl class="clear">
             <dt class="fl">版本：</dt>

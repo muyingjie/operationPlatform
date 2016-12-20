@@ -5,38 +5,39 @@ operApp.controller("CreateSandBoxOrderController",["$scope","$state" ,function (
     $scope.members = [
         {
             memberID:"123456789",
-            cellphone:'12354786951',
+            cellphone:'35654786951',
             email:'laorui@sohu.com',
             twoLevelDomainName: "abc123.shopce.cn",
             memberClassify:'合作商'
         },
         {
-            memberID:"123456789",
-            cellphone:'12354786951',
+            memberID:"953456789",
+            cellphone:'54754786951',
             email:'laorui@sohu.com',
             twoLevelDomainName: "abc123.shopce.cn",
             memberClassify:'合作商'
         },
         {
-            memberID:"123456789",
-            cellphone:'12354786951',
+            memberID:"587456",
+            cellphone:'15487521456',
             email:'laorui@sohu.com',
             twoLevelDomainName: "abc123.shopce.cn",
             memberClassify:'合作商'
         },
         {
-            memberID:"123456789",
-            cellphone:'12354786951',
+            memberID:"9542334",
+            cellphone:'15478565442',
             email:'laorui@sohu.com',
             twoLevelDomainName: "abc123.shopce.cn",
             memberClassify:'合作商'
         }
-    ]
+    ];
 
     $scope.checkedMember = $scope.members ? true : false;
     
-    $scope.getOrder = function () {
-
+    $scope.getOrder = function (index) {
+        $scope.getOrderMemID = $scope.members[index].memberID;
+        $scope.getOrderMemCellphone = $scope.members[index].cellphone;
     };
 
     $scope.statusList = {

@@ -101,4 +101,13 @@ operApp.controller("TechniqueProductController",["$scope", function ($scope) {
             handle:"上架"
         }
     ]
+
+    //上下架操作
+    $scope.params = {
+        popTitle: "操作提示",
+        popBodyTpl: "确认要上架吗？",
+        onConfirmClick: function () {
+            alert("确定时触发");
+        }
+    };
 }]);
