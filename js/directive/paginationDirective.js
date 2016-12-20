@@ -41,7 +41,7 @@ operApp.directive("myPagination",[function () {
             };
             //跳转到某一页;
             $scope.goPage = function () {
-                $scope.conf.currentPage = parseInt($scope.page) > $scope.totalPages ? $scope.totalPages : parseInt($scope.page) < 1 ? 1 : parseInt($scope.page);
+                $scope.page = $scope.conf.currentPage = parseInt($scope.page) > $scope.totalPages ? $scope.totalPages : parseInt($scope.page) < 1 ? 1 : parseInt($scope.page);
             };
             //上一页
             $scope.prevPage = function () {
