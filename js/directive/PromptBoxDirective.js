@@ -87,7 +87,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                         }
                     }
                 };
-                onPopBefore(extData).then(function () {
+                onPopBefore(extData).then(function (val) {
                     $modal.open(config);
                 });
             };

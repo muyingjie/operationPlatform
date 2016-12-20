@@ -36,17 +36,5 @@
             </tbody>
         </table>
     </div>
-    <script type="text/ng-template" id="myModalContentq.html">
-        <div class="modal-header">
-            <h3 class="modal-title">{{items.title}}商城</h3>
-        </div>
-        <p class="dialog-p">请输入{{items.title}}商城的原因</p>
-        <div class="modal-body">
-            <textarea name="reson" id="" cols="73" rows="8"></textarea>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">提交</button>
-            <button class="btn btn-warning" ng-click="cancel()">取消</button>
-        </div>
-    </script>
+    <my-pagination conf="paginationConf"></my-pagination>
 </div>

@@ -260,6 +260,7 @@
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
     <script src="js/directive/PromptBoxDirective.js"></script>
+    <script src="js/directive/paginationDirective.js"></script>
 
     <style>
         input,select,textarea{ border-radius: 0 !important;}
@@ -365,6 +366,26 @@
             <div class="ui-view"></div>
         </div>
     </div>
+    <script type="text/ng-template" id="paginationTpl.html">
+        <div>
+            <div style="display: inline-block;vertical-align: 33px;margin-right: 10px;color: #666;">
+                共<span>{{conf.total}}</span>条记录&nbsp;&nbsp;&nbsp;&nbsp;
+                每页显示
+                    <select class="form-control" style="display: inline-block;width: 56px;height: 30px;vertical-align: middle;padding: 6px;" name="role" ng-model="pageData" ng-options="item.txt for item in pagesStatusList"></select>
+                <button class="btn btn-blue" style="background-color: #428bca;height: 30px;margin-bottom: 0px;line-height: 17px;" ng-click="getPageSize()" style="">确定</button>
+            </div>
+            <ul class="pagination">
+                <li><a href="javascript:;" ng-click="prevPage()"><i class="fa-angle-left"></i></a></li>
+                <li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage}" ng-click="changeCurrentPage(item)"><a href="javascript:;">{{item}}</a></li>
+                <li><a href="javascript:;" ng-click="nextPage()"><i class="fa-angle-right"></i></a></li>
+            </ul>
+            <div style="display: inline-block;vertical-align: 33px;margin-left: 10px;color: #666">
+                共<span>{{totalPages}}页&nbsp;&nbsp;&nbsp;&nbsp;</span>到第&nbsp;&nbsp;<input type="text" ng-model="page" style="height: 30px;width: 50px;border: 1px solid #ddd;padding-left: 5px"/>&nbsp;&nbsp;页
+                <button class="btn btn-blue" style="background-color: #428bca;height: 30px;margin-bottom: 0px;line-height: 17px;" ng-click="goPage()" style="">确定</button>
+            </div>
+        </div>
+
+    </script>
 
     <script type="text/ng-template" id="promptBoxBtnTpl.html">
         <a href="javascript:;" ng-if="params.btn.ele == 'a'" class="text-{{params.btn.theme}}" ng-style="params.btnStyle" ng-click="open()">上架</a>

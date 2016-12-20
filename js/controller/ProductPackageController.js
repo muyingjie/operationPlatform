@@ -59,28 +59,6 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
        $state.go("addProductPackage")
     };
     //上下架操作
-    $scope.handleShelves = function () {
-        $scope.open();
-    };
-    $scope.items = {};
-    $scope.open = function (size) {
-        var modalInstance = $modal.open({
-            templateUrl: 'myModalContentq.html',
-            controller: 'ModalInstanceCtrlq',
-            size: size,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
     $scope.params = {
         popTitle: "操作提示",
         popBodyTpl: "确认要上架吗？",
@@ -88,6 +66,14 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
             alert("确定时触发");
         }
     };
+    //分页
+    $scope.paginationConf = {
+        currentPage: 5,
+        total:18895,
+        pageSize:20,
+        pagesLength: 5
+    };
+
     //编辑
     $scope.edit = function () {
         $state.go("addProductPackage")
@@ -98,13 +84,3 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     }
 }]);
 
-operApp.controller('ModalInstanceCtrlq', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
-    $scope.items = items;
-    $scope.ok = function () {
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-}]);
