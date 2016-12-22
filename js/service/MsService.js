@@ -45,6 +45,61 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                             }
                         });
                         res = LocalStorageService.set("roleList", roleList);
+                        break;
+                    case "addAccount":
+                        var accountInfo = data;
+                        data.id = ToolService.rnd();
+                        data.status = 1; //默认启用状态
+                        data.createTime = ToolService.getTime();
+                        var roleList = LocalStorageService.get("roleList");
+                        angular.forEach(roleList.data, function (o, i) {
+                            if(accountInfo.roleId == o.id){
+                                o.roleMembers.push(accountInfo);
+                                return false;
+                            }
+                        });
+                        res = LocalStorageService.set("roleList", roleList);
+                        break;
+                    case "getAccountList":
+                        var roleList = LocalStorageService.get("roleList");
+                        var accountList = [];
+                        angular.forEach(roleList.data, function (o, i) {
+                            angular.forEach(o.roleMembers, function (o1, i1) {
+                                accountList.push(o1);
+                            });
+                        });
+                        res = {
+                            status: true,
+                            data: accountList
+                        };
+                        break;
+                    case "editAccount":
+                        var editData = data;
+                        var roleList = LocalStorageService.get("roleList");
+                        var accountList = [];
+                        angular.forEach(roleList.data, function (o, i) {
+                            angular.forEach(o.roleMembers, function (o1, i1) {
+                                if(o1.id == editData.id){
+                                    o1.roleId = editData.roleId;
+                                    o1.name = editData.name;
+                                    o1.username = editData.username;
+                                }
+                            });
+                        });
+                        res = LocalStorageService.set("roleList", roleList);
+                        break;
+                    case "changeAccountStatus":
+                        var accountId = data;
+                        var roleList = LocalStorageService.get("roleList");
+                        angular.forEach(roleList.data, function (o, i) {
+                            angular.forEach(o.roleMembers, function (o1, i1) {
+                                if(o1.id == accountId){
+                                    o1.status = (o1.status == 1 ? 2 : o1.status == 2 ? 1 : o1.status);
+                                }
+                            });
+                        });
+                        res = LocalStorageService.set("roleList", roleList);
+                        break;
                 }
                 break;
             default:

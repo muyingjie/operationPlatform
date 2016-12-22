@@ -60,6 +60,10 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     };
     //上下架操作
     $scope.params = {
+        btn: {
+            txt: "上架",
+            ele: "a"
+        },
         popTitle: "操作提示",
         popBodyTpl: "确认要上架吗？",
         onConfirmClick: function () {

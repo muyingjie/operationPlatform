@@ -5,6 +5,9 @@ operApp.service("ToolService", [function () {
     return {
         rnd: function() {
             return Math.random().toString().substring(2);
+        },
+        getTime: function () {
+            return new Date().getTime();
         }
     };
 }]);

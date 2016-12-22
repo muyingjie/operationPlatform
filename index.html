@@ -207,10 +207,12 @@
             });
 
             $rootScope.inputBlurFn = function (vali, err, fn) {
-                for(var attr in err){
-                    if(err[attr]==true){
-                        vali.promptAttr = attr;
-                        return false;
+                if(err){
+                    for(var attr in err){
+                        if(err[attr]==true){
+                            vali.promptAttr = attr;
+                            return false;
+                        }
                     }
                 }
                 //两次密码输入不一致
@@ -221,12 +223,12 @@
                 if(selfRes === false){
                     return false;
                 }
-                vali.promptAttr="pass";
+                vali.promptAttr = "_pass";
                 return true;
             };
 
-            $rootScope.passwordInputFocusFn = function (vali) {
-                vali.eleType = "password";
+            $rootScope.focusFn = function (validateList) {
+                validateList.eleType = "password";
             };
         }]);
     </script>
@@ -388,7 +390,7 @@
     </script>
 
     <script type="text/ng-template" id="promptBoxBtnTpl.html">
-        <a href="javascript:;" ng-if="params.btn.ele == 'a'" class="text-{{params.btn.theme}}" ng-style="params.btnStyle" ng-click="open()">上架</a>
+        <a href="javascript:;" ng-if="params.btn.ele == 'a'" ng-class="params.btn.classes" ng-style="params.btnStyle" ng-click="open()">{{params.btn.txt}}</a>
     </script>
     <script type="text/ng-template" id="promptBoxContentTpl.html">
         <div class="modal-header" style="border: none;">
