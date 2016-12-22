@@ -391,6 +391,7 @@
 
     <script type="text/ng-template" id="promptBoxBtnTpl.html">
         <a href="javascript:;" ng-if="params.btn.ele == 'a'" ng-class="params.btn.classes" ng-style="params.btnStyle" ng-click="open()">{{params.btn.txt}}</a>
+        <button ng-if="params.btn.ele == 'btn'" ng-class="params.btn.classes" ng-style="params.btnStyle" ng-click="open()">{{params.btn.txt}}</button>
     </script>
     <script type="text/ng-template" id="promptBoxContentTpl.html">
         <div class="modal-header" style="border: none;">

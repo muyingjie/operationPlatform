@@ -92,7 +92,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
     $scope.leftBtnMethod = function (state) {
         $scope.items.title = $scope.leftBtn.txt;
         $scope.items.btnMethod = $scope.leftBtn;
-        $scope.open();
+        // $scope.open();
 
     };
     $scope.btnShow = $scope.rightBtn.state === 'openSandBox' ? false : true;
@@ -100,7 +100,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
     $scope.rightBtnMethod = function (state) {
         $scope.items.title = $scope.rightBtn.txt;
         $scope.items.btnMethod = $scope.rightBtn;
-        $scope.open();
+        // $scope.open();
 
     };
     $scope.items = {};
@@ -121,6 +121,33 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state",f
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
+    };
+
+    $scope.params = {
+        btn: {
+            txt: $scope.leftBtn.txt,
+            ele: "btn",
+            classes: {
+                "btn-first": true
+            }
+        },
+        popSize: "md",
+        popTitle: "操作提示",
+        popBodyTplUrl: "myModalContent.html",
+        onConfirmClick: function () {
+            alert("确定时触发");
+        }
+    };
+    $scope.params1 = {
+        btn: {
+            txt: $scope.rightBtn.txt,
+            ele: "btn"
+        },
+        popTitle: "操作提示",
+        popBodyTpl: "123",
+        onConfirmClick: function () {
+            alert("确定时触发");
+        }
     };
 }]);
 operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
