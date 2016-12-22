@@ -59,7 +59,34 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function () {
-                    alert("确定时触发");
+                    switch ($scope.items.btnMethod.state){
+                        case 'stop':
+                            $scope.items.btnMethod.state = 'start';
+                            $scope.items.btnMethod.txt = '开启';
+                            break;
+                        case 'start':
+                            $scope.items.btnMethod.state = 'stop';
+                            $scope.items.btnMethod.txt = '暂停';
+                            break;
+                        case 'closeSandBox':
+                            $scope.items.btnMethod.state =  'openSandBox';
+                            $scope.items.btnMethod.txt = '开启沙箱';
+                            $scope.items.btnMethod.btnShow = false;
+                            break;
+                        case 'close':
+                            $scope.items.btnMethod.state =  'open';
+                            $scope.items.btnMethod.txt = '申请退款';
+                            $scope.items.btnMethod.btnShow = true;
+                            break;
+                        case 'openSandBox':
+                            $scope.items.btnMethod.state =  'closeSandBox';
+                            $scope.items.btnMethod.txt = '关闭沙箱';
+                            $scope.items.btnMethod.btnShow = true;
+                            break;
+                        case "unbundling":
+                            $scope.items.btnMethod.showAllBtn = false;
+                            break;
+                    }
                 }
             };
             $scope.params1 = {
@@ -67,14 +94,41 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                     txt: $scope.rightBtn.txt,
                     ele: "btn",
                     classes: {
-                        "btn-first": true
+                        "btn-first": false
                     }
                 },
                 popSize: "md",
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function () {
-                    alert("确定时触发");
+                    switch ($scope.items.btnMethod.state){
+                        case 'stop':
+                            $scope.items.btnMethod.state = 'start';
+                            $scope.items.btnMethod.txt = '开启';
+                            break;
+                        case 'start':
+                            $scope.items.btnMethod.state = 'stop';
+                            $scope.items.btnMethod.txt = '暂停';
+                            break;
+                        case 'closeSandBox':
+                            $scope.items.btnMethod.state =  'openSandBox';
+                            $scope.items.btnMethod.txt = '开启沙箱';
+                            $scope.items.btnMethod.btnShow = false;
+                            break;
+                        case 'close':
+                            $scope.items.btnMethod.state =  'open';
+                            $scope.items.btnMethod.txt = '申请退款';
+                            $scope.items.btnMethod.btnShow = true;
+                            break;
+                        case 'openSandBox':
+                            $scope.items.btnMethod.state =  'closeSandBox';
+                            $scope.items.btnMethod.txt = '关闭沙箱';
+                            $scope.items.btnMethod.btnShow = true;
+                            break;
+                        case "unbundling":
+                            $scope.items.btnMethod.showAllBtn = false;
+                            break;
+                    }
                 }
             };
     })
@@ -85,33 +139,7 @@ operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", fu
     $scope.items = items;
     $scope.ok = function () {
         $modalInstance.close();
-        switch ($scope.items.btnMethod.state){
-            case 'stop':
-                $scope.items.btnMethod.state = 'start';
-                $scope.items.btnMethod.txt = '开启';
-                break;
-            case 'start':
-                $scope.items.btnMethod.state = 'stop';
-                $scope.items.btnMethod.txt = '暂停';
-                break;
-            case 'closeSandBox':
-                $scope.items.btnMethod.state =  'openSandBox';
-                $scope.items.btnMethod.txt = '开启沙箱';
-                $scope.items.btnMethod.btnShow = false;
-                break;
-            case 'close':
-                $scope.items.btnMethod.state =  'open';
-                $scope.items.btnMethod.txt = '申请退款';
-                $scope.items.btnMethod.btnShow = true;
-                break;
-            case 'openSandBox':
-                $scope.items.btnMethod.state =  'closeSandBox';
-                $scope.items.btnMethod.txt = '关闭沙箱';
-                $scope.items.btnMethod.btnShow = true;
-                break;
-            case "unbundling":
-                $scope.items.btnMethod.showAllBtn = false;
-        }
+
     };
 
     $scope.cancel = function () {
