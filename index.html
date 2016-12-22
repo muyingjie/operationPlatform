@@ -88,14 +88,14 @@
                     subTitle: "生成沙箱订单"
                 }
             }).state("orderDetails",{
-                url:"/orderDetails",
+                url:"/orderDetails/:memberId",
                 templateUrl:"template/orderDetails.html",
                 data:{
                     title:"订单管理 > 订单列表",
                     subTitle:"订单详情"
                 }
             }).state("applicationForPayment",{
-                url:"/applicationForPayment",
+                url:"/applicationForPayment/:orderNum",
                 templateUrl:"template/applicationForPayment.html",
                 data:{
                     title:"订单管理  >  订单列表  >  订单详情",
@@ -240,6 +240,7 @@
     <script src="js/service/MsService.js"></script>
     <script src="js/service/RoleService.js"></script>
     <script src="js/service/MenuService.js"></script>
+    <script src="js/service/orderService.js"></script>
     <!--控制器-->
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>

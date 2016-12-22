@@ -24,7 +24,7 @@
             <li class="fl liItem">
                 <span class="left">状态：</span>
                 <span>{{orderInfor.payStatus}}</span>
-                <button ng-show="commitState" ng-click="goPage()">提交支付凭证</button>
+                <button ng-show="commitState" ng-click="goPage(orderInfor.orderNumber)">提交支付凭证</button>
             </li>
         </ul>
         <p class="paymentVoucherTitle" ng-if="isPaymentVoucher">支付凭证</p>

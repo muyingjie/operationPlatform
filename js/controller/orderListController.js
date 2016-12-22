@@ -1,7 +1,14 @@
 /**
  * Created by lenovo on 2016/11/30.
  */
-operApp.controller("OrderListController",["$scope", function ($scope) {
+operApp.controller("OrderListController",["$scope","orderService","$state",function ($scope,orderService,$state) {
+    //列表初始渲染
+    getOrderList("all");
+    function getOrderList(orderType){
+        orderService.getOrderList(orderType).then(function (data) {
+            $scope.accountList = data;
+        })
+    }
     //select
     $scope.statusList = {
         orderStatusList:[
@@ -72,6 +79,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
     ];
     $scope.selectedTab = 0;
     $scope.selectedMenu = function (row) {
+        getOrderList(row);//获取对应的订单列表信息
         $scope.selectedTab = row;
         //判断是否显示协议状态
         $scope.menuStateShow = $scope.tabMenus[row].menuName === "已支付订单" ? true : false;
@@ -113,69 +121,7 @@ operApp.controller("OrderListController",["$scope", function ($scope) {
         closeTxt: "关闭"
     };
     //table
-    renderSystemAccountList();
-    function renderSystemAccountList(){
-        $scope.accountList = [
-            {
-                member: "13750854360",
-                memberName: "张三",
-                twoLevelDomainName: "abc123.shopce.cn",
-                orderTime: "2016-11-30 16:30:24",
-                classify: "注册",
-                commodity: "试用版",
-                cost:"297.00",
-                timeLimit:'365天',
-                effectiveDate:'2016-11-30~2017-11-30',
-                payStatus:'已支付',
-                deliveryStatus:'已交付',
-                protocolState:"执行中",
-                operation:'详情'
-            },
-            {
-                member: "13750854360",
-                memberName: "张三",
-                twoLevelDomainName: "abc123.shopce.cn",
-                orderTime: "2016-11-30 16:30:24",
-                classify: "注册",
-                commodity: "试用版",
-                cost:"297.00",
-                timeLimit:'365天',
-                effectiveDate:'2016-11-30~2017-11-30',
-                payStatus:'已支付',
-                deliveryStatus:'已交付',
-                protocolState:"执行中",
-                operation:'详情'
-            },
-            {
-                member: "13750854360",
-                memberName: "张三",
-                twoLevelDomainName: "abc123.shopce.cn",
-                orderTime: "2016-11-30 16:30:24",
-                classify: "注册",
-                commodity: "试用版",
-                cost:"297.00",
-                timeLimit:'365天',
-                effectiveDate:'2016-11-30~2017-11-30',
-                payStatus:'已支付',
-                deliveryStatus:'已交付',
-                protocolState:"执行中",
-                operation:'详情'
-            },
-            {
-                member: "13750854360",
-                memberName: "张三",
-                twoLevelDomainName: "abc123.shopce.cn",
-                orderTime: "2016-11-30 16:30:24",
-                classify: "注册",
-                commodity: "试用版",
-                cost:"297.00",
-                timeLimit:'365天',
-                effectiveDate:'2016-11-30~2017-11-30',
-                payStatus:'已支付',
-                deliveryStatus:'已交付',
-                protocolState:"执行中",
-                operation:'详情'
-            }
-        ];
+    $scope.goToOrderDetail = function (memberId) {
+        $state.go("orderDetails", {memberId: memberId});
     }
 }]);

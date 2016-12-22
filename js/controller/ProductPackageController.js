@@ -73,7 +73,7 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
         pageSize:20,
         pagesLength: 5,
         upDateInterFace: function (date) {
-            console.log()
+            console.log(date)
         }
     };
 

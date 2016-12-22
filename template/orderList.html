@@ -89,7 +89,7 @@
                 <td>{{account.payStatus}}</td>
                 <td>{{account.deliveryStatus}}</td>
                 <td>{{account.protocolState}}</td>
-                <td><a href="#orderDetails">{{account.operation}}</a></td>
+                <td><a href="javascript:;" ng-click="goToOrderDetail(account.member)">{{account.operation}}</a></td>
             </tr>
            </tbody>
         </table>
