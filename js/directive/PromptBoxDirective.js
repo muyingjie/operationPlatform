@@ -60,7 +60,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                     txt: confirmBtnTxt,
                     style: "info",
                     clickFn: function (d) {
-                        onConfirmClick(d);
+                        onConfirmClick($scope);
                     }
                 });
             }
@@ -69,7 +69,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                     txt: cancelBtnTxt,
                     style: "gray",
                     clickFn: function (d) {
-                        onCancelClick(d);
+                        onCancelClick($scope);
                     }
                 });
             }
