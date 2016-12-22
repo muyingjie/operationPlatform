@@ -89,11 +89,11 @@ ul,ol,dl,dt,dd,li{
     text-align: center;
 
 }
-.btn-layout>button{
+.btn-layout button{
     width: 100px;
     margin-left: 50px;
 }
-.btn-layout>.btn-first{
+.btn-layout .btn-first{
     margin: 0;
 }
 .dialog-p{
