@@ -14,132 +14,72 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
             $scope.serviceInfor = data.serviceInfor;
             $scope.remarksInfor =data.remarksInfor;
 
-            //$scope.orderInfor = {
-            //    orderNumber: "111110010050",
-            //    memberName: "张三",
-            //    twoLevelDomainName: "abc123.shopce.cn",
-            //    orderTime: "2016-11-30 16:30:24",
-            //    classify: "注册",
-            //    commodity: "试用版",
-            //    cost:"297.00",
-            //    timeLimit:'365天',
-            //    effectiveDate:'2016-11-30~2017-11-30',
-            //    payStatus:'未支付',
-            //    deliveryStatus:'已交付',
-            //    protocolState:"执行中",
-            //    operation:'详情'
-            //};
             $scope.commitState = false;
             $scope.commitState = $scope.orderInfor.payStatus === "未支付" ? true : false;
             $scope.goPage = function(orderNum){
                 $state.go("applicationForPayment",{orderNum:orderNum});
             };
-            //$scope.paymentVoucherInfor = {
-            //    paymentWay:'支付宝',
-            //    paymentAccount:'laorui@163.com',
-            //    paymentAmount:'2980.00',
-            //    paymentTime:'2016-11-30 16:30:24',
-            //    remarks:'这是备注信息'
-            //};
             $scope.isPaymentVoucher = $scope.paymentVoucherInfor ? true : false;
 
-            //$scope.memberInfor = {
-            //    memberID:'100000008',
-            //    cellphone:'12354786951',
-            //    name:'张三/果园老农',
-            //    email:'laorui@sohu.com',
-            //    twoLevelDomainName: "abc123.shopce.cn"
-            //};
-            //$scope.commodityInfor = {
-            //    commodityNumber:'box-ccc-001',
-            //    term:'3个月',
-            //    commodity:'适用版',
-            //    effectiveDate:'2016-11-30~2017-11-30',
-            //    deliveryStatus:'已交付'
-            //};
-            //$scope.serviceInfor = [
-            //    {
-            //        workOrderNum:'111110010050',
-            //        workOrderClassify:'商城开通',
-            //        generationTime:'2016-11-21 17:47',
-            //        productID:'xyz12',
-            //        commodityName:'B2C',
-            //        version:'V1.0',
-            //        state:'待执行',
-            //        completionTime:'2016-11-21 17:47'
-            //    },
-            //    {
-            //        workOrderNum:'111110010050',
-            //        workOrderClassify:'商城开通',
-            //        generationTime:'2016-11-21 17:47',
-            //        productID:'xyz12',
-            //        commodityName:'B2C',
-            //        version:'V1.0',
-            //        state:'待执行',
-            //        completionTime:'2016-11-21 17:47'
-            //    },
-            //    {
-            //        workOrderNum:'111110010050',
-            //        workOrderClassify:'商城开通',
-            //        generationTime:'2016-11-21 17:47',
-            //        productID:'xyz12',
-            //        commodityName:'B2C',
-            //        version:'V1.0',
-            //        state:'待执行',
-            //        completionTime:'2016-11-21 17:47'
-            //    }
-            //];
 
-            //$scope.remarksInfor = [
-            //    '2016-11-21 17:47 因商品有问题，商城关闭；',
-            //    '2016-11-21 17:47 商城重新开启；',
-            //    '2016-11-21 17:47 服务到期，商城关闭；'
-            //];
             $scope.leftBtn= {
                 state:'stop',
                 txt:'暂停'
             };
             $scope.rightBtn = $scope.orderInfor.classify === '域名' ? {state:"unbundling",txt:"解绑"} : $scope.orderInfor.classify === '沙箱' ? {state:"closeSandBox",txt:"关闭沙箱"} : {state:"close",txt:'关闭'};
-            //$scope.rightBtn = $scope.orderInfor.classify === '沙箱' ? {state:"closeSandBox",txt:"关闭沙箱"} : {state:"close",txt:'关闭'};
+            $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
+            $scope.remarksInfor = [
+                '2016-11-21 17:47 因商品有问题，商城关闭；',
+                '2016-11-21 17:47 商城重新开启；',
+                '2016-11-21 17:47 服务到期，商城关闭；'
+            ];
             $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
             $scope.leftBtnMethod = function (state) {
                 $scope.items.title = $scope.leftBtn.txt;
                 $scope.items.btnMethod = $scope.leftBtn;
-                $scope.items.showAllBtn = $scope.showAllBtn;
-                $scope.open();
 
             };
             $scope.btnShow = $scope.rightBtn.state === 'openSandBox' ? false : true;
-            $scope.rightBtn.btnShow = $scope.orderInfor.classify === "域名" ? false : true;
-
+            $scope.rightBtn.btnShow = true;
             $scope.rightBtnMethod = function (state) {
                 $scope.items.title = $scope.rightBtn.txt;
                 $scope.items.btnMethod = $scope.rightBtn;
-                $scope.items.showAllBtn = $scope.showAllBtn;
-                $scope.open();
-
             };
+            $scope.rightBtn.btnShow = $scope.orderInfor.classify === "域名" ? false : true;
             $scope.items = {};
-            $scope.open = function (size) {
-                var modalInstance = $modal.open({
-                    templateUrl: 'myModalContent.html',
-                    controller: 'ModalInstanceCtrl',
-                    size: size,
-                    resolve: {
-                        items: function () {
-                            return $scope.items;
-                        }
+            $scope.params = {
+                btn: {
+                    txt: $scope.leftBtn.txt,
+                    ele: "btn",
+                    classes: {
+                        "btn-first": true
                     }
-                });
-
-                modalInstance.result.then(function (selectedItem) {
-                    $scope.selected = selectedItem;
-                }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
-                });
+                },
+                popSize: "md",
+                popTitle: "操作提示",
+                popBodyTplUrl: "myModalContent.html",
+                onConfirmClick: function () {
+                    alert("确定时触发");
+                }
             };
-        })
-    }
+            $scope.params1 = {
+                btn: {
+                    txt: $scope.rightBtn.txt,
+                    ele: "btn",
+                    classes: {
+                        "btn-first": true
+                    }
+                },
+                popSize: "md",
+                popTitle: "操作提示",
+                popBodyTplUrl: "myModalContent.html",
+                onConfirmClick: function () {
+                    alert("确定时触发");
+                }
+            };
+    })
+    };
+
 }]);
 operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
     $scope.items = items;

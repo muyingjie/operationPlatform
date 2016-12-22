@@ -40,12 +40,13 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
             var btn = (params.btn = (params.btn ? params.btn : {
                 txt: "按钮",
                 ele: "a",
-                theme: ""
+                classes: {}
             }));
             var btnStyle = (params.btnStyle = (params.btnStyle ? params.btnStyle : {}));
             var popBtns = (params.popBtns = (params.popBtns ? params.popBtns : []));
             var onConfirmClick = params.onConfirmClick ? params.onConfirmClick : function () {};
             var onCancelClick = params.onCancelClick ? params.onCancelClick : function () {};
+            var popSize = params.popSize ? params.popSize : "sm";
             var popBodyTplUrl = params.popBodyTplUrl ? params.popBodyTplUrl : "popBodyTpl.html";
             var popBodyTpl = params.popBodyTpl ? params.popBodyTpl : "";
             var popBodyTplNameLen = popBodyTplUrl.length;
@@ -75,7 +76,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
 
             $scope.open = function () {
                 var config = {
-                    size: "sm",
+                    size: popSize,
                     templateUrl: "promptBoxContentTpl.html",
                     controller: "promptBoxController",
                     resolve: {
