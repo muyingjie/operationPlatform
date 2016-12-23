@@ -122,6 +122,11 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
         console.log($scope.pageData.curStatusItem);
     };
 
+    $scope.userPassword = {
+        oldPassword: "",
+        newPassword: ""
+    };
+
     $scope.params = {
         btn: {
             txt: "修改密码",

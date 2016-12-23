@@ -58,30 +58,27 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popSize: "md",
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
-                onConfirmClick: function () {
-                    switch ($scope.items.btnMethod.state){
-                        case 'stop':
-                            $scope.items.btnMethod.state = 'start';
-                            $scope.items.btnMethod.txt = '开启';
+                onConfirmClick: function ($modalScope) {
+                    switch ($modalScope.extData.state){
+                        case "stop":
+                            $modalScope.params.btn.txt = "开启";
+                            $modalScope.extData.state = "start";
                             break;
-                        case 'start':
-                            $scope.items.btnMethod.state = 'stop';
-                            $scope.items.btnMethod.txt = '暂停';
+                        case "start":
+                            $modalScope.params.btn.txt = "暂停";
+                            $modalScope.extData.state = "stop";
                             break;
-                        case 'closeSandBox':
-                            $scope.items.btnMethod.state =  'openSandBox';
-                            $scope.items.btnMethod.txt = '开启沙箱';
-                            $scope.items.btnMethod.btnShow = false;
+                        case "closeSandBox":
+                            $modalScope.params.btn.txt = "开启沙箱";
+                            $modalScope.extData.state = "openSandBox";
                             break;
-                        case 'close':
-                            $scope.items.btnMethod.state =  'open';
-                            $scope.items.btnMethod.txt = '申请退款';
-                            $scope.items.btnMethod.btnShow = true;
+                        case "close":
+                            $modalScope.params.btn.txt = "申请退款";
+                            $modalScope.extData.state = "open";
                             break;
-                        case 'openSandBox':
-                            $scope.items.btnMethod.state =  'closeSandBox';
-                            $scope.items.btnMethod.txt = '关闭沙箱';
-                            $scope.items.btnMethod.btnShow = true;
+                        case "openSandBox":
+                            $modalScope.params.btn.txt = "关闭沙箱";
+                            $modalScope.extData.state = "closeSandBox";
                             break;
                         case "unbundling":
                             $scope.items.btnMethod.showAllBtn = false;
@@ -100,30 +97,27 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popSize: "md",
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
-                onConfirmClick: function () {
-                    switch ($scope.items.btnMethod.state){
-                        case 'stop':
-                            $scope.items.btnMethod.state = 'start';
-                            $scope.items.btnMethod.txt = '开启';
+                onConfirmClick: function ($modalScope) {
+                    switch ($modalScope.extData.state){
+                        case "stop":
+                            $modalScope.params.btn.txt = "开启";
+                            $modalScope.extData.state = "start";
                             break;
-                        case 'start':
-                            $scope.items.btnMethod.state = 'stop';
-                            $scope.items.btnMethod.txt = '暂停';
+                        case "start":
+                            $modalScope.params.btn.txt = "暂停";
+                            $modalScope.extData.state = "stop";
                             break;
-                        case 'closeSandBox':
-                            $scope.items.btnMethod.state =  'openSandBox';
-                            $scope.items.btnMethod.txt = '开启沙箱';
-                            $scope.items.btnMethod.btnShow = false;
+                        case "closeSandBox":
+                            $modalScope.params.btn.txt = "开启沙箱";
+                            $modalScope.extData.state = "openSandBox";
                             break;
-                        case 'close':
-                            $scope.items.btnMethod.state =  'open';
-                            $scope.items.btnMethod.txt = '申请退款';
-                            $scope.items.btnMethod.btnShow = true;
+                        case "close":
+                            $modalScope.params.btn.txt = "申请退款";
+                            $modalScope.extData.state = "open";
                             break;
-                        case 'openSandBox':
-                            $scope.items.btnMethod.state =  'closeSandBox';
-                            $scope.items.btnMethod.txt = '关闭沙箱';
-                            $scope.items.btnMethod.btnShow = true;
+                        case "openSandBox":
+                            $modalScope.params.btn.txt = "关闭沙箱";
+                            $modalScope.extData.state = "closeSandBox";
                             break;
                         case "unbundling":
                             $scope.items.btnMethod.showAllBtn = false;

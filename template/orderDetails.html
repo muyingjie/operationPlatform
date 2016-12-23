@@ -159,13 +159,13 @@
     <div class="btn-layout" ng-if="showAllBtn">
         <!--<button class="btn-first" ng-click="leftBtnMethod(leftBtn.state)" ng-show="rightBtn.btnShow">{{leftBtn.txt}}</button>-->
         <!--<button ng-click="rightBtnMethod(rightBtn.state)">{{rightBtn.txt}}</button>-->
-        <prompt-box params="params" ext-data="items" ng-click="leftBtnMethod(leftBtn.state)" ng-show="rightBtn.btnShow"></prompt-box>
-        <prompt-box params="params1" ext-data="items" ng-click="rightBtnMethod(rightBtn.state)"></prompt-box>
+        <prompt-box params="params" ext-data="leftBtn" ng-click="leftBtnMethod(leftBtn.state)" ng-show="rightBtn.btnShow"></prompt-box>
+        <prompt-box params="params1" ext-data="rightBtn" ng-click="rightBtnMethod(rightBtn.state)"></prompt-box>
     </div>
 
     <script type="text/ng-template" id="myModalContent.html">
         <!--<div class="modal-header">-->
-        <p class="dialog-p">请输入{{extData.title}}商城的原因</p>
+        <p class="dialog-p">请输入{{params.btn.txt}}商城的原因</p>
         <div class="modal-body">
             <textarea name="reson" id="" cols="73" rows="8"></textarea>
         </div>
