@@ -34,19 +34,11 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 '2016-11-21 17:47 服务到期，商城关闭；'
             ];
             $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
-            $scope.leftBtnMethod = function (state) {
-                $scope.items.title = $scope.leftBtn.txt;
-                $scope.items.btnMethod = $scope.leftBtn;
 
-            };
             $scope.btnShow = $scope.rightBtn.state === 'openSandBox' ? false : true;
             $scope.rightBtn.btnShow = true;
-            $scope.rightBtnMethod = function (state) {
-                $scope.items.title = $scope.rightBtn.txt;
-                $scope.items.btnMethod = $scope.rightBtn;
-            };
+
             $scope.rightBtn.btnShow = $scope.orderInfor.classify === "域名" ? false : true;
-            $scope.items = {};
             $scope.params = {
                 btn: {
                     txt: $scope.leftBtn.txt,
@@ -59,7 +51,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function ($modalScope) {
-                    switch ($modalScope.extData.state){
+                    switch ($modalScope.extData.state) {
                         case "stop":
                             $modalScope.params.btn.txt = "开启";
                             $modalScope.extData.state = "start";
@@ -67,21 +59,6 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                         case "start":
                             $modalScope.params.btn.txt = "暂停";
                             $modalScope.extData.state = "stop";
-                            break;
-                        case "closeSandBox":
-                            $modalScope.params.btn.txt = "开启沙箱";
-                            $modalScope.extData.state = "openSandBox";
-                            break;
-                        case "close":
-                            $modalScope.params.btn.txt = "申请退款";
-                            $modalScope.extData.state = "open";
-                            break;
-                        case "openSandBox":
-                            $modalScope.params.btn.txt = "关闭沙箱";
-                            $modalScope.extData.state = "closeSandBox";
-                            break;
-                        case "unbundling":
-                            $scope.items.btnMethod.showAllBtn = false;
                             break;
                     }
                 }
@@ -110,6 +87,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                         case "closeSandBox":
                             $modalScope.params.btn.txt = "开启沙箱";
                             $modalScope.extData.state = "openSandBox";
+                            $scope.rightBtn.btnShow = false;
                             break;
                         case "close":
                             $modalScope.params.btn.txt = "申请退款";
@@ -118,16 +96,16 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                         case "openSandBox":
                             $modalScope.params.btn.txt = "关闭沙箱";
                             $modalScope.extData.state = "closeSandBox";
+                            $scope.rightBtn.btnShow = true;
                             break;
                         case "unbundling":
-                            $scope.items.btnMethod.showAllBtn = false;
+                            $scope.showAllBtn = false;
                             break;
                     }
                 }
             };
     })
     };
-
 }]);
 operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
     $scope.items = items;

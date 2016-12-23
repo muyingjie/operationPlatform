@@ -27,6 +27,7 @@ operApp.controller("ApplicationForPayment",["$scope", "$state","$stateParams","o
     //};
 
     $scope.submitApplication = function () {
+        
         $state.go("orderDetails");
     };
     $scope.cancelSubmitApplication = function () {
