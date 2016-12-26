@@ -181,7 +181,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                     memberName: "张三",
                                     twoLevelDomainName: "abc123.shopce.cn",
                                     orderTime: "2016-11-30 16:30:24",
-                                    classify: "域名",
+                                    classify: "注册",
                                     commodity: "试用版",
                                     cost:"297.00",
                                     timeLimit:'365天',

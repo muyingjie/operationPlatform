@@ -2,6 +2,13 @@
  * Created by lenovo on 2016/12/7.
  */
 operApp.controller("CreateSandBoxOrderController",["$scope","$state" ,function ($scope,$state) {
+    //初始化会员列表数据
+    getMemberInfor();
+    function getMemberInfor(){
+        orderService.getOrderDetail().then(function (data) {
+
+        })
+    }
     $scope.members = [
         {
             memberID:"123456789",

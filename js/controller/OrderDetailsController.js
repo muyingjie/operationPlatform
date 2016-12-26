@@ -21,23 +21,13 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
             };
             $scope.isPaymentVoucher = $scope.paymentVoucherInfor ? true : false;
 
-
             $scope.leftBtn= {
                 state:'stop',
-                txt:'暂停'
+                txt:'暂停',
+                content:""
             };
             $scope.rightBtn = $scope.orderInfor.classify === '域名' ? {state:"unbundling",txt:"解绑"} : $scope.orderInfor.classify === '沙箱' ? {state:"closeSandBox",txt:"关闭沙箱"} : {state:"close",txt:'关闭'};
             $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
-            $scope.remarksInfor = [
-                '2016-11-21 17:47 因商品有问题，商城关闭；',
-                '2016-11-21 17:47 商城重新开启；',
-                '2016-11-21 17:47 服务到期，商城关闭；'
-            ];
-            $scope.showAllBtn = $scope.orderInfor.classify === '模板' ? false : true;
-
-            $scope.btnShow = $scope.rightBtn.state === 'openSandBox' ? false : true;
-            $scope.rightBtn.btnShow = true;
-
             $scope.rightBtn.btnShow = $scope.orderInfor.classify === "域名" ? false : true;
             $scope.params = {
                 btn: {
@@ -51,6 +41,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function ($modalScope) {
+                    console.log($modalScope.extData.content);
                     switch ($modalScope.extData.state) {
                         case "stop":
                             $modalScope.params.btn.txt = "开启";
@@ -61,6 +52,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                             $modalScope.extData.state = "stop";
                             break;
                     }
+                    $modalScope.extData.content = "";
                 }
             };
             $scope.params1 = {
@@ -75,6 +67,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function ($modalScope) {
+                    console.log($modalScope.extData.content);
                     switch ($modalScope.extData.state){
                         case "stop":
                             $modalScope.params.btn.txt = "开启";
@@ -102,19 +95,9 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                             $scope.showAllBtn = false;
                             break;
                     }
+                    $modalScope.extData.content = "";
                 }
             };
     })
-    };
-}]);
-operApp.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
-    $scope.items = items;
-    $scope.ok = function () {
-        $modalInstance.close();
-
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
     };
 }]);
