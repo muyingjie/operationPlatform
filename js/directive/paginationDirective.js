@@ -100,18 +100,18 @@ operApp.directive("myPagination",[function () {
                 calculationPages();
                 $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
                 getPagination();
-                console.log($scope.conf.currentPage + ","+ $scope.conf.pageSize)
             };
 
-            //监听当前页
+            //监听当前页及对应的标签
             $scope.$watch(function(){
-                return $scope.conf.currentPage;
+                return $scope.conf;
             }, function (newVal,oldVal) {
-                //if(newVal !== oldVal){
-                    $scope.conf.upDateInterFace({currentPage:newVal,pageSize:$scope.conf.pageSize});
+                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){
+                    $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
                     getPagination();
-                    //alert(newVal)
-                //}
+                }else if(newVal == oldVal){
+                    $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                }
             },true);
         }
     }
