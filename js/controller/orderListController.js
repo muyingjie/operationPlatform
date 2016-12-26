@@ -5,8 +5,8 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     //列表初始渲染
     function getOrderList(orderType){
         orderService.getOrderList(orderType).then(function (data) {
-            $scope.accountList = data;
-            $scope.paginationConf.total = 40;
+            $scope.accountList = data.dataList;
+            $scope.paginationConf.total = data.total;
         })
     }
     //分页
@@ -17,10 +17,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
         pagesLength:5,
         menuState:"all",
         upDateInterFace: function (data) {
-            data.state = "all";
-            console.log(data);
             getOrderList(data);
-            //$scope.paginationConf.total = 1000;
         }
     };
     //select
@@ -113,8 +110,6 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             pagesLength:5,
             menuState:$scope.tabMenus[row].state,
             upDateInterFace: function (data) {
-                data.state = $scope.tabMenus[row].state;
-                console.log(data);
                 getOrderList(data);
             }
         };
@@ -160,7 +155,6 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     };
     //table
     $scope.goToOrderDetail = function (memberId) {
-        $scope.paginationConf.total = 1000;
-        //$state.go("orderDetails", {memberId: memberId});
+        $state.go("orderDetails", {memberId: memberId});
     }
 }]);

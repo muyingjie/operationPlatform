@@ -98,7 +98,7 @@ operApp.directive("myPagination",[function () {
             $scope.getPageSize = function () {
                 $scope.conf.pageSize = parseInt($scope.pageData.txt);
                 calculationPages();
-                $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                $scope.conf.upDateInterFace($scope.conf.menuState ? {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,state:$scope.conf.menuState} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
                 getPagination();
             };
 
@@ -106,11 +106,20 @@ operApp.directive("myPagination",[function () {
             $scope.$watch(function(){
                 return $scope.conf;
             }, function (newVal,oldVal) {
+                var data = $scope.conf.menuState ? {
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize,
+                    state:$scope.conf.menuState
+                } : {
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize
+                };
+
                 if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){//当前页或者tab标签变化时发送请求
-                    $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                    $scope.conf.upDateInterFace(data);
                     getPagination();
                 }else if(newVal == oldVal){//加载时的第一次请求
-                    $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                    $scope.conf.upDateInterFace(data);
                 }else if(Math.ceil(newVal.total/newVal.pageSize) != Math.ceil(oldVal.total/oldVal.pageSize)){//总页数发生变化时
                     getPageSize();
                 }

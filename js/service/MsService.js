@@ -105,71 +105,74 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
             case "Order":
                 switch (fnName){
                     case "getOrderList":
-                        //console.log(data);
+                        console.log(data);
                         res = {
                             status:true,
-                            data:[
-                                {
-                                    member: "13750854360",
-                                    memberName: "张三",
-                                    twoLevelDomainName: "abc123.shopce.cn",
-                                    orderTime: "2016-11-30 16:30:24",
-                                    classify: "注册",
-                                    commodity: "试用版",
-                                    cost:"297.00",
-                                    timeLimit:'365天',
-                                    effectiveDate:'2016-11-30~2017-11-30',
-                                    payStatus:'已支付',
-                                    deliveryStatus:'已交付',
-                                    protocolState:"执行中",
-                                    operation:'详情'
-                                },
-                                {
-                                    member: "13750854360",
-                                    memberName: "张三",
-                                    twoLevelDomainName: "abc123.shopce.cn",
-                                    orderTime: "2016-11-30 16:30:24",
-                                    classify: "注册",
-                                    commodity: "试用版",
-                                    cost:"297.00",
-                                    timeLimit:'365天',
-                                    effectiveDate:'2016-11-30~2017-11-30',
-                                    payStatus:'已支付',
-                                    deliveryStatus:'已交付',
-                                    protocolState:"执行中",
-                                    operation:'详情'
-                                },
-                                {
-                                    member: "13750854360",
-                                    memberName: "张三",
-                                    twoLevelDomainName: "abc123.shopce.cn",
-                                    orderTime: "2016-11-30 16:30:24",
-                                    classify: "注册",
-                                    commodity: "试用版",
-                                    cost:"297.00",
-                                    timeLimit:'365天',
-                                    effectiveDate:'2016-11-30~2017-11-30',
-                                    payStatus:'已支付',
-                                    deliveryStatus:'已交付',
-                                    protocolState:"执行中",
-                                    operation:'详情'
-                                },
-                                {
-                                    member: "13750854360",
-                                    memberName: "张三",
-                                    twoLevelDomainName: "abc123.shopce.cn",
-                                    orderTime: "2016-11-30 16:30:24",
-                                    classify: "注册",
-                                    commodity: "试用版",
-                                    cost:"297.00",
-                                    timeLimit:'365天',
-                                    effectiveDate:'2016-11-30~2017-11-30',
-                                    payStatus:'已支付',
-                                    deliveryStatus:'已交付',
-                                    protocolState:"执行中",
-                                    operation:'详情'
-                                }
-                            ]
+                            data:{
+                                dataList:[
+                                    {
+                                        member: "13750854360",
+                                        memberName: "张三",
+                                        twoLevelDomainName: "abc123.shopce.cn",
+                                        orderTime: "2016-11-30 16:30:24",
+                                        classify: "注册",
+                                        commodity: "试用版",
+                                        cost:"297.00",
+                                        timeLimit:'365天',
+                                        effectiveDate:'2016-11-30~2017-11-30',
+                                        payStatus:'已支付',
+                                        deliveryStatus:'已交付',
+                                        protocolState:"执行中",
+                                        operation:'详情'
+                                    },
+                                    {
+                                        member: "13750854360",
+                                        memberName: "张三",
+                                        twoLevelDomainName: "abc123.shopce.cn",
+                                        orderTime: "2016-11-30 16:30:24",
+                                        classify: "注册",
+                                        commodity: "试用版",
+                                        cost:"297.00",
+                                        timeLimit:'365天',
+                                        effectiveDate:'2016-11-30~2017-11-30',
+                                        payStatus:'已支付',
+                                        deliveryStatus:'已交付',
+                                        protocolState:"执行中",
+                                        operation:'详情'
+                                    },
+                                    {
+                                        member: "13750854360",
+                                        memberName: "张三",
+                                        twoLevelDomainName: "abc123.shopce.cn",
+                                        orderTime: "2016-11-30 16:30:24",
+                                        classify: "注册",
+                                        commodity: "试用版",
+                                        cost:"297.00",
+                                        timeLimit:'365天',
+                                        effectiveDate:'2016-11-30~2017-11-30',
+                                        payStatus:'已支付',
+                                        deliveryStatus:'已交付',
+                                        protocolState:"执行中",
+                                        operation:'详情'
+                                    },
+                                    {
+                                        member: "13750854360",
+                                        memberName: "张三",
+                                        twoLevelDomainName: "abc123.shopce.cn",
+                                        orderTime: "2016-11-30 16:30:24",
+                                        classify: "注册",
+                                        commodity: "试用版",
+                                        cost:"297.00",
+                                        timeLimit:'365天',
+                                        effectiveDate:'2016-11-30~2017-11-30',
+                                        payStatus:'已支付',
+                                        deliveryStatus:'已交付',
+                                        protocolState:"执行中",
+                                        operation:'详情'
+                                    }
+                                ],
+                                total:354
+                            }
                         };
                         break;
                     case "getOrderDetail":
