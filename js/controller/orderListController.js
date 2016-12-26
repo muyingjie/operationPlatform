@@ -9,6 +9,17 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             $scope.accountList = data;
         })
     }
+    //分页
+    $scope.paginationConf = {
+        currentPage:18,
+        total:1895,
+        pageSize:40,
+        pagesLength:5,
+        upDateInterFace: function (date) {
+            console.log(date)
+            $scope.paginationConf.total = 1000;
+        }
+    };
     //select
     $scope.statusList = {
         orderStatusList:[
@@ -122,6 +133,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     };
     //table
     $scope.goToOrderDetail = function (memberId) {
-        $state.go("orderDetails", {memberId: memberId});
+        $scope.paginationConf.pageSize += 20
+        //$state.go("orderDetails", {memberId: memberId});
     }
 }]);

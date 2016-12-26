@@ -10,6 +10,14 @@ operApp.directive("myPagination",[function () {
         templateUrl:"paginationTpl.html",
         replace:false,
         link: function ($scope) {
+            //监听总数据条数
+            $scope.$watch(function () {
+                return $scope.conf.total;
+            }, function (newVal,oldVal) {
+                if(newVal != oldVal){
+                    getPageSize();
+                }
+            },true);
             //每页显示多少条的数据
             $scope.pagesStatusList = [
                 {
@@ -21,19 +29,36 @@ operApp.directive("myPagination",[function () {
                     txt:"40"
                 },
                 {
-                    id:"3",
-                    txt:"50"
+                    id:"2",
+                    txt:"60"
                 }
             ];
-            $scope.pageData = $scope.pagesStatusList[0];
+            //每页显示多少条
+            getPageSize();
+            function getPageSize(){
+                function getIndex(){
+                    var j;
+                    angular.forEach($scope.pagesStatusList, function (o,i) {
+                        if(o.txt == $scope.conf.pageSize){
+                            j = i;
+                        }
+                    });
+                    return j;
+                }
+
+                $scope.pageData = $scope.pagesStatusList[getIndex()];
+                calculationPages();
+            }
+
 
             //计算有多少页
             function calculationPages(){
                 $scope.totalPages = Math.ceil($scope.conf.total/$scope.conf.pageSize);
                 //默认当前页处于非法值时的处理
                 $scope.conf.currentPage = $scope.conf.currentPage < 1 ? 1 : $scope.conf.currentPage > $scope.totalPages ? $scope.totalPages : $scope.conf.currentPage;
+                getPagination();
             }
-            calculationPages();
+
 
             //点击某一页
             $scope.changeCurrentPage = function (item) {
@@ -56,7 +81,7 @@ operApp.directive("myPagination",[function () {
                 }
             };
 
-            //页码显示
+            //页码显示规则
             function getPagination(){
                 var prevVal = parseInt($scope.conf.pagesLength/2) + 1;
                 var nextVal = $scope.conf.pagesLength - prevVal;
@@ -68,23 +93,26 @@ operApp.directive("myPagination",[function () {
                     $scope.pageList.push(startPage);
                 }
             }
-            getPagination();
 
             //每页显示多少条
             $scope.getPageSize = function () {
                 $scope.conf.pageSize = parseInt($scope.pageData.txt);
                 calculationPages();
+                $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
                 getPagination();
                 console.log($scope.conf.currentPage + ","+ $scope.conf.pageSize)
             };
+
+            //监听当前页
             $scope.$watch(function(){
                 return $scope.conf.currentPage;
             }, function (newVal,oldVal) {
-                if(newVal !== oldVal){
+                //if(newVal !== oldVal){
+                    $scope.conf.upDateInterFace({currentPage:newVal,pageSize:$scope.conf.pageSize});
                     getPagination();
                     //alert(newVal)
-                }
-            },true)
+                //}
+            },true);
         }
     }
 }]);
