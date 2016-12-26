@@ -6,6 +6,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     function getOrderList(orderType){
         orderService.getOrderList(orderType).then(function (data) {
             $scope.accountList = data;
+            $scope.paginationConf.total = 40;
         })
     }
     //分页
@@ -19,7 +20,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             data.state = "all";
             console.log(data);
             getOrderList(data);
-            $scope.paginationConf.total = 1000;
+            //$scope.paginationConf.total = 1000;
         }
     };
     //select
@@ -104,10 +105,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     ];
     $scope.selectedTab = 0;
     $scope.selectedMenu = function (row) {
-        //console.log($scope.tabMenus[row].state)
         //获取对应的订单列表信息
-        //$scope.paginationConf.currentPage = 1;
-        //$scope.paginationConf.pageSize = 40;
         $scope.paginationConf = {
             currentPage:1,
             total:1,
@@ -118,7 +116,6 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
                 data.state = $scope.tabMenus[row].state;
                 console.log(data);
                 getOrderList(data);
-                $scope.paginationConf.total = 800;
             }
         };
         $scope.selectedTab = row;

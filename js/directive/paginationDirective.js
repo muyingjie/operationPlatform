@@ -11,13 +11,13 @@ operApp.directive("myPagination",[function () {
         replace:false,
         link: function ($scope) {
             //监听总数据条数
-            $scope.$watch(function () {
-                return $scope.conf.total;
-            }, function (newVal,oldVal) {
-                if(newVal != oldVal){
-                    getPageSize();
-                }
-            },true);
+            //$scope.$watch(function () {
+            //    return $scope.conf.total;
+            //}, function (newVal,oldVal) {
+            //    if(newVal != oldVal){
+            //        getPageSize();
+            //    }
+            //},true);
             //每页显示多少条的数据
             $scope.pagesStatusList = [
                 {
@@ -102,15 +102,17 @@ operApp.directive("myPagination",[function () {
                 getPagination();
             };
 
-            //监听当前页及对应的标签
+            //监听conf
             $scope.$watch(function(){
                 return $scope.conf;
             }, function (newVal,oldVal) {
-                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){
+                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){//当前页或者tab标签变化时发送请求
                     $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
                     getPagination();
-                }else if(newVal == oldVal){
+                }else if(newVal == oldVal){//加载时的第一次请求
                     $scope.conf.upDateInterFace({currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                }else if(Math.ceil(newVal.total/newVal.pageSize) != Math.ceil(oldVal.total/oldVal.pageSize)){//总页数发生变化时
+                    getPageSize();
                 }
             },true);
         }
