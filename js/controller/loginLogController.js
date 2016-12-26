@@ -1,14 +1,14 @@
 /**
  * Created by lenovo on 2016/12/05.
  */
-operApp.controller("loginLogController", ["$scope", function ($scope) {
+operApp.controller("loginLogController", ["$scope", "LogService",function ($scope,LogService) {
     //1、日期选择
     $scope.dateData = {
         //dt: "2016-1-1",
         opened: false,
         format: "yyyy-MM-dd",
         dateOptions: {
-            startingDay: 4
+            startingDay: 0
         },
         mixDate: null,
         maxDate: null,
@@ -25,7 +25,7 @@ operApp.controller("loginLogController", ["$scope", function ($scope) {
         opened: false,
         format: "yyyy-MM-dd",
         dateOptions: {
-            startingDay: 4
+            startingDay: 0
         },
         mixDate: null,
         maxDate: null,
@@ -37,7 +37,6 @@ operApp.controller("loginLogController", ["$scope", function ($scope) {
         },
         closeTxt: "关闭"
     };
-
 
     $scope.logStatusList = [
         //定义列表项
@@ -57,42 +56,19 @@ operApp.controller("loginLogController", ["$scope", function ($scope) {
     $scope.pageData = {
         curStatusItem: $scope.logStatusList[0]
     };
-
-    renderSystemLogList();
-    function renderSystemLogList(){
-        $scope.logList = [
-            {
-                id: "1",
-                account: "admin",
-                name: "管理员",
-                createTime: 1480403979578,
-                ip: "111.145.214.175",
-                result:"成功",
-            },
-            {
-                id: "2",
-                account: "abc123",
-                name: "李钦",
-                createTime: 1480403979534,
-                ip: "222.145.214.173",
-                result:"失败",
-            },
-            {
-                id: "3",
-                account: "youxian",
-                name: "小李",
-                createTime: 1480403971278,
-                ip: "333.145.214.175",
-                result:"成功",
-
-            }
-        ];
-    };
+    //列表渲染 从后台获取数据显示到页面中 12.19
+    getLogList();
+    function getLogList(){
+        LogService.getLogList().then(function(data){
+           $scope.logList = data;//把从后台请求的返回的数据展示
+        })
+    }
     $scope.changeRoleStatus = function () {
         console.log($scope.pageData.curStatusItem);
     };
-    //日志的查询
-    $scope.search=function(){
-        //发起http请求
+    //日志的查询，从后台返回的查询结果绑定到视图上
+    $scope.search = function(){
+        //传递查新的值 并发起http请求
+        getLogList();
     }
 }]);
