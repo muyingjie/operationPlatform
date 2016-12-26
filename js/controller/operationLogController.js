@@ -1,14 +1,14 @@
 /**
  * Created by lenovo on 2016/12/05.
  */
-operApp.controller("operationLogController", ["$scope","$http", function ($scope,$http) {
+operApp.controller("operationLogController", ["$scope","$http", "LogService",function ($scope,$http,LogService) {
     //1、日期选择
     $scope.dateData = {
         //dt: "2016-1-1",
         opened: false,
         format: "yyyy-MM-dd",
         dateOptions: {
-            startingDay: 4
+            startingDay: 0
         },
         mixDate: null,
         maxDate: null,
@@ -26,7 +26,7 @@ operApp.controller("operationLogController", ["$scope","$http", function ($scope
         opened: false,
         format2: "yyyy-MM-dd",
         dateOptions: {
-            startingDay: 4
+            startingDay: 0
         },
         mixDate: null,
         maxDate: null,
@@ -57,36 +57,15 @@ operApp.controller("operationLogController", ["$scope","$http", function ($scope
         curStatusItem: $scope.logStatusList[0]
     };
 
-    renderSystemLogList();
-    function renderSystemLogList(){
-        $scope.logList = [
-            {
-                id: "111",
-                createTime: 1480403979578,
-                name: "管理员",
-                ip: "111.145.214.175",
-                classify:"修改菜单",
-                result:"修改订单[ID:5678 订单状态变更为已支付]"
-            },
-            {
-                id: "222",
-                createTime: 1480403975980,
-                name: "管理员",
-                ip: "222.145.214.10",
-                classify:"修改会员密码",
-                result:" 修改会员密码[ID:5678 会员密码更改为********]",
-            },
-            {
-                id: "333",
-                createTime: 1480403945612,
-                name: "管理员",
-                ip: "222.145.214.10",
-                classify:"修改商品价格",
-                result:"商品的价格暂时定义为1988",
+    //列表渲染 从后台获取数据显示到页面中 12.19
+    getOperLogList();
+    function getOperLogList(){
+        console.log(LogService);
+        LogService.getOperLogList().then(function(data){
+            $scope.logList = data;//把从后台请求的返回的数据展示
+        })
+    }
 
-            }
-        ];
-    };
     $scope.changeRoleStatus = function () {
         console.log($scope.pageData.curStatusItem);
     };
