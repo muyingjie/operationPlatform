@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/29.
  */
-operApp.controller("SystemAccountListController", ["$scope", "RoleService", function ($scope, RoleService) {
+operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q", "AccountService", function ($scope, RoleService, $q, AccountService) {
     $scope.roleStatusList = [
         {
             id: 0,
@@ -39,21 +39,37 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
             console.log(roleList);
             $scope.roleList = roleList;
 
-            RoleService.getAccountList().then(function (d) {
-                console.log(d);
-                $scope.accountList = d;
-                // $scope.accountList = [
-                //     {
-                //         id: "1",
-                //         username: "admin",
-                //         name: "Admin",
-                //         roleId: 1,
-                //         createTime: 1480403979522,
-                //         status: 1
-                //     }
-                // ];
-                extendAccountList();
-            });
+            getAccountList();
+        });
+    }
+    $scope.filterData = {
+        name: "",
+        username: ""
+    };
+    $scope.search = function () {
+        var handledFilterData = {
+            name: $scope.filterData.name,
+            username: $scope.filterData.username,
+            status: $scope.pageData.curStatusItem.id
+        };
+        getAccountList($scope.filterData);
+    };
+    function getAccountList(filterData){
+        filterData = filterData ? filterData : {};
+        AccountService.getAccountList(filterData).then(function (d) {
+            console.log(d);
+            $scope.accountList = d;
+            // $scope.accountList = [
+            //     {
+            //         id: "1",
+            //         username: "admin",
+            //         name: "Admin",
+            //         roleId: 1,
+            //         createTime: 1480403979522,
+            //         status: 1
+            //     }
+            // ];
+            extendAccountList();
         });
     }
     function extendAccountList() {
@@ -69,7 +85,10 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
             });
             o.statusTxt = (o.status == 1) ? "已启用" : (o.status == 2) ? "已停用" : "异常状态";
             o.isEdit = false;
-        });console.log($scope.accountList);
+            o.oldPassword = "";
+            o.newPassword = "";
+            o.newPasswordAgain = "";
+        });
     }
 
     $scope.oper = function (oper, account) {console.log(account);
@@ -84,7 +103,7 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
                     name: account.name,
                     username: account.username
                 };
-                RoleService.editAccount(editData).then(function (d) {
+                AccountService.editAccount(editData).then(function (d) {
                     alert("修改成功");
                 });
                 editStatus = false;
@@ -99,14 +118,14 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
                 editStatus = true;
                 break;
             case "enable":
-                RoleService.changeAccountStatus(accountId).then(function (d) {
+                AccountService.changeAccountStatus(accountId).then(function (d) {
                    alert("修改成功");
                     account.status = 1;
                     extendAccountList();
                 });
                 break;
             case "disable":
-                RoleService.changeAccountStatus(accountId).then(function (d) {
+                AccountService.changeAccountStatus(accountId).then(function (d) {
                    alert("修改成功");
                     account.status = 2;
                     extendAccountList();
@@ -122,10 +141,52 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
         console.log($scope.pageData.curStatusItem);
     };
 
-    $scope.userPassword = {
-        oldPassword: "",
-        newPassword: ""
+    var passwordVali = {
+        oldPassword: {
+            name: "旧密码",
+            eleType: "text",
+            validateItems: {
+                required: true
+            },
+            promptAttr: "default",
+            promptList: [
+                {attr: "default", tip: ""},
+                {attr: "required", tip: "旧密码不能为空"},
+                {attr: "_pass", tip: ""}
+            ]
+        },
+        newPassword: {
+            name: "新密码",
+            eleType: "text",
+            validateItems: {
+                required: true
+            },
+            promptAttr: "default",
+            promptList: [
+                {attr: "default", tip: ""},
+                {attr: "required", tip: "新密码不能为空"},
+                {attr: "_pass", tip: ""}
+            ]
+        },
+        newPasswordAgain: {
+            name: "确认密码",
+            eleType: "text",
+            validateItems: {
+                required: true
+            },
+            promptAttr: "default",
+            promptList: [
+                {attr: "default", tip: ""},
+                {attr: "required", tip: "新密码不能为空"},
+                {attr: "passwordSame", tip: "两次密码输入不一致"},
+                {attr: "_pass", tip: ""}
+            ]
+        }
     };
+    function passwordIsSame(account) {
+        passwordVali.newPasswordAgain.promptAttr = "passwordSame";
+        return account.newPassword == account.newPasswordAgain;
+    }
 
     $scope.params = {
         btn: {
@@ -139,8 +200,63 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", func
         popTitle: "操作提示",
         // popBodyTpl: "确认要上架吗？",
         popBodyTplUrl: "changePassword.html",
-        onConfirmClick: function () {
-            alert("确定时触发");
+        onPopBefore: function ($scope) {
+            var def = $q.defer();
+            // console.log($scope);
+            $scope.extData.oldPassword = "";
+            $scope.extData.newPassword = "";
+            $scope.extData.newPasswordAgain = "";
+            def.resolve();
+            return def.promise;
+        },
+        onConfirmClick: function ($modalScope) {
+            var account = $modalScope.extData;
+            var isResPass = true;
+            //拿不到accountForm对象！！！！！
+            angular.forEach(passwordVali, function (o, attr) {
+                var $error;
+                var inputVal;
+                if(o.promptAttr != "_pass"){
+                    inputVal = account[attr];
+                    angular.forEach(o.validateItems, function (condition, conditionName) {
+                        switch(conditionName){
+                            case "required":
+                                if(condition){
+                                    $error = {required: inputVal == ""};
+                                }
+                                break;
+                        }
+                    });
+
+                    $scope.inputBlurFn(
+                        o,
+                        $error ? $error : undefined,
+                        (attr == "newPasswordAgain") ? getPasswordIsSameFn(account) : undefined
+                    );
+                    isResPass = false;
+                    return false;
+                }
+            });
+            var transportData = {};
+            if(isResPass){
+                transportData["username"] = account.orgName;
+                transportData["oldPassword"] = account.oldPassword;
+                transportData["newPassword"] = account.newPassword;
+            }
+            AccountService.changeAccountPassword(transportData).then(function () {
+                alert("修改成功");
+            });
+            return isResPass;
+        },
+        popData: {
+            passwordVali: passwordVali,
+            getPasswordIsSameFn: getPasswordIsSameFn
         }
     };
+
+    function getPasswordIsSameFn(account){
+        return function (){
+            return passwordIsSame(account);
+        };
+    }
 }]);

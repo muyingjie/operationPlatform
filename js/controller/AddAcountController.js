@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/30.
  */
-operApp.controller("AddAcountController", ["$scope", "RoleService", "ToolService", "$state", function ($scope, RoleService, ToolService, $state) {
+operApp.controller("AddAcountController", ["$scope", "RoleService", "ToolService", "$state", "AccountService", function ($scope, RoleService, ToolService, $state, AccountService) {
     $scope.account = {
         username: "",
         password: "",
@@ -112,7 +112,7 @@ operApp.controller("AddAcountController", ["$scope", "RoleService", "ToolService
                 name: $scope.account.name,
                 roleId: $scope.account.role.id
             };
-            RoleService.addAccount(accountData).then(function (data) {
+            AccountService.addAccount(accountData).then(function (data) {
                 alert("保存成功");
                 $state.go("roleOperating");
             });

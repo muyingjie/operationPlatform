@@ -5,13 +5,13 @@
                 <label class="cbr-inline">姓名：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="25" name="name" ng-model="roleItem.roleName" />
+                <input type="text" class="form-control" size="25" name="name" ng-model="filterData.name" />
             </div>
             <div class="form-group">
                 <label class="cbr-inline">用户名：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="25" name="username" ng-model="roleItem.roleName" />
+                <input type="text" class="form-control" size="25" name="username" ng-model="filterData.username" />
             </div>
             <div class="form-group">
                 <label class="cbr-inline">状态：</label>
@@ -77,23 +77,41 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">旧密码：</label>
                 <div class="col-sm-5">
-                    <input name="username" type="text" class="form-control">
+                    <input name="oldPassword"
+                           type="{{params.popData.passwordVali.oldPassword.eleType}}"
+                           class="form-control"
+                           ng-model="extData.oldPassword"
+                           ng-required="params.popData.passwordVali.oldPassword.validateItems.required"
+                           ng-blur="inputBlurFn(params.popData.passwordVali.oldPassword, accountForm.oldPassword.$error)"
+                           ng-focus="focusFn(params.popData.passwordVali.oldPassword)">
                 </div>
-                <div class="col-sm-3 text-danger" style="text-align: left;">aaa</div>
+                <div class="col-sm-3 text-danger" style="text-align: left;" ng-repeat="re in params.popData.passwordVali.oldPassword.promptList|filter:params.popData.passwordVali.oldPassword.promptAttr">{{re.tip}}</div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">新密码：</label>
                 <div class="col-sm-5">
-                    <input name="username" type="text" class="form-control">
+                    <input name="newPassword"
+                           type="{{params.popData.passwordVali.newPassword.eleType}}"
+                           class="form-control"
+                           ng-model="extData.newPassword"
+                           ng-required="params.popData.passwordVali.newPassword.validateItems.required"
+                           ng-blur="inputBlurFn(params.popData.passwordVali.newPassword, accountForm.newPassword.$error)"
+                           ng-focus="focusFn(params.popData.passwordVali.newPassword)">
                 </div>
-                <div class="col-sm-3 text-danger" style="text-align: left;">aaa</div>
+                <div class="col-sm-3 text-danger" style="text-align: left;" ng-repeat="re in params.popData.passwordVali.newPassword.promptList|filter:params.popData.passwordVali.newPassword.promptAttr">{{re.tip}}</div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">确认新密码：</label>
                 <div class="col-sm-5">
-                    <input name="username" type="text" class="form-control">
+                    <input name="newPasswordAgain"
+                           type="{{params.popData.passwordVali.newPasswordAgain.eleType}}"
+                           class="form-control"
+                           ng-model="extData.newPasswordAgain"
+                           ng-required="params.popData.passwordVali.newPasswordAgain"
+                           ng-blur="inputBlurFn(params.popData.passwordVali.newPasswordAgain, accountForm.newPasswordAgain.$error, params.popData.getPasswordIsSameFn(extData))"
+                           ng-focus="focusFn(params.popData.passwordVali.newPasswordAgain)">
                 </div>
-                <div class="col-sm-3 text-danger" style="text-align: left;">aaa</div>
+                <div class="col-sm-3 text-danger" style="text-align: left;" ng-repeat="re in params.popData.passwordVali.newPasswordAgain.promptList|filter:params.popData.passwordVali.newPasswordAgain.promptAttr">{{re.tip}}</div>
             </div>
         </form>
     </script>
