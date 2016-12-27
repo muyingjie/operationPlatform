@@ -3,8 +3,8 @@
  */
 operApp.controller("OrderListController",["$scope","orderService","$state",function ($scope,orderService,$state) {
     //列表初始渲染
-    function getOrderList(orderType){
-        orderService.getOrderList(orderType).then(function (data) {
+    function getOrderList(option){
+        orderService.getOrderList(option).then(function (data) {
             $scope.accountList = data.dataList;
             $scope.paginationConf.total = data.total;
         })

@@ -305,9 +305,70 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                     case "submitSandBoxOrder":
                         res = {
                             status:true
-                        }
+                        };
+                        break;
                 }
                 break;
+            case "Product":
+                switch (fnName){
+                    case "getProductPackage":
+                        console.log(data)
+                        res = {
+                            status:true,
+                            data:[
+                                {
+                                    productPackageNum:"box-ccc-001",
+                                    productPackageName:"基础版",
+                                    price:"198",
+                                    priority:"0",
+                                    remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                    releaseTime:"2016-10-11",
+                                    state:"待出售",
+                                    sold:"55345"
+                                },
+                                {
+                                    productPackageNum:"box-ccc-001",
+                                    productPackageName:"基础版",
+                                    price:"198",
+                                    priority:"0",
+                                    remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                    releaseTime:"2016-10-11",
+                                    state:"待出售",
+                                    sold:"55345"
+                                },
+                                {
+                                    productPackageNum:"box-ccc-001",
+                                    productPackageName:"基础版",
+                                    price:"198",
+                                    priority:"0",
+                                    remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                    releaseTime:"2016-10-11",
+                                    state:"待出售",
+                                    sold:"55345"
+                                },
+                                {
+                                    productPackageNum:"box-ccc-001",
+                                    productPackageName:"基础版",
+                                    price:"198",
+                                    priority:"0",
+                                    remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                    releaseTime:"2016-10-11",
+                                    state:"待出售",
+                                    sold:"55345"
+                                },
+                                {
+                                    productPackageNum:"box-ccc-001",
+                                    productPackageName:"基础版",
+                                    price:"198",
+                                    priority:"0",
+                                    remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                    releaseTime:"2016-10-11",
+                                    state:"待出售",
+                                    sold:"55345"
+                                }
+                            ]
+                        }
+                }
             case "Log":
                 switch (fnName){
                     case "getLogList":
