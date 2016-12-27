@@ -56,10 +56,17 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
     $scope.pageData = {
         curStatusItem: $scope.logStatusList[0]
     };
+    $scope.filterData = {
+        logId: "",
+        startTime: "",
+        endTime: "",
+        operPerson: ""
+    };
     //列表渲染 从后台获取数据显示到页面中 12.19
     getLogList();
     function getLogList(){
-        LogService.getLogList().then(function(data){
+        $scope.filterData.cat = $scope.pageData.curStatusItem.id;console.log($scope.filterData);
+        LogService.getLogList($scope.filterData).then(function(data){
            $scope.logList = data;//把从后台请求的返回的数据展示
         })
     }
