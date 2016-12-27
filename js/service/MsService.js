@@ -111,6 +111,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                             data:{
                                 dataList:[
                                     {
+                                        memberID:10001,
                                         member: "13750854360",
                                         memberName: "张三",
                                         twoLevelDomainName: "abc123.shopce.cn",
@@ -126,6 +127,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         operation:'详情'
                                     },
                                     {
+                                        memberID:10002,
                                         member: "13750854360",
                                         memberName: "张三",
                                         twoLevelDomainName: "abc123.shopce.cn",
@@ -141,6 +143,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         operation:'详情'
                                     },
                                     {
+                                        memberID:10003,
                                         member: "13750854360",
                                         memberName: "张三",
                                         twoLevelDomainName: "abc123.shopce.cn",
@@ -156,6 +159,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         operation:'详情'
                                     },
                                     {
+                                        memberID:10004,
                                         member: "13750854360",
                                         memberName: "张三",
                                         twoLevelDomainName: "abc123.shopce.cn",
@@ -255,6 +259,46 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                             }
                         };
                         break;
+                    case "getSandBoxOrder":
+                        console.log(data)
+                        res = {
+                            status:true,
+                            data:[
+                                {
+                                    memberID:"123456789",
+                                    cellphone:'35654786951',
+                                    email:'laorui@sohu.com',
+                                    twoLevelDomainName: "abc123.shopce.cn",
+                                    memberClassify:'合作商'
+                                },
+                                {
+                                    memberID:"953456789",
+                                    cellphone:'54754786951',
+                                    email:'laorui@sohu.com',
+                                    twoLevelDomainName: "abc123.shopce.cn",
+                                    memberClassify:'合作商'
+                                },
+                                {
+                                    memberID:"587456",
+                                    cellphone:'15487521456',
+                                    email:'laorui@sohu.com',
+                                    twoLevelDomainName: "abc123.shopce.cn",
+                                    memberClassify:'合作商'
+                                },
+                                {
+                                    memberID:"9542334",
+                                    cellphone:'15478565442',
+                                    email:'laorui@sohu.com',
+                                    twoLevelDomainName: "abc123.shopce.cn",
+                                    memberClassify:'合作商'
+                                }
+                            ]
+                        };
+                        break;
+                    case "submitSandBoxOrder":
+                        res = {
+                            status:true
+                        }
                 }
                 break;
             case "Log":

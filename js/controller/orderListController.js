@@ -116,6 +116,9 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
         $scope.selectedTab = row;
         //判断是否显示协议状态
         $scope.menuStateShow = $scope.tabMenus[row].menuName === "已支付订单" ? true : false;
+        if($scope.menuStateShow){
+            $scope.pageData. curProtocolStatusItem = $scope.statusList.protocolStatusList[0]
+        }
     };
     //时间选择
     $scope.dateDataStart = {
@@ -152,6 +155,21 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             $scope.dateDataEnd.opened = true;
         },
         closeTxt: "关闭"
+    };
+
+    //搜索
+    $scope.member = {};
+    $scope.search = function () {
+        var data = {
+            cellphone:$scope.member.cellphone,
+            name:$scope.member.name,
+            twoLevelDomainName:$scope.member.twoLevelDomainName,
+            timeStart:new Date($scope.dateDataStart.dt.toLocaleDateString()).getTime(),
+            timeEnd:new Date($scope.dateDataEnd.dt.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
+            classify:$scope.pageData.curOrderStatusItem,
+            protocolStatus:$scope.pageData.curProtocolStatusItem.txt
+        };
+        getOrderList(data)
     };
     //table
     $scope.goToOrderDetail = function (memberId) {

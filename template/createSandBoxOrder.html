@@ -4,12 +4,12 @@
             <label class="cbr-inline">查找会员：</label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="会员ID">
-            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="手机号">
-            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="roleItem.roleName" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="邮箱">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="member.id" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="会员ID">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="member.cellphone" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="手机号">
+            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" size="15" name="roleName" ng-model="member.email" ng-trim="true" ng-required="true" ng-blur="change('roleName', roleForm.roleName.$error)" required="required" placeholder="邮箱">
         </div>
         <div class="form-group">
-            <button class="btn btn-secondary btn-single" ng-click="addRole()">查找</button>
+            <button class="btn btn-secondary btn-single" ng-click="search()">查找</button>
         </div>
     </form>
 
@@ -61,7 +61,7 @@
             <dd class="fl">
                 <span>http://</span>
                 <div class="" style="display: inline-block">
-                    <input type="text" class="form-control" size="15" name="username" ng-model="roleItem.roleName" placeholder=""/>
+                    <input type="text" class="form-control" size="15" name="username" ng-model="twoLevelDomain" placeholder=""/>
                 </div>
                 <div style="display: inline-block">
                     <select class="form-control" name="role" ng-model="pageDate.curDomainSuffixStatusItem" ng-options="item.txt for item in statusList.domainSuffixList"></select>

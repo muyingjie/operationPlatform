@@ -1,10 +1,15 @@
 /**
  * Created by lenovo on 2016/12/1.
  */
-operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","$stateParams","orderService",function ($scope,$modal,$log,$state,$stateParams,orderService) {
+operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","$stateParams","orderService","$q",function ($scope,$modal,$log,$state,$stateParams,orderService,$q) {
     //数据初始渲染
     console.log($stateParams.memberId);
     getOrderDetailInfor($stateParams.memberId);
+    function getRemarksInfor(){
+        orderService.getOrderDetail().then(function (data) {
+            $scope.remarksInfor =data.remarksInfor;
+        })
+    }
     function getOrderDetailInfor(member){
         orderService.getOrderDetail().then(function (data) {
             $scope.orderInfor = data.orderInfor;
@@ -41,7 +46,13 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
                 onConfirmClick: function ($modalScope) {
-                    console.log($modalScope.extData.content);
+                    var data = {
+                        memberID:$stateParams.memberId,
+                        state:$modalScope.extData.state,
+                        content:$modalScope.extData.content
+
+                    };
+                    getRemarksInfor(data);
                     switch ($modalScope.extData.state) {
                         case "stop":
                             $modalScope.params.btn.txt = "开启";
@@ -66,8 +77,23 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 popSize: "md",
                 popTitle: "操作提示",
                 popBodyTplUrl: "myModalContent.html",
+                onPopBefore: function () {
+                    var def = $q.defer();
+                    if($scope.rightBtn.state == "open"){
+                        def.reject();
+                    }else{
+                        def.resolve();
+                    }
+                    return def.promise;
+                },
                 onConfirmClick: function ($modalScope) {
-                    console.log($modalScope.extData.content);
+                    var data = {
+                        memberID:$stateParams.memberId,
+                        state:$modalScope.extData.state,
+                        content:$modalScope.extData.content
+
+                    };
+                    getRemarksInfor(data);
                     switch ($modalScope.extData.state){
                         case "stop":
                             $modalScope.params.btn.txt = "开启";

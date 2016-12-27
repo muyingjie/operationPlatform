@@ -1,47 +1,16 @@
 /**
  * Created by lenovo on 2016/12/7.
  */
-operApp.controller("CreateSandBoxOrderController",["$scope","$state" ,function ($scope,$state) {
+operApp.controller("CreateSandBoxOrderController",["$scope","$state","orderService",function ($scope,$state,orderService) {
     //初始化会员列表数据
     getMemberInfor();
-    function getMemberInfor(){
-        orderService.getOrderDetail().then(function (data) {
-
+    function getMemberInfor(option){
+        orderService.getSandBoxOrder(option).then(function (data) {
+            $scope.members = data;
+            $scope.checkedMember = $scope.members ? true : false;
         })
     }
-    $scope.members = [
-        {
-            memberID:"123456789",
-            cellphone:'35654786951',
-            email:'laorui@sohu.com',
-            twoLevelDomainName: "abc123.shopce.cn",
-            memberClassify:'合作商'
-        },
-        {
-            memberID:"953456789",
-            cellphone:'54754786951',
-            email:'laorui@sohu.com',
-            twoLevelDomainName: "abc123.shopce.cn",
-            memberClassify:'合作商'
-        },
-        {
-            memberID:"587456",
-            cellphone:'15487521456',
-            email:'laorui@sohu.com',
-            twoLevelDomainName: "abc123.shopce.cn",
-            memberClassify:'合作商'
-        },
-        {
-            memberID:"9542334",
-            cellphone:'15478565442',
-            email:'laorui@sohu.com',
-            twoLevelDomainName: "abc123.shopce.cn",
-            memberClassify:'合作商'
-        }
-    ];
-
-    $scope.checkedMember = $scope.members ? true : false;
-    
+    //下订单
     $scope.getOrder = function (index) {
         $scope.getOrderMemID = $scope.members[index].memberID;
         $scope.getOrderMemCellphone = $scope.members[index].cellphone;
@@ -102,7 +71,27 @@ operApp.controller("CreateSandBoxOrderController",["$scope","$state" ,function (
         closeTxt: "关闭"
     };
 
+    //查找
+    $scope.member = {};
+    $scope.search = function () {
+        var data = {
+            memberID:$scope.member.id,
+            cellphone:$scope.member.cellphone,
+            email:$scope.member.email
+        };
+        getMemberInfor(data);
+    };
+    //提交订单
     $scope.submitSandBoxOrder = function () {
-        $state.go("orderList")
+        var data = {
+            memberID:$scope.getOrderMemID,
+            cellphone:$scope.getOrderMemCellphone,
+            version:$scope.pageDate.curVersionStatusItem.txt,
+            timeEnd:new Date($scope.dateData.dt.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
+            twoLevelDomain:$scope.twoLevelDomain+'.'+$scope.pageDate.curDomainSuffixStatusItem.txt
+        };
+        orderService.submitSandBox(data).then(function () {
+            $state.go("orderList");
+        });
     }
 }]);
