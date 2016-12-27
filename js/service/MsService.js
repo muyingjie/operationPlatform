@@ -367,6 +367,12 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                     sold:"55345"
                                 }
                             ]
+                        };
+                        break;
+                    case "saleOnShelves":
+                        console.log(data);
+                        res = {
+                            status:true
                         }
                 }
             case "Log":
