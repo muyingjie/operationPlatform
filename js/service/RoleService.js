@@ -26,6 +26,9 @@ operApp.service("RoleService", ["ms", function (ms) {
     function changeAccountStatus(accountId){
         return ms("Role.changeAccountStatus", accountId);
     }
+    function changeAccountPassword(data){
+        return ms("Role.changeAccountPassword", data);
+    }
     return {
         getRoleList: getRoleList,
         addRole: addRole,
@@ -34,6 +37,7 @@ operApp.service("RoleService", ["ms", function (ms) {
         addAccount: addAccount,
         getAccountList: getAccountList,
         editAccount: editAccount,
-        changeAccountStatus: changeAccountStatus
+        changeAccountStatus: changeAccountStatus,
+        changeAccountPassword: changeAccountPassword
     };
 }]);

@@ -406,7 +406,7 @@
         <div class="modal-footer" style="border: none;">
             <!--<button class="btn btn-info">确认</button>-->
             <!--<button class="btn btn-gray">取消</button>-->
-            <button class="btn btn-{{btn.style}}" ng-repeat="btn in params.popBtns" ng-click="btn.clickFn();closePop();">{{btn.txt}}</button>
+            <button class="btn btn-{{btn.style}}" ng-repeat="btn in params.popBtns" ng-click="btnClick(btn);">{{btn.txt}}</button>
         </div>
     </script>
     <script type="text/ng-template" id="popBodyTpl.html">未传入模板</script>

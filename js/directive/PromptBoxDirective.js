@@ -25,6 +25,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
             //onCancelClick: 点击取消时触发的事件
             //popBodyTplUrl: 弹框内body部分模板链接
             //popBodyTpl: 弹框内body部分模板内容 如果popBodyTplUrl和popBodyTpl都传的话优先取popBodyTplUrl
+            //popData: 弹框里面的数据
             var onPopBefore = params.onPopBefore ? params.onPopBefore : function () {
                 var def = $q.defer();
                 def.resolve({
@@ -60,7 +61,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                     txt: confirmBtnTxt,
                     style: "info",
                     clickFn: function (d) {
-                        onConfirmClick($scope);
+                        return onConfirmClick($scope);
                     }
                 });
             }
@@ -69,7 +70,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                     txt: cancelBtnTxt,
                     style: "gray",
                     clickFn: function (d) {
-                        onCancelClick($scope);
+                        return onCancelClick($scope);
                     }
                 });
             }
@@ -88,7 +89,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
                         }
                     }
                 };
-                onPopBefore(extData).then(function (val) {
+                onPopBefore($scope).then(function (val) {
                     $modal.open(config);
                 });
             };
@@ -113,7 +114,13 @@ operApp.controller("promptBoxController", ["$scope", "$sce", "params", "extData"
         bodyParams.templateUrl = "popBodyTpl.html";
     }
     $scope.bodyParams = bodyParams;
-    $scope.closePop = function () {
+    function closePop() {
         $modalInstance.dismiss('cancel');
+    }
+    $scope.btnClick = function (btn) {
+        var clickRes = btn.clickFn();
+        if(clickRes !== false){
+            closePop();
+        }
     };
 }]);

@@ -100,6 +100,9 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                         });
                         res = LocalStorageService.set("roleList", roleList);
                         break;
+                    case "changeAccountPassword":
+                        var transportData = data;
+                        break;
                 }
                 break;
             case "Order":
