@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/29.
  */
-operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q", function ($scope, RoleService, $q) {
+operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q", "AccountService", function ($scope, RoleService, $q, AccountService) {
     $scope.roleStatusList = [
         {
             id: 0,
@@ -56,7 +56,7 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q"
     };
     function getAccountList(filterData){
         filterData = filterData ? filterData : {};
-        RoleService.getAccountList(filterData).then(function (d) {
+        AccountService.getAccountList(filterData).then(function (d) {
             console.log(d);
             $scope.accountList = d;
             // $scope.accountList = [
@@ -103,7 +103,7 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q"
                     name: account.name,
                     username: account.username
                 };
-                RoleService.editAccount(editData).then(function (d) {
+                AccountService.editAccount(editData).then(function (d) {
                     alert("修改成功");
                 });
                 editStatus = false;
@@ -118,14 +118,14 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q"
                 editStatus = true;
                 break;
             case "enable":
-                RoleService.changeAccountStatus(accountId).then(function (d) {
+                AccountService.changeAccountStatus(accountId).then(function (d) {
                    alert("修改成功");
                     account.status = 1;
                     extendAccountList();
                 });
                 break;
             case "disable":
-                RoleService.changeAccountStatus(accountId).then(function (d) {
+                AccountService.changeAccountStatus(accountId).then(function (d) {
                    alert("修改成功");
                     account.status = 2;
                     extendAccountList();
@@ -243,7 +243,7 @@ operApp.controller("SystemAccountListController", ["$scope", "RoleService", "$q"
                 transportData["oldPassword"] = account.oldPassword;
                 transportData["newPassword"] = account.newPassword;
             }
-            RoleService.changeAccountPassword(transportData).then(function () {
+            AccountService.changeAccountPassword(transportData).then(function () {
                 alert("修改成功");
             });
             return isResPass;

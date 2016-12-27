@@ -34,6 +34,10 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                             }
                         });
                         break;
+                }
+                break;
+            case "Account":
+                switch (fnName){
                     case "setRoleAuthority":
                         var roleId = data;
                         var authList = arguments[2];
