@@ -8,7 +8,33 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
         var fnName = server[1];
         var res;
         var deferred = $q.defer();
-        switch(service){
+        switch (service){
+            case "Index":
+                switch (fnName){
+                    case "getTotalOverviewData":
+                        res = {
+                            status: true,
+                            data: {
+                                registerNum: 123,
+                                payNum: 23,
+                                income: 456,
+                                LTV: 1456
+                            }
+                        };
+                        break;
+                    case "getYesterdayData":
+                        res = {
+                            status: true,
+                            data: {
+                                registerNum: 123,
+                                payNum: 23,
+                                income: 456,
+                                applyRecordNum: 1456
+                            }
+                        };
+                        break;
+                }
+                break;
             case "Role":
                 switch (fnName){
                     case "getRoleList":
@@ -106,6 +132,10 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                         break;
                     case "changeAccountPassword":
                         var transportData = data;
+                        res = {
+                            status: true,
+                            data: transportData
+                        };
                         break;
                 }
                 break;
