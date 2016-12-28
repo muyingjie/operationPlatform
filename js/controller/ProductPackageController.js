@@ -31,8 +31,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     };
     //分页
     $scope.paginationConf = {
-        currentPage: 98,
-        total:189,
+        currentPage: 90,
+        //total:189,
         pageSize:20,
         pagesLength: 5,
         upDateInterFace: function (data) {
