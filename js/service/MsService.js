@@ -411,6 +411,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
             case "Log":
                 switch (fnName){
                     case "getLogList":
+                        console.log(data)
                         res = {
                             status: true,
                             data: [
@@ -438,11 +439,14 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                     ip: "333.145.214.175",
                                     result:"成功",
 
-                                }
-                            ]
+                                },
+
+                            ],
+                            total:354,
                         };
                         break;
                     case "getOperLogList":
+                        console.log(data)
                         res = {
                             status: true,
                             data: [
@@ -471,7 +475,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                     result:"商品的价格暂时定义为1988",
 
                                 }
-                            ]
+                            ],
+                            total:354,
                         };
                            break;
                 }
