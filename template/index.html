@@ -1,1 +1,83 @@
-首页
+<div class="row" style="margin-top: 50px;" ng-controller="IndexController">
+    <div class="col-md-6 index">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h4 class="title">总览数据</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">注册数</div>
+                            <div class="item-val">{{totalOverviewData.registerNum}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">付费数</div>
+                            <div class="item-val">{{totalOverviewData.payNum}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">收入</div>
+                            <div class="item-val">{{totalOverviewData.income}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">LTV</div>
+                            <div class="item-val">{{totalOverviewData.LTV}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <div class="col-md-6 index">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h4 class="title">昨日数据</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">注册数</div>
+                            <div class="item-val">{{yesterdayData.registerNum}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">付费数</div>
+                            <div class="item-val">{{yesterdayData.payNum}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">收入</div>
+                            <div class="item-val">{{yesterdayData.income}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-name">申请备案数</div>
+                            <div class="item-val">{{yesterdayData.applyRecordNum}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+<style>
+    .index h4{ height: 40px; line-height: 40px; text-align: center; border: 1px solid #f0af00; font-weight: bold;}
+    .index .item{ width: 100px; height: 100px; border: 1px solid #000; border-radius: 50%; text-align: center; margin: 10px auto;}
+    .index .item .item-name,.index .item .item-val{ line-height: 50px;}
+    .index .item .item-name{ }
+    .index .item .item-val{ }
+</style>
