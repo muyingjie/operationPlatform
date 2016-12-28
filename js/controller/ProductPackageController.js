@@ -22,7 +22,10 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
         popTitle: "操作提示",
         popBodyTpl: "确认要上架吗？",
         onConfirmClick: function () {
-            alert("确定时触发");
+
+            productService.saleOnShelves({id:1223}).then(function (data) {
+                alert("确定时触发");
+            })
         }
     };
     //分页
