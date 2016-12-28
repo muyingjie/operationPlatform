@@ -10,14 +10,6 @@ operApp.directive("myPagination",[function () {
         templateUrl:"paginationTpl.html",
         replace:false,
         link: function ($scope) {
-            //监听总数据条数
-            //$scope.$watch(function () {
-            //    return $scope.conf.total;
-            //}, function (newVal,oldVal) {
-            //    if(newVal != oldVal){
-            //        getPageSize();
-            //    }
-            //},true);
             //每页显示多少条的数据
             $scope.pagesStatusList = [
                 {
