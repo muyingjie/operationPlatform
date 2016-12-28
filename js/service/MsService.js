@@ -414,69 +414,75 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                         console.log(data)
                         res = {
                             status: true,
-                            data: [
-                                {
-                                    id: "1",
-                                    account: "admin",
-                                    name: "管理员",
-                                    createTime: 1480403979578,
-                                    ip: "111.145.214.175",
-                                    result:"成功",
-                                },
-                                {
-                                    id: "2",
-                                    account: "abc123",
-                                    name: "李钦",
-                                    createTime: 1480403979534,
-                                    ip: "222.145.214.173",
-                                    result:"失败",
-                                },
-                                {
-                                    id: "3",
-                                    account: "youxian",
-                                    name: "小李",
-                                    createTime: 1480403971278,
-                                    ip: "333.145.214.175",
-                                    result:"成功",
+                            data:{
+                                dataList: [
+                                    {
+                                        id: "1",
+                                        account: "admin",
+                                        name: "管理员",
+                                        createTime: 1480403979578,
+                                        ip: "111.145.214.175",
+                                        result:"成功",
+                                    },
+                                    {
+                                        id: "2",
+                                        account: "abc123",
+                                        name: "李钦",
+                                        createTime: 1480403979534,
+                                        ip: "222.145.214.173",
+                                        result:"失败",
+                                    },
+                                    {
+                                        id: "3",
+                                        account: "youxian",
+                                        name: "小李",
+                                        createTime: 1480403971278,
+                                        ip: "333.145.214.175",
+                                        result:"成功",
 
-                                },
+                                    }
 
-                            ],
-                            total:354,
+                                ],
+                                total:354,
+                            }
+
                         };
                         break;
                     case "getOperLogList":
                         console.log(data)
                         res = {
                             status: true,
-                            data: [
-                                {
-                                    id: "11113",
-                                    createTime: 1480403979578,
-                                    name: "管理员",
-                                    ip: "111.145.214.175",
-                                    classify:"修改菜单",
-                                    result:"修改订单[ID:5678 订单状态变更为已支付]"
-                                },
-                                {
-                                    id: "222",
-                                    createTime: 1480403975980,
-                                    name: "管理员",
-                                    ip: "222.145.214.10",
-                                    classify:"修改会员密码",
-                                    result:" 修改会员密码[ID:5678 会员密码更改为********]",
-                                },
-                                {
-                                    id: "333",
-                                    createTime: 1480403945612,
-                                    name: "管理员",
-                                    ip: "222.145.214.10",
-                                    classify:"修改商品价格",
-                                    result:"商品的价格暂时定义为1988",
+                            data: {
+                                dataList:[
+                                    {
+                                        id: "11113",
+                                        createTime: 1480403979578,
+                                        name: "管理员",
+                                        ip: "111.145.214.175",
+                                        classify:"修改菜单",
+                                        result:"修改订单[ID:5678 订单状态变更为已支付]"
+                                    },
+                                    {
+                                        id: "222",
+                                        createTime: 1480403975980,
+                                        name: "管理员",
+                                        ip: "222.145.214.10",
+                                        classify:"修改会员密码",
+                                        result:" 修改会员密码[ID:5678 会员密码更改为********]",
+                                    },
+                                    {
+                                        id: "333",
+                                        createTime: 1480403945612,
+                                        name: "管理员",
+                                        ip: "222.145.214.10",
+                                        classify:"修改商品价格",
+                                        result:"商品的价格暂时定义为1988",
 
-                                }
-                            ],
-                            total:354,
+                                    }
+                                ],
+                                total:354,
+                            }
+
                         };
                            break;
                 }

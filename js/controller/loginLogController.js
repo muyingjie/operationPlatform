@@ -70,7 +70,7 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
      /*   console.log($scope.filterData);
         console.log( $scope.filterData.status);*/
         LogService.getLogList(option).then(function(data){
-           $scope.logList = data;//把从后台请求的返回的数据展示
+           $scope.logList = data.dataList;//把从后台请求的返回的数据展示
             $scope.paginationConf.total = data.total;
         })
     }

@@ -71,7 +71,7 @@ operApp.controller("operationLogController", ["$scope","$http", "LogService",fun
     function getOperLogList(option){
         //$scope.filterData.status = $scope.pageData.curStatusItem.id;
         LogService.getOperLogList(option).then(function(data){
-            $scope.logList = data;//把从后台请求的返回的数据展示
+            $scope.logList = data.dataList;//把从后台请求的返回的数据展示
             $scope.paginationConf.total = data.total;
         })
     }
