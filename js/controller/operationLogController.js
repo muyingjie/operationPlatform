@@ -65,7 +65,20 @@ operApp.controller("operationLogController", ["$scope","$http", "LogService",fun
         operPerson: "",
     };
     //(new Date()).valueOf(); 转化成时间戳到后台
-
+    //分页
+    var filterConditions;
+    var tagState;
+    $scope.paginationConf = {
+        currentPage:1,
+        total:1,
+        pageSize:40,
+        pagesLength:5,
+        menuState:"all",
+        filter:filterConditions,
+        upDateInterFace: function (data) {
+            getOperLogList(data);
+        }
+    };
     //列表渲染 从后台获取数据显示到页面中 12.19
     getOperLogList();
     function getOperLogList(option){
@@ -75,31 +88,33 @@ operApp.controller("operationLogController", ["$scope","$http", "LogService",fun
             $scope.paginationConf.total = data.total;
         })
     }
-    //分页
-    $scope.paginationConf = {
-        currentPage: 1,
-        total:1,
-        pageSize:40,
-        pagesLength: 5,
-        menuState:"all",
-        upDateInterFace: function (data) {
-            getOperLogList(data)
-        }
-    };
+
     $scope.changeRoleStatus = function () {
         console.log($scope.pageData.curStatusItem);
     };
     //日志的查询,向后台传递数据，然后显示到视图上
     $scope.filterData={};
     $scope.search=function(){
-       var data = {
+        filterConditions = {
            logId:$scope.filterData.logId,
            startTime:new Date($scope.filterData.startTime.toLocaleDateString()).getTime(),
            endTime:new Date($scope.filterData.endTime.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
            operPerson: $scope.filterData.operPerson,
            status:$scope.pageData.curStatusItem.id
        };
-        getOperLogList(data);
+        //获取对应的订单列表信息
+        $scope.paginationConf = {
+            currentPage:1,
+            total:1,
+            pageSize:20,
+            pagesLength:5,
+            menuState:tagState,
+            filter:filterConditions,
+            upDateInterFace: function (data) {
+                getOperLogList(data);
+            }
+        };
+        //getOperLogList(data);
     };
 
 }]);
