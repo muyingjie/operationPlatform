@@ -5,21 +5,21 @@
                 <label class="cbr-inline">登录时间：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}"  ng-model="dateData.dt" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}"  ng-model="filterData.startTime" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)" />
               <!--  <input type="text" class="form-control" size="25" name="name" ng-model="login.timef" />-->
             </div>
             <div class="form-group">
                 <label class="cbr-inline">至</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateData2.dt" is-open="dateData2.opened" min-date="dateData2.minDate" max-date="dateData2.maxDate" datepicker-options="dateData2.dateOptions" close-text="{{dateData2.closeTxt}}"  ng-click="dateData2.open($event)" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="filterData.endTime" is-open="dateData2.opened" min-date="dateData2.minDate" max-date="dateData2.maxDate" datepicker-options="dateData2.dateOptions" close-text="{{dateData2.closeTxt}}"  ng-click="dateData2.open($event)" />
             <!--    <input type="text" class="form-control" size="25" name="username" ng-model="login.timel" />-->
             </div>
             <div class="form-group">
                 <label class="cbr-inline">管理员：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="25" name="username" ng-model="login.name" />
+                <input type="text" class="form-control" size="25" name="username" ng-model="filterData.operPerson" />
             </div>
 
             <div class="form-group">
@@ -68,5 +68,6 @@
             </tbody>
         </table>
     </div>
+    <my-pagination conf="paginationConf"></my-pagination>
 </div>
 

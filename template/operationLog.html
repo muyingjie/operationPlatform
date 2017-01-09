@@ -5,27 +5,27 @@
                 <label class="cbr-inline">日志ID：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="5" name="name" ng-model="opera.id" />
+                <input type="text" class="form-control" size="5" name="name" ng-model="filterData.logId" />
             </div>
             <div class="form-group">
                 <label class="cbr-inline">创建时间：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}"  ng-model="dateData.dt" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}"  ng-model="filterData.startTime" is-open="dateData.opened" min-date="dateData.minDate" max-date="dateData.maxDate" datepicker-options="dateData.dateOptions" close-text="{{dateData.closeTxt}}"  ng-click="dateData.open($event)" />
                 <!--<input type="text" class="form-control" size="15" name="name" ng-model="opera.timef" />-->
             </div>
             <div class="form-group">
                 <label class="cbr-inline">至</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" datepicker-popup="{{format2}}" ng-model="dateData2.dt" is-open="dateData2.opened" min-date="dateData2.minDate" max-date="dateData2.maxDate" datepicker-options="dateData2.dateOptions" close-text="{{dateData2.closeTxt}}"  ng-click="dateData2.open($event)" />
+                <input type="text" class="form-control" datepicker-popup="{{format2}}" ng-model="filterData.endTime" is-open="dateData2.opened" min-date="dateData2.minDate" max-date="dateData2.maxDate" datepicker-options="dateData2.dateOptions" close-text="{{dateData2.closeTxt}}"  ng-click="dateData2.open($event)" />
                <!-- <input type="text" class="form-control" size="15" name="username" ng-model="opera.timel" />-->
             </div>
             <div class="form-group">
                 <label class="cbr-inline">操作人：</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="10" name="username" ng-model="opera.name" />
+                <input type="text" class="form-control" size="10" name="username" ng-model="filterData.operPerson" />
             </div>
 
             <div class="form-group">
@@ -74,4 +74,5 @@
             </tbody>
         </table>
     </div>
+    <my-pagination conf="paginationConf"></my-pagination>
 </div>

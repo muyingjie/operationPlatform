@@ -4,6 +4,7 @@
 operApp.controller("loginLogController", ["$scope", "LogService",function ($scope,LogService) {
     //1、日期选择
     $scope.dateData = {
+        startTime:new Date(),
         //dt: "2016-1-1",
         opened: false,
         format: "yyyy-MM-dd",
@@ -22,6 +23,7 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
     };
     $scope.dateData2 = {
         //dt: "2016-1-7",
+        endTime:new Date(),
         opened: false,
         format: "yyyy-MM-dd",
         dateOptions: {
@@ -57,25 +59,48 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
         curStatusItem: $scope.logStatusList[0]
     };
     $scope.filterData = {
-        logId: "",
         startTime: "",
         endTime: "",
-        operPerson: ""
+        operPerson: "",
     };
     //列表渲染 从后台获取数据显示到页面中 12.19
     getLogList();
-    function getLogList(){
-        $scope.filterData.cat = $scope.pageData.curStatusItem.id;console.log($scope.filterData);
-        LogService.getLogList($scope.filterData).then(function(data){
-           $scope.logList = data;//把从后台请求的返回的数据展示
+    function getLogList(option){
+       /* $scope.filterData.status = $scope.pageData.curStatusItem.id;*/
+     /*   console.log($scope.filterData);
+        console.log( $scope.filterData.status);*/
+        LogService.getLogList(option).then(function(data){
+           $scope.logList = data.dataList;//把从后台请求的返回的数据展示
+            $scope.paginationConf.total = data.total;
         })
     }
     $scope.changeRoleStatus = function () {
         console.log($scope.pageData.curStatusItem);
     };
     //日志的查询，从后台返回的查询结果绑定到视图上
+    $scope.filterData={};
     $scope.search = function(){
-        //传递查新的值 并发起http请求
-        getLogList();
-    }
+        var data = {
+            startTime:new Date($scope.filterData.startTime.toLocaleDateString()).getTime(),
+            endTime:new Date($scope.filterData.endTime.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
+            operPerson:$scope.filterData.operPerson,
+            status:$scope.pageData.curStatusItem.id
+
+        };
+        //根据搜索条件寻找对应的值
+        getLogList(data);
+    };
+    //分页
+    $scope.paginationConf = {
+        currentPage: 1,
+        total:1,
+        pageSize:20,
+        pagesLength: 5,
+        menuState:"all",
+        upDateInterFace: function (data) {
+            getLogList(data);
+        }
+    };
+
+
 }]);
