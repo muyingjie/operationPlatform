@@ -116,7 +116,7 @@ operApp.directive("myPagination",[function () {
                     pageSize:$scope.conf.pageSize
                 };
 
-                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){//当前页或者tab标签变化时发送请求
+                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState || newVal.filter !== oldVal.filter){//当前页或者tab标签变化时发送请求
                     $scope.conf.upDateInterFace(data);
                     getPagination();
                 }else if(newVal == oldVal){//加载时的第一次请求

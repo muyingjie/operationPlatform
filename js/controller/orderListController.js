@@ -109,7 +109,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
         //获取对应的订单列表信息
         $scope.paginationConf = {
             currentPage:1,
-            total:1,
+            total:$scope.paginationConf.total,
             pageSize:20,
             pagesLength:5,
             menuState:tagState,
@@ -177,7 +177,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
         //获取对应的订单列表信息
         $scope.paginationConf = {
             currentPage:1,
-            total:1,
+            total:$scope.paginationConf.total,
             pageSize:20,
             pagesLength:5,
             menuState:tagState,
