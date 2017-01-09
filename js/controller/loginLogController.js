@@ -63,6 +63,21 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
         endTime: "",
         operPerson: "",
     };
+    //分页
+    var filterConditions;
+    var tagState;
+    $scope.paginationConf = {
+        currentPage:1,
+        total:1,
+        pageSize:40,
+        pagesLength:5,
+        menuState:"all",
+        filter:filterConditions,
+        upDateInterFace: function (data) {
+            getLogList(data);
+        }
+    };
+
     //列表渲染 从后台获取数据显示到页面中 12.19
     getLogList();
     function getLogList(option){
@@ -80,7 +95,7 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
     //日志的查询，从后台返回的查询结果绑定到视图上
     $scope.filterData={};
     $scope.search = function(){
-        var data = {
+        filterConditions = {
             startTime:new Date($scope.filterData.startTime.toLocaleDateString()).getTime(),
             endTime:new Date($scope.filterData.endTime.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
             operPerson:$scope.filterData.operPerson,
@@ -88,19 +103,17 @@ operApp.controller("loginLogController", ["$scope", "LogService",function ($scop
 
         };
         //根据搜索条件寻找对应的值
-        getLogList(data);
-    };
-    //分页
-    $scope.paginationConf = {
-        currentPage: 1,
-        total:1,
-        pageSize:20,
-        pagesLength: 5,
-        menuState:"all",
-        upDateInterFace: function (data) {
-            getLogList(data);
-        }
-    };
+        $scope.paginationConf = {
+            currentPage:1,
+            total:1,
+            pageSize:20,
+            pagesLength:5,
+            menuState:tagState,
+            filter:filterConditions,
+            upDateInterFace: function (data) {
+                getLogList(data);
+            }
+        };
 
-
+    };
 }]);
