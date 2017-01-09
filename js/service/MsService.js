@@ -358,7 +358,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         sold:"55345"
                                     },
                                     {
-                                        productPackageNum:"box-ccc-001",
+                                        productPackageNum:"box-ccc-002",
                                         productPackageName:"基础版",
                                         price:"198",
                                         priority:"0",
@@ -368,7 +368,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         sold:"55345"
                                     },
                                     {
-                                        productPackageNum:"box-ccc-001",
+                                        productPackageNum:"box-ccc-003",
                                         productPackageName:"基础版",
                                         price:"198",
                                         priority:"0",
@@ -378,7 +378,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         sold:"55345"
                                     },
                                     {
-                                        productPackageNum:"box-ccc-001",
+                                        productPackageNum:"box-ccc-004",
                                         productPackageName:"基础版",
                                         price:"198",
                                         priority:"0",
@@ -388,7 +388,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                                         sold:"55345"
                                     },
                                     {
-                                        productPackageNum:"box-ccc-001",
+                                        productPackageNum:"box-ccc-005",
                                         productPackageName:"基础版",
                                         price:"198",
                                         priority:"0",

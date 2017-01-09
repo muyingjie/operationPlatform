@@ -90,7 +90,7 @@ operApp.directive("myPagination",[function () {
             $scope.getPageSize = function () {
                 $scope.conf.pageSize = parseInt($scope.pageData.txt);
                 calculationPages();
-                $scope.conf.upDateInterFace($scope.conf.menuState ? {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,state:$scope.conf.menuState} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                $scope.conf.upDateInterFace($scope.conf.menuState ? $scope.conf.filter ?{currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,tagState:$scope.conf.menuState,filterConditions:$scope.conf.filter} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,tagState:$scope.conf.menuState} : $scope.conf.filter? {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,filterConditions:$scope.conf.filter} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize} );
                 getPagination();
             };
 
@@ -98,10 +98,19 @@ operApp.directive("myPagination",[function () {
             $scope.$watch(function(){
                 return $scope.conf;
             }, function (newVal,oldVal) {
-                var data = $scope.conf.menuState ? {
+                var data = $scope.conf.menuState ? $scope.conf.filter ? {
                     currentPage:$scope.conf.currentPage,
                     pageSize:$scope.conf.pageSize,
-                    state:$scope.conf.menuState
+                    tagState:$scope.conf.menuState,
+                    filterConditions:$scope.conf.filter
+                } : {
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize,
+                    tagState:$scope.conf.menuState
+                } : $scope.conf.filter ?{
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize,
+                    filterConditions:$scope.conf.filter
                 } : {
                     currentPage:$scope.conf.currentPage,
                     pageSize:$scope.conf.pageSize
