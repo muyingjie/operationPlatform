@@ -50,7 +50,6 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                         memberID:$stateParams.memberId,
                         state:$modalScope.extData.state,
                         content:$modalScope.extData.content
-
                     };
                     getRemarksInfor(data);
                     switch ($modalScope.extData.state) {
@@ -125,5 +124,5 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                 }
             };
     })
-    };
+    }
 }]);

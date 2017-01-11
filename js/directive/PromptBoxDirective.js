@@ -11,6 +11,7 @@ operApp.directive("promptBox", ["$modal", "$q", function ($modal, $q) {
         templateUrl: "promptBoxBtnTpl.html",
         replace: false,
         link: function ($scope) {
+            console.log($scope)
             var params = ($scope.params = ($scope.params ? $scope.params : {}));
             var extData = ($scope.extData = ($scope.extData ? $scope.extData : {}));
             //popTitle: 弹框标题

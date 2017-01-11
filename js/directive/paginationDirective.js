@@ -10,14 +10,6 @@ operApp.directive("myPagination",[function () {
         templateUrl:"paginationTpl.html",
         replace:false,
         link: function ($scope) {
-            //监听总数据条数
-            //$scope.$watch(function () {
-            //    return $scope.conf.total;
-            //}, function (newVal,oldVal) {
-            //    if(newVal != oldVal){
-            //        getPageSize();
-            //    }
-            //},true);
             //每页显示多少条的数据
             $scope.pagesStatusList = [
                 {
@@ -66,7 +58,7 @@ operApp.directive("myPagination",[function () {
             };
             //跳转到某一页;
             $scope.goPage = function () {
-                $scope.page = $scope.conf.currentPage = parseInt($scope.page) > $scope.totalPages ? $scope.totalPages : parseInt($scope.page) < 1 ? 1 : parseInt($scope.page);
+                $scope.page = $scope.conf.currentPage = isNaN($scope.page) || !$scope.page ? $scope.conf.currentPage : parseInt($scope.page) > $scope.totalPages ? $scope.totalPages : parseInt($scope.page) < 1 ? 1 : parseInt($scope.page);
             };
             //上一页
             $scope.prevPage = function () {
@@ -98,7 +90,7 @@ operApp.directive("myPagination",[function () {
             $scope.getPageSize = function () {
                 $scope.conf.pageSize = parseInt($scope.pageData.txt);
                 calculationPages();
-                $scope.conf.upDateInterFace($scope.conf.menuState ? {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,state:$scope.conf.menuState} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize});
+                $scope.conf.upDateInterFace($scope.conf.menuState ? $scope.conf.filter ?{currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,tagState:$scope.conf.menuState,filterConditions:$scope.conf.filter} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,tagState:$scope.conf.menuState} : $scope.conf.filter? {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize,filterConditions:$scope.conf.filter} : {currentPage:$scope.conf.currentPage,pageSize:$scope.conf.pageSize} );
                 getPagination();
             };
 
@@ -106,16 +98,25 @@ operApp.directive("myPagination",[function () {
             $scope.$watch(function(){
                 return $scope.conf;
             }, function (newVal,oldVal) {
-                var data = $scope.conf.menuState ? {
+                var data = $scope.conf.menuState ? $scope.conf.filter ? {
                     currentPage:$scope.conf.currentPage,
                     pageSize:$scope.conf.pageSize,
-                    state:$scope.conf.menuState
+                    tagState:$scope.conf.menuState,
+                    filterConditions:$scope.conf.filter
+                } : {
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize,
+                    tagState:$scope.conf.menuState
+                } : $scope.conf.filter ?{
+                    currentPage:$scope.conf.currentPage,
+                    pageSize:$scope.conf.pageSize,
+                    filterConditions:$scope.conf.filter
                 } : {
                     currentPage:$scope.conf.currentPage,
                     pageSize:$scope.conf.pageSize
                 };
 
-                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState){//当前页或者tab标签变化时发送请求
+                if(newVal.currentPage !== oldVal.currentPage || newVal.menuState !== oldVal.menuState || newVal.filter !== oldVal.filter){//当前页或者tab标签变化时发送请求
                     $scope.conf.upDateInterFace(data);
                     getPagination();
                 }else if(newVal == oldVal){//加载时的第一次请求

@@ -10,12 +10,15 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
         })
     }
     //分页
+    var filterConditions;
+    var tagState;
     $scope.paginationConf = {
         currentPage:1,
         total:1,
         pageSize:40,
         pagesLength:5,
         menuState:"all",
+        filter:filterConditions,
         upDateInterFace: function (data) {
             getOrderList(data);
         }
@@ -102,13 +105,15 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     ];
     $scope.selectedTab = 0;
     $scope.selectedMenu = function (row) {
+        tagState = $scope.tabMenus[row].state;
         //获取对应的订单列表信息
         $scope.paginationConf = {
             currentPage:1,
-            total:1,
+            total:$scope.paginationConf.total,
             pageSize:20,
             pagesLength:5,
-            menuState:$scope.tabMenus[row].state,
+            menuState:tagState,
+            filter:filterConditions,
             upDateInterFace: function (data) {
                 getOrderList(data);
             }
@@ -160,7 +165,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     //搜索
     $scope.member = {};
     $scope.search = function () {
-        var data = {
+        filterConditions = {
             cellphone:$scope.member.cellphone,
             name:$scope.member.name,
             twoLevelDomainName:$scope.member.twoLevelDomainName,
@@ -169,7 +174,19 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             classify:$scope.pageData.curOrderStatusItem,
             protocolStatus:$scope.pageData.curProtocolStatusItem.txt
         };
-        getOrderList(data)
+        //获取对应的订单列表信息
+        $scope.paginationConf = {
+            currentPage:1,
+            total:$scope.paginationConf.total,
+            pageSize:20,
+            pagesLength:5,
+            menuState:tagState,
+            filter:filterConditions,
+            upDateInterFace: function (data) {
+                getOrderList(data);
+            }
+        };
+        //getOrderList(data)
     };
     //table
     $scope.goToOrderDetail = function (memberId) {

@@ -5,7 +5,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     //初始化产品套餐列表
     function getProductPackage(option){
         productService.getProductPackage(option).then(function (data) {
-            $scope.productPackageListInfor = data;
+            $scope.productPackageListInfor = data.dataList;
+            $scope.paginationConf.total = data.total;
         })
     }
 
@@ -21,8 +22,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
         },
         popTitle: "操作提示",
         popBodyTpl: "确认要上架吗？",
-        onConfirmClick: function () {
-
+        onConfirmClick: function ($scope) {
+            console.log($scope)
             productService.saleOnShelves({id:1223}).then(function (data) {
                 alert("确定时触发");
             })
@@ -30,8 +31,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     };
     //分页
     $scope.paginationConf = {
-        currentPage: 5,
-        total:18895,
+        currentPage: 90,
+        //total:189,
         pageSize:20,
         pagesLength: 5,
         upDateInterFace: function (data) {
