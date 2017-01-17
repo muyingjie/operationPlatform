@@ -612,8 +612,91 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                         ],
                                         priceRule:"1"
                                     }
-                                }
+                                };
+                            case "basicsTechniqueProduct":
+                                console.log(data);
+                                res = {
+                                    status:true,
+                                    data:{
+                                        dataList:[
+                                            {
+                                                Identification:"xyz123",
+                                                classify:"商城",
+                                                name:"PC-B2C",
+                                                version:"v1.0",
+                                                releaseTime:"2016-11-11 12:34",
+                                                state:"已通过",
+                                                handle:"上架"
+                                            },
+                                            {
+                                                Identification:"xyz123",
+                                                classify:"商城",
+                                                name:"PC-B2C",
+                                                version:"v1.0",
+                                                releaseTime:"2016-11-11 12:34",
+                                                state:"已通过",
+                                                handle:"上架"
+                                            },
+                                            {
+                                                Identification:"xyz123",
+                                                classify:"商城",
+                                                name:"PC-B2C",
+                                                version:"v1.0",
+                                                releaseTime:"2016-11-11 12:34",
+                                                state:"已通过",
+                                                handle:"上架"
+                                            },
+                                            {
+                                                Identification:"xyz123",
+                                                classify:"商城",
+                                                name:"PC-B2C",
+                                                version:"v1.0",
+                                                releaseTime:"2016-11-11 12:34",
+                                                state:"已通过",
+                                                handle:"上架"
+                                            }
+                                        ],
+                                        total:785
+                                    }
+                                };
+                                break;
+                            case "meteringTechniqueProduct":
+                                console.log(data);
+                                res = {
+                                    status:true,
+                                    data:[
+                                        {
+                                            Identification:"xyz123",
+                                            classify:"商城",
+                                            name:"20G空间",
+                                            numVal:"20G",
+                                            releaseTime:"2016-11-11 12:34",
+                                            state:"已通过",
+                                            handle:"上架"
+                                        },
+                                        {
+                                            Identification:"xyz123",
+                                            classify:"商城",
+                                            name:"20G空间",
+                                            numVal:"20G",
+                                            releaseTime:"2016-11-11 12:34",
+                                            state:"已通过",
+                                            handle:"上架"
+                                        },
+                                        {
+                                            Identification:"xyz123",
+                                            classify:"商城",
+                                            name:"20G空间",
+                                            numVal:"20G",
+                                            releaseTime:"2016-11-11 12:34",
+                                            state:"已通过",
+                                            handle:"上架"
+                                        }
+                                    ]
+                                };
+                                break;
                         }
+                        break;
                     case "Log":
                         switch (fnName){
                             case "getLogList":

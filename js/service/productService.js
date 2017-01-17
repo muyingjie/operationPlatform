@@ -14,10 +14,18 @@ operApp.service("productService",["ms", function (ms) {
     function productPackage(option){
         return ms("Product.productPackage",option)
     }
+    function basicsTechniqueProduct(option){
+        return ms("Product.basicsTechniqueProduct",option)
+    }
+    function meteringTechniqueProduct(option){
+        return ms("Product.meteringTechniqueProduct",option)
+    }
     return{
         getProductPackage:getProductPackage,
         saleOnShelves:saleOnShelves,
         productPackageDetails:productPackageDetails,
-        productPackage:productPackage
+        productPackage:productPackage,
+        basicsTechniqueProduct:basicsTechniqueProduct,
+        meteringTechniqueProduct:meteringTechniqueProduct
     }
 }]);

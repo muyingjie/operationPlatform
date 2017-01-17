@@ -6,16 +6,16 @@
             </a>
         </li>
     </ul>
-    <div class="panel-body" style="position: absolute;top: 4px;right: 30px">
+    <div class="panel-body" style="position: absolute;top: 4px;right: 30px"  ng-if="showProductList">
         <form role="form" class="form-inline" novalidate name="roleForm">
             <div class="form-group">
-                <select class="form-control" name="role" ng-model="pageData" ng-options="item.txt for item in statusList"></select>
+                <select class="form-control" name="role" ng-model="pageData.classify" ng-options="item.txt for item in statusList" ng-change="change()"></select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="15" name="name" ng-model="roleItem.roleName" placeholder="标识"/>
+                <input type="text" class="form-control" size="15" name="name" ng-model="technique.Identification" placeholder="标识"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" size="15" name="username" ng-model="roleItem.roleName" placeholder="产品名称"/>
+                <input type="text" class="form-control" size="15" name="username" ng-model="technique.productName" placeholder="产品名称"/>
             </div>
             <div class="form-group">
                 <button class="btn btn-secondary btn-single" ng-click="search()">查询</button>
@@ -76,4 +76,5 @@
             </tbody>
         </table>
     </div>
+    <my-pagination conf="paginationConf" ng-if="showProductList"></my-pagination>
 </div>

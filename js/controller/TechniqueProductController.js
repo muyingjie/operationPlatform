@@ -1,13 +1,29 @@
 /**
  * Created by lenovo on 2016/12/9.
  */
-operApp.controller("TechniqueProductController",["$scope", function ($scope) {
+operApp.controller("TechniqueProductController",["$scope","productService",function ($scope,productService) {
+    function getBasicsTechniqueProduct(option){
+        productService.basicsTechniqueProduct(option).then(function (data) {
+            $scope.basiProductDate = data.dataList;
+            $scope.paginationConf.total = data.total;
+        })
+    }
+    function getMeteringTechniqueProduct(option){
+        productService.meteringTechniqueProduct(option).then(function (data) {
+            $scope.metringProductDate = data;
+        })
+    }
     $scope.tabMenus = [
         {menuName:'基础产品'},
         {menuName:'计量产品'}
     ];
     $scope.selectedTab = 0;
     $scope.selectedMenu = function (row) {
+        switch (row){
+            case 1:
+                getMeteringTechniqueProduct();
+                break;
+        }
         $scope.selectedTab = row;
         $scope.showProductList = $scope.tabMenus[row].menuName === "基础产品" ? true : false;
     };
@@ -30,78 +46,45 @@ operApp.controller("TechniqueProductController",["$scope", function ($scope) {
             txt:"应用"
         }
     ];
-    $scope.pageData = $scope.statusList[0];
-
+    $scope.pageData = {
+        classify:$scope.statusList[0]
+    };
     $scope.showProductList = true;
-
-    $scope.basiProductDate = [
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"PC-B2C",
-            version:"v1.0",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        },
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"PC-B2C",
-            version:"v1.0",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        },
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"PC-B2C",
-            version:"v1.0",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        },
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"PC-B2C",
-            version:"v1.0",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
+    //分页
+    var filterConditions;
+    $scope.paginationConf = {
+        currentPage: 1,
+        //total:189,
+        pageSize:20,
+        pagesLength: 5,
+        filter:filterConditions,
+        upDateInterFace: function (data) {
+            //console.log(data);
+            getBasicsTechniqueProduct(data);
         }
-    ];
-    $scope.metringProductDate = [
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"20G空间",
-            numVal:"20G",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        },
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"20G空间",
-            numVal:"20G",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        },
-        {
-            Identification:"xyz123",
-            classify:"商城",
-            name:"20G空间",
-            numVal:"20G",
-            releaseTime:"2016-11-11 12:34",
-            state:"已通过",
-            handle:"上架"
-        }
-    ]
+    };
 
+    //搜索
+    $scope.technique = {}
+    $scope.search = function(){
+        console.log($scope.pageData);
+        filterConditions = {
+            classify:$scope.pageData.classify.id,
+            Identification:$scope.technique.Identification,
+            productName:$scope.technique.productName
+        };
+        $scope.paginationConf = {
+            currentPage: 1,
+            //total:189,
+            pageSize:20,
+            pagesLength: 5,
+            filter:filterConditions,
+            upDateInterFace: function (data) {
+                console.log(data);
+                getTechniqueProduct(data);
+            }
+        };
+    };
     //上下架操作
     $scope.params = {
         popTitle: "操作提示",
