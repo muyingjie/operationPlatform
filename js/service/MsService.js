@@ -71,7 +71,15 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                             items: [
                                                 {
                                                     name: "会员统计",
-                                                    hash: "member"
+                                                    hash: "memberCensus"
+                                                },
+                                                {
+                                                    name: "商城统计",
+                                                    hash: "mallCensus"
+                                                },
+                                                {
+                                                    name: "收入统计",
+                                                    hash: "incomeCensus"
                                                 }
                                             ]
                                         }, {
@@ -87,6 +95,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 }
                                             ]
                                         }, {
+                                            name: "服务管理",
+                                            items: [
+                                                {
+                                                    name: "域名绑定管理",
+                                                    hash: "domainBindManage"
+                                                },
+                                                {
+                                                    name: "域名解绑管理",
+                                                    hash: "domainUnbindManage"
+                                                }
+                                            ]
+                                        }, {
                                             name: "日志管理",
                                             items: [
                                                 {
@@ -95,6 +115,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 },
                                                 {
                                                     name: "操作日志",
+                                                    hash: "operationLog"
+                                                }
+                                            ]
+                                        }, {
+                                            name: "活动管理",
+                                            items: [
+                                                {
+                                                    name: "添加编辑活动",
+                                                    hash: "loginLog"
+                                                },
+                                                {
+                                                    name: "活动详情",
                                                     hash: "operationLog"
                                                 }
                                             ]
