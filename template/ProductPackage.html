@@ -1,6 +1,6 @@
 <div class="panel panel-default" ng-controller="ProductPackageController">
     <div style="border-bottom: 2px solid #4587db;padding-bottom: 5px">
-        <button ng-click="addProductPackage()">添加套餐包</button>
+        <button ng-click="addProductPackage('new')">添加套餐包</button>
     </div>
     <div class="panel-body">
         <table class="table table-bordered table-striped">
@@ -30,8 +30,8 @@
                 <!--<td class="ng-binding"><a href="javascript:;" ng-click="handleShelves()">上架</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" ng-click="details()">详情</a></td>-->
                 <td class="ng-binding">
                     <prompt-box params="params" ext-data="product"></prompt-box>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="javascript:;" ng-click="edit()">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="javascript:;" ng-click="details()">详情</a></td>
+                    <a href="javascript:;" ng-click="edit(product.productPackageNum)">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="javascript:;" ng-click="details(product.productPackageNum)">详情</a></td>
             </tr>
             </tbody>
         </table>

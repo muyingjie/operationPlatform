@@ -112,14 +112,14 @@
                     subTitle:"产品套餐列表"
                 }
             }).state("addProductPackage",{
-                url:"/addProductPackage",
+                url:"/addProductPackage/:productPackageNum",
                 templateUrl:"template/addProductPackage.html",
                 data:{
                     title:"产品管理",
-                    subTitle:"产品套餐列表"
+                    subTitle:"添加套餐包"
                 }
             }).state("productPackageDetails",{
-                url:"/productPackageDetails",
+                url:"/productPackageDetails/:productPackageNum",
                 templateUrl:"template/productPackageDetails.html",
                 data:{
                     title:"产品管理 > 产品套餐列表",
