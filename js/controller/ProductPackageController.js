@@ -7,6 +7,7 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
         productService.getProductPackage(option).then(function (data) {
             $scope.productPackageListInfor = data.dataList;
             $scope.paginationConf.total = data.total;
+            angular.forEach
         })
     }
 

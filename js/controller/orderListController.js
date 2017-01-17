@@ -165,6 +165,7 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
     //搜索
     $scope.member = {};
     $scope.search = function () {
+        console.log($scope.pageData.curOrderStatusItem)
         filterConditions = {
             cellphone:$scope.member.cellphone,
             name:$scope.member.name,
