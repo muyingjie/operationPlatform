@@ -11,8 +11,8 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     }
 
     //添加套餐包
-    $scope.addProductPackage = function () {
-       $state.go("addProductPackage")
+    $scope.addProductPackage = function (productPackageNum) {
+       $state.go("addProductPackage",{productPackageNum: productPackageNum})
     };
     //上下架操作
     $scope.params = {
@@ -31,7 +31,7 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     };
     //分页
     $scope.paginationConf = {
-        currentPage: 90,
+        currentPage: 1,
         //total:189,
         pageSize:20,
         pagesLength: 5,
@@ -42,12 +42,12 @@ operApp.controller("ProductPackageController",["$scope" ,"$modal","$log","$state
     };
 
     //编辑
-    $scope.edit = function () {
-        $state.go("addProductPackage")
+    $scope.edit = function (productPackageNum) {
+        $state.go("addProductPackage",{productPackageNum: productPackageNum})
     };
     //详情
-    $scope.details = function () {
-        $state.go("productPackageDetails")
+    $scope.details = function (productPackageNum) {
+        $state.go("productPackageDetails",{productPackageNum: productPackageNum})
     }
 }]);
 

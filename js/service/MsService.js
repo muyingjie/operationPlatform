@@ -406,6 +406,86 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                         console.log(data);
                         res = {
                             status:true
+                        };
+                        break;
+                    case "productPackageDetails":
+                        console.log(data);
+                        res = {
+                            status:true,
+                            data:{
+                                applicationMall:"B2C基础版 v1.0",
+                                docker:"1个",
+                                storage:"10G",
+                                bandwidth:"10M",
+                                template:"默认、朝霞、冷艳、绿润",
+                                application:"促销v1.0",
+                                messages:"1千条",
+                                emails:"1千封",
+                                state:"在售/已下架（下架时间：2016-11-12 14:47）",
+                                identifier:"box-ccc-001",
+                                productPackageName:"基础版",
+                                price:" 298元/月",
+                                priority:"0",
+                                remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
+                                releaseTime:"2016-11-10 15:35",
+                                lastModifiedTime:"2016-11-10 15:35",
+                                sold:"10000套"
+                            }
+                        };
+                        break;
+                    case "productPackage":
+                        console.log(data);
+                        res = {
+                            status:true,
+                            data:{
+                                mallApplication:[
+                                    {txt:"PC-B2C v1.0",id:"0",isChecked:true},
+                                    {txt:"MB-B2C v1.0",id:"1",isChecked:false}
+                                ],
+                                docker:[
+                                    {txt:"1个",id:"0",isChecked:true},
+                                    {txt:"2个",id:"1",isChecked:false},
+                                    {txt:"4个",id:"2",isChecked:false},
+                                    {txt:"8个",id:"3",isChecked:false}
+                                ],
+                                storage:[
+                                    {txt:"20G",id:"0",isChecked:true},
+                                    {txt:"40G",id:"1",isChecked:false},
+                                    {txt:"50G",id:"2",isChecked:false},
+                                    {txt:"100G",id:"3",isChecked:false},
+                                    {txt:"500G",id:"4",isChecked:false},
+                                    {txt:"1T",id:"4",isChecked:false},
+                                    {txt:"不限",id:"5",isChecked:false}
+                                ],
+                                bandwidth:[
+                                    {txt:"共享",id:"0",isChecked:true},
+                                    {txt:"10M",id:"1",isChecked:false},
+                                    {txt:"10M、可扩展",id:"2",isChecked:false}
+                                ],
+                                template:[
+                                    {txt:"默认",id:"0",isChecked:true},
+                                    {txt:"朝霞",id:"1",isChecked:false},
+                                    {txt:"冷艳",id:"2",isChecked:false},
+                                    {txt:"绿润",id:"3",isChecked:false}
+                                ],
+                                application:[
+                                    {txt:"促销v1.0",id:"0",isChecked:true},
+                                    {txt:"BI分析",id:"1",isChecked:false}
+                                ],
+                                messages:[
+                                    {txt:"1千条",id:"0",isChecked:true},
+                                    {txt:"1万条",id:"1",isChecked:"1"},
+                                    {txt:"3万条",id:"2",isChecked:false},
+                                    {txt:"10万条",id:"3",isChecked:false}
+                                ],
+                                emails:[
+                                    {txt:"1千封",id:"0",isChecked:true},
+                                    {txt:"1万封",id:"1",isChecked:"1"},
+                                    {txt:"3万封",id:"2",isChecked:false},
+                                    {txt:"10万封",id:"3",isChecked:false}
+                                ],
+                                priceRule:"1"
+                            }
                         }
                 }
             case "Log":
