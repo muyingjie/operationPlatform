@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/28.
  */
-operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolService", function ($q, LocalStorageService, CommonService, ToolService) {
+operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q, LocalStorageService, ToolService) {
     return function (servicePointfnName, data){
         var server = servicePointfnName.split(".");
         var service = server[0];
@@ -9,6 +9,92 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
         var res;
         var deferred = $q.defer();
         switch (service){
+            case "Common":
+                switch (fnName){
+                    case "getMenuList":
+                        res = {
+                            status: true,
+                            data: [
+                                {
+                                    name: "系统管理",
+                                    items: [
+                                        {
+                                            name: "角色管理",
+                                            hash: "roleOperating"
+                                        },{
+                                            name: "添加账号",
+                                            hash: "addAccount"
+                                        }, {
+                                            name: "系统账号",
+                                            hash: "systemAccountList"
+                                        }
+                                    ]
+                                }, {
+                                    name: "会员管理",
+                                    items: [
+                                        {
+                                            name: "会员列表",
+                                            hash: "memberList"
+                                        },
+                                        {
+                                            name: "获取手机号",
+                                            hash: "getPhoneNumbers"
+                                        }
+                                    ]
+                                }, {
+                                    name: "订单管理",
+                                    items: [
+                                        {
+                                            name: "订单列表",
+                                            hash: "orderList"
+                                        },
+                                        {
+                                            name: "发票管理",
+                                            hash: "invoiceManage"
+                                        },
+                                        {
+                                            name: "生成沙箱订单",
+                                            hash: "createSandBoxOrder"
+                                        }
+                                    ]
+                                }, {
+                                    name: "统计查询",
+                                    items: [
+                                        {
+                                            name: "会员统计",
+                                            hash: "member"
+                                        }
+                                    ]
+                                }, {
+                                    name: "产品管理",
+                                    items: [
+                                        {
+                                            name: "产品套餐",
+                                            hash: "productPackage"
+                                        },
+                                        {
+                                            name: "技术产品",
+                                            hash: "techniqueProduct"
+                                        }
+                                    ]
+                                }, {
+                                    name: "日志管理",
+                                    items: [
+                                        {
+                                            name: "登录日志",
+                                            hash: "loginLog"
+                                        },
+                                        {
+                                            name: "操作日志",
+                                            hash: "operationLog"
+                                        }
+                                    ]
+                                }
+                            ]
+                        };
+                        break;
+                }
+                break;
             case "Index":
                 switch (fnName){
                     case "getTotalOverviewData":
@@ -42,14 +128,13 @@ operApp.service("ms", ["$q", "LocalStorageService", "CommonService", "ToolServic
                         break;
                     case "addRole":
                         data.id = ToolService.rnd();
-                        data.authorityList = CommonService.authorityInstance();
                         data.roleMembers = [];
                         var roleList = LocalStorageService.get("roleList");
                         roleList.data.push(data);
                         res = LocalStorageService.set("roleList", roleList);
                         break;
                     case "getRoleInfo":
-                        var roleList = LocalStorageService.get("roleList");var roleList = LocalStorageService.get("roleList");
+                        var roleList = LocalStorageService.get("roleList");
                         angular.forEach(roleList.data, function (o, i) {
                             if(data == o.id){
                                 res = {

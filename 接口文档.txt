@@ -1,6 +1,0 @@
-﻿1、登$录：
-    参数
-    {
-        username: "root",
-        password: "1234"
-    }

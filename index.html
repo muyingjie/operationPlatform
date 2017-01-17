@@ -159,30 +159,30 @@
             //日志管理结束
 
         }]);
-        operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
-            MenuService.getMenuList().then(function(menuData){
-                console.log(menuData);
-                $scope.menuData = menuData;
-            });
-
-            $scope.pageData = {
-                title: "首页",
-                subTitle: ""
-            };
-
-            $scope.goToPage = function (parentIndex, index) {
-                var par = $scope.menuData[parentIndex];
-                $scope.pageData.title = par.name;
-                var child = par.items[index];
-                $scope.pageData.subTitle = child.name;
-            };
-
-            $scope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
-                //更换右侧标题和副标题
-                $scope.pageData.title=toState.data.title;
-                $scope.pageData.subTitle=toState.data.subTitle;
-            });
-        }]);
+//        operApp.controller("MainController",["$scope","MenuService", function ($scope, MenuService) {
+//            MenuService.getMenuList().then(function(menuData){
+//                console.log(menuData);
+//                $scope.menuData = menuData;
+//            });
+//
+//            $scope.pageData = {
+//                title: "首页",
+//                subTitle: ""
+//            };
+//
+//            $scope.goToPage = function (parentIndex, index) {
+//                var par = $scope.menuData[parentIndex];
+//                $scope.pageData.title = par.name;
+//                var child = par.items[index];
+//                $scope.pageData.subTitle = child.name;
+//            };
+//
+//            $scope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
+//                //更换右侧标题和副标题
+//                $scope.pageData.title=toState.data.title;
+//                $scope.pageData.subTitle=toState.data.subTitle;
+//            });
+//        }]);
         operApp.controller("MainController",["$scope","$rootScope","MenuService", function ($scope, $rootScope, MenuService) {
             MenuService.getMenuList().then(function(menuData){
                 $scope.menuData = menuData;
