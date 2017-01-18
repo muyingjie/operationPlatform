@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/28.
  */
-operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q, LocalStorageService, ToolService) {
+operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", function ($q, LocalStorageService, ToolService, $http) {
     return function (servicePointfnName, data){
         //在走所有的请求之前需要先判断有没有session
         var loginDefer = $q.defer();
@@ -168,11 +168,22 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                 res = LocalStorageService.get("roleList");
                                 break;
                             case "addRole":
-                                data.id = ToolService.rnd();
-                                data.roleMembers = [];
-                                var roleList = LocalStorageService.get("roleList");
-                                roleList.data.push(data);
-                                res = LocalStorageService.set("roleList", roleList);
+                                $http({
+                                    method: "JSONP",
+                                    url: "http://172.23.151.66",
+                                    data: {
+                                        username: "aaa"
+                                    }
+                                }).then(function(d){
+                                    console.log("成功");
+                                }, function (d) {
+                                    console.log("失败");
+                                });
+                                // data.id = ToolService.rnd();
+                                // data.roleMembers = [];
+                                // var roleList = LocalStorageService.get("roleList");
+                                // roleList.data.push(data);
+                                // res = LocalStorageService.set("roleList", roleList);
                                 break;
                             case "getRoleInfo":
                                 var roleList = LocalStorageService.get("roleList");
