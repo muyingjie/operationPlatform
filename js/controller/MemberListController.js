@@ -16,4 +16,17 @@ operApp.controller("MemberListController", ["$scope", function ($scope) {
     $scope.pageData = {
         orderBy: $scope.orderByList[0]
     };
+
+    $scope.memberList = [
+        {
+            id: "1",
+            phone: "15547859632",
+            mail: "125@qq.com",
+            shopUrl: "abc123.shopcevip.cn",
+            shopVersion: "1",
+            buyTime: 1484727630,
+            name: "张三",
+            registerTime: 1484727630
+        }
+    ];
 }]);

@@ -80,6 +80,13 @@
                     title: "会员管理",
                     subTitle: "会员列表"
                 }
+            }).state("memberDetail", {
+                url:"/memberDetail/:id",
+                templateUrl: "template/memberDetail.html",
+                data: {
+                    title: "会员管理",
+                    subTitle: "会员详情"
+                }
             }).state("getPhoneNumbers", {
                 url:"/getPhoneNumbers",
                 templateUrl: "template/getPhoneNumbers.html",
@@ -289,6 +296,7 @@
     <script src="js/directive/paginationDirective.js"></script>
 
     <style>
+        a{ text-decoration: none !important;}
         input,select,textarea{ border-radius: 0 !important;}
         .il-par{ font-size: 0;}
         .il{ display: inline-block; font-size: 12px;}

@@ -36,7 +36,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th class="third-party">第三方标识</th>
+                <!--<th class="third-party">第三方标识</th>-->
                 <th>手机</th>
                 <th>邮箱</th>
                 <th>商城</th>
@@ -46,8 +46,16 @@
             </tr>
             </thead>
             <tbody class="middle-align">
-            <tr ng-repeat="account in accountList track by $index">
-
+            <tr ng-repeat="member in memberList track by $index">
+                <td>{{$index+1}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.mail}}</td>
+                <td>{{member.shopUrl}}<br/>{{member.shopVersion=="1" ? "试用版" :
+                    member.shopVersion=="2" ? "基础版" :
+                    member.shopVersion=="3" ? "专业版" : "未知版"}} {{member.buyTime*1000|date:'yyyy-MM-dd'}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.registerTime*1000|date:'yyyy-MM-dd hh:mm'}}</td>
+                <td><a ui-sref="memberDetail({id:member.id})">详情</a></td>
             </tr>
             </tbody>
         </table>
