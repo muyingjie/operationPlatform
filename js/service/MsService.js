@@ -311,6 +311,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                 };
                                 break;
                             case "getOrderDetail":
+                                console.log(data);
                                 res = {
                                     status:true,
                                     data:{
@@ -390,6 +391,11 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                     }
                                 };
                                 break;
+                            case "submitApplication":
+                                res = {
+                                    "status":true
+                                };
+                                break;
                             case "getSandBoxOrder":
                                 console.log(data)
                                 res = {
@@ -449,7 +455,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
                                                 releaseTime:"2016-10-11",
                                                 state:"待出售",
-                                                sold:"55345"
+                                                sold:"55345",
+                                                isOnShelves:0
                                             },
                                             {
                                                 productPackageNum:"box-ccc-002",
@@ -459,7 +466,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
                                                 releaseTime:"2016-10-11",
                                                 state:"待出售",
-                                                sold:"55345"
+                                                sold:"55345",
+                                                isOnShelves:1
                                             },
                                             {
                                                 productPackageNum:"box-ccc-003",
@@ -469,7 +477,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
                                                 releaseTime:"2016-10-11",
                                                 state:"待出售",
-                                                sold:"55345"
+                                                sold:"55345",
+                                                isOnShelves:1
                                             },
                                             {
                                                 productPackageNum:"box-ccc-004",
@@ -479,7 +488,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
                                                 releaseTime:"2016-10-11",
                                                 state:"待出售",
-                                                sold:"55345"
+                                                sold:"55345",
+                                                isOnShelves:1
                                             },
                                             {
                                                 productPackageNum:"box-ccc-005",
@@ -489,7 +499,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 remarks:"基础版，298元/月，1年2980块，买10个月，送2个月",
                                                 releaseTime:"2016-10-11",
                                                 state:"待出售",
-                                                sold:"55345"
+                                                sold:"55345",
+                                                isOnShelves:0
                                             }
                                         ],
                                         total:1980
@@ -581,6 +592,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                         priceRule:"1"
                                     }
                                 };
+                                break;
                             case "basicsTechniqueProduct":
                                 console.log(data);
                                 res = {

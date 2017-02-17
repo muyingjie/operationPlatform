@@ -59,7 +59,7 @@ operApp.controller("TechniqueProductController",["$scope","productService",funct
         pagesLength: 5,
         filter:filterConditions,
         upDateInterFace: function (data) {
-            //console.log(data);
+            console.log(data);
             getBasicsTechniqueProduct(data);
         }
     };
@@ -81,7 +81,7 @@ operApp.controller("TechniqueProductController",["$scope","productService",funct
             filter:filterConditions,
             upDateInterFace: function (data) {
                 console.log(data);
-                getTechniqueProduct(data);
+                getBasicsTechniqueProduct(data);
             }
         };
     };

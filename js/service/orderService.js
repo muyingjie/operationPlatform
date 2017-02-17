@@ -8,6 +8,9 @@ operApp.service("orderService",["ms", function (ms) {
     function getOrderDetail(member){
         return ms("Order.getOrderDetail",member);
     }
+    function submitApplication(application){
+        return ms("Order.submitApplication")
+    }
     function getSandBoxOrder(option){
         return ms("Order.getSandBoxOrder",option)
     }
@@ -17,6 +20,7 @@ operApp.service("orderService",["ms", function (ms) {
     return{
         getOrderList:getOrderList,
         getOrderDetail:getOrderDetail,
+        submitApplication:submitApplication,
         getSandBoxOrder:getSandBoxOrder,
         submitSandBox:submitSandBox
     }

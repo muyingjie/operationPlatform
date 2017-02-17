@@ -172,8 +172,8 @@ operApp.controller("OrderListController",["$scope","orderService","$state",funct
             twoLevelDomainName:$scope.member.twoLevelDomainName,
             timeStart:new Date($scope.dateDataStart.dt.toLocaleDateString()).getTime(),
             timeEnd:new Date($scope.dateDataEnd.dt.toLocaleDateString()).getTime()+(24*60*60-1)*1000,
-            classify:$scope.pageData.curOrderStatusItem,
-            protocolStatus:$scope.pageData.curProtocolStatusItem.txt
+            classify:$scope.pageData.curOrderStatusItem.id,
+            protocolStatus:$scope.pageData.curProtocolStatusItem.id
         };
         //获取对应的订单列表信息
         $scope.paginationConf = {

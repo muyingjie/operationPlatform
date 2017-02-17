@@ -3,7 +3,11 @@
  */
 operApp.controller("CreateSandBoxOrderController",["$scope","$state","orderService",function ($scope,$state,orderService) {
     //初始化会员列表数据
-    getMemberInfor();
+    getMemberInfor({
+        memberID:"",
+        cellphone:"",
+        email:""
+    });
     function getMemberInfor(option){
         orderService.getSandBoxOrder(option).then(function (data) {
             $scope.members = data;

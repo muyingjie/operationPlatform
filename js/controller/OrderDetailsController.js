@@ -4,14 +4,18 @@
 operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","$stateParams","orderService","$q",function ($scope,$modal,$log,$state,$stateParams,orderService,$q) {
     //数据初始渲染
     console.log($stateParams.memberId);
-    getOrderDetailInfor($stateParams.memberId);
-    function getRemarksInfor(){
-        orderService.getOrderDetail().then(function (data) {
+    getOrderDetailInfor({
+        memberID:$stateParams.memberId,
+        state:"",
+        content:""
+    });
+    function getRemarksInfor(obj){
+        orderService.getOrderDetail(obj).then(function (data) {
             $scope.remarksInfor =data.remarksInfor;
         })
     }
-    function getOrderDetailInfor(member){
-        orderService.getOrderDetail().then(function (data) {
+    function getOrderDetailInfor(obj){
+        orderService.getOrderDetail(obj).then(function (data) {
             $scope.orderInfor = data.orderInfor;
             $scope.paymentVoucherInfor = data.paymentVoucherInfor;
             $scope.memberInfor = data.memberInfor;
@@ -51,6 +55,7 @@ operApp.controller("OrderDetailsController",["$scope","$modal","$log","$state","
                         state:$modalScope.extData.state,
                         content:$modalScope.extData.content
                     };
+                    console.log(data)
                     getRemarksInfor(data);
                     switch ($modalScope.extData.state) {
                         case "stop":
