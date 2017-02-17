@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2016/11/28.
  */
-operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q, LocalStorageService, ToolService) {
+operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", function ($q, LocalStorageService, ToolService, $http) {
     return function (servicePointfnName, data){
         //在走所有的请求之前需要先判断有没有session
         var loginDefer = $q.defer();
@@ -71,7 +71,15 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                             items: [
                                                 {
                                                     name: "会员统计",
-                                                    hash: "member"
+                                                    hash: "memberCensus"
+                                                },
+                                                {
+                                                    name: "商城统计",
+                                                    hash: "mallCensus"
+                                                },
+                                                {
+                                                    name: "收入统计",
+                                                    hash: "incomeCensus"
                                                 }
                                             ]
                                         }, {
@@ -87,6 +95,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 }
                                             ]
                                         }, {
+                                            name: "服务管理",
+                                            items: [
+                                                {
+                                                    name: "域名绑定管理",
+                                                    hash: "domainBindManage"
+                                                },
+                                                {
+                                                    name: "域名解绑管理",
+                                                    hash: "domainUnbindManage"
+                                                }
+                                            ]
+                                        }, {
                                             name: "日志管理",
                                             items: [
                                                 {
@@ -95,6 +115,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                                 },
                                                 {
                                                     name: "操作日志",
+                                                    hash: "operationLog"
+                                                }
+                                            ]
+                                        }, {
+                                            name: "活动管理",
+                                            items: [
+                                                {
+                                                    name: "添加编辑活动",
+                                                    hash: "loginLog"
+                                                },
+                                                {
+                                                    name: "活动详情",
                                                     hash: "operationLog"
                                                 }
                                             ]
@@ -136,6 +168,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", function ($q,
                                 res = LocalStorageService.get("roleList");
                                 break;
                             case "addRole":
+                                // $http({
+                                //     method: "JSONP",
+                                //     url: "http://172.23.151.66",
+                                //     data: {
+                                //         username: data
+                                //     },
+                                //     jsonpCallbackParam: 'callback'
+                                // }).then(function(d){
+                                //     console.log("成功");
+                                // }, function (d) {
+                                //     console.log("失败");
+                                // });
                                 data.id = ToolService.rnd();
                                 data.roleMembers = [];
                                 var roleList = LocalStorageService.get("roleList");

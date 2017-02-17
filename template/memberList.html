@@ -1,0 +1,63 @@
+<div class="panel panel-default" ng-controller="MemberListController">
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="memberForm">
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="phone" ng-model="filterData.phone" placeholder="手机号" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="mail" ng-model="filterData.mail" placeholder="邮箱" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="domain" ng-model="filterData.domain" placeholder="域名" />
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">注册时间：</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="regStartTime" ng-model="filterData.regStartTime" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" name="regEndTime" ng-model="filterData.regEndTime" />
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">排序方式：</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.orderBy" ng-options="orderItem.txt for orderItem in orderByList"></select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">查询</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <!--<th class="third-party">第三方标识</th>-->
+                <th>手机</th>
+                <th>邮箱</th>
+                <th>商城</th>
+                <th>联系人</th>
+                <th>注册时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="middle-align">
+            <tr ng-repeat="member in memberList track by $index">
+                <td>{{$index+1}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.mail}}</td>
+                <td>{{member.shopUrl}}<br/>{{member.shopVersion=="1" ? "试用版" :
+                    member.shopVersion=="2" ? "基础版" :
+                    member.shopVersion=="3" ? "专业版" : "未知版"}} {{member.buyTime*1000|date:'yyyy-MM-dd'}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.registerTime*1000|date:'yyyy-MM-dd hh:mm'}}</td>
+                <td><a ui-sref="memberDetail({id:member.id})">详情</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

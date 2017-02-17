@@ -72,6 +72,30 @@
                 }
             });
 
+            //会员管理
+            $stateProvider.state("memberList", {
+                url:"/memberList",
+                templateUrl: "template/memberList.html",
+                data: {
+                    title: "会员管理",
+                    subTitle: "会员列表"
+                }
+            }).state("memberDetail", {
+                url:"/memberDetail/:id",
+                templateUrl: "template/memberDetail.html",
+                data: {
+                    title: "会员管理",
+                    subTitle: "会员详情"
+                }
+            }).state("getPhoneNumbers", {
+                url:"/getPhoneNumbers",
+                templateUrl: "template/getPhoneNumbers.html",
+                data: {
+                    title: "会员管理",
+                    subTitle: "获取手机号"
+                }
+            });
+
             //订单管理
             $stateProvider.state("orderList", {
                 url:"/orderList",
@@ -251,7 +275,7 @@
     <script src="js/controller/IndexController.js"></script>
     <script src="js/controller/RoleOperatingController.js"></script>
     <script src="js/controller/SystemAccountListController.js"></script>
-    <script src="js/controller/OrderListController.js"></script>
+    <script src="js/controller/orderListController.js"></script>
     <script src="js/controller/OrderDetailsController.js"></script>
     <script src="js/controller/AddAcountController.js"></script>
     <script src="js/controller/AuthorityManagement.js"></script>
@@ -259,11 +283,12 @@
     <script src="js/controller/CreateSandBoxOrderController.js"></script>
     <script src="js/controller/ProductPackageController.js"></script>
     <script src="js/controller/AddProductPackageController.js"></script>
-    <script src="js/controller/ProductPackageDetailsController.js"></script>
+    <script src="js/controller/productPackageDetailsController.js"></script>
     <script src="js/controller/TechniqueProductController.js"></script>
 
     <script src="js/controller/loginLogController.js"></script>
     <script src="js/controller/operationLogController.js"></script>
+    <script src="js/controller/MemberListController.js"></script>
 
     <!--指令-->
     <!--<script src="/js/directive/TableDirective.js"></script>-->
@@ -271,6 +296,7 @@
     <script src="js/directive/paginationDirective.js"></script>
 
     <style>
+        a{ text-decoration: none !important;}
         input,select,textarea{ border-radius: 0 !important;}
         .il-par{ font-size: 0;}
         .il{ display: inline-block; font-size: 12px;}
@@ -290,6 +316,12 @@
 
         .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td, .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th{ padding: 5px 15px;}
         .table .form-control{ height: 24px; padding: 0 12px;}
+
+        .table .third-party{ width: 110px;}
+
+        .sidebar-menu.fixed .sidebar-menu-inner{ position: static;}
+
+        form[name="memberForm"] .form-group input{ width: 170px;}
     </style>
 </head>
 <body class="page-body skin-white" ng-app="operApp">
