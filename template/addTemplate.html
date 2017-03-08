@@ -1,0 +1,243 @@
+<div class="panel panel-default" ng-controller="AddProductPackageController">
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead style="background-color: #f5f5f5">
+            <th style="border: none">添加/编辑模板</th>
+            <th style="border: none"></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>模板名称：</td>
+                <td class="text-l">
+                    <div class="" style="display: inline-block">
+                        <input type="text" class="form-control ng-pristine ng-valid" size="15" name="username" ng-model="productPackage.name" placeholder="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>服务标识：</td>
+                <td class="text-l">
+                    <div class="" style="display: inline-block">
+                        <input type="text" class="form-control ng-pristine ng-valid" size="15" name="username" ng-model="productPackage.name" placeholder="">
+                    </div>
+                    <span class="col-f00">注：关联模板代码包信息用</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>版本号：</td>
+                <td class="text-l">
+                    <div class="" style="display: inline-block">
+                        <input type="text" class="form-control ng-pristine ng-valid" size="15" name="username" ng-model="productPackage.name" placeholder="自动调取">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>适用商城：</td>
+                <td class="text-l">
+                    <div class="col-sm-10">
+                        <p>
+                            <label class="checkbox-inline" ng-repeat="item in productConfiguration.template track by $index">
+                                <input type="checkbox" ng-model="item.isChecked">
+                                {{item.txt}}
+                            </label>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>类型：</td>
+                <td class="text-l">
+                    <div style="display: inline-block">
+                        <select class="form-control ng-pristine ng-valid" name="role">
+                            <option value="">选择模板类型</option>
+                            <option value="0">简易模板</option>
+                            <option value="1" selected="selected">高级模板</option>
+                            <option value="1" selected="selected">js特效模板</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>适用行业：</td>
+                <td class="text-l">
+                    <div class="col-sm-10">
+                        <p>
+                            <label class="checkbox-inline" ng-repeat="item in productConfiguration.application track by $index">
+                                <input type="checkbox" ng-model="item.isChecked">
+                                {{item.txt}}
+                            </label>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>价格：</td>
+                <td class="text-l">
+                    <div class="" style="display: inline-block">
+                        <input type="text" class="form-control ng-pristine ng-valid" size="15" name="username" ng-model="productPackage.name" placeholder="">
+                    </div>
+                    元/套
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>模板描述：</td>
+                <td class="text-l">
+                    <textarea name="remarks" cols="50" rows="5" ng-model="productPackage.remarks"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>供应商ID:</td>
+                <td class="text-l">
+                    <div class="" style="display: inline-block">
+                        <input type="text" class="form-control ng-pristine ng-valid" size="15" name="username" ng-model="productPackage.name" placeholder="0">
+                    </div>
+                    <span class="col-f00">0-公司的</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="180" class="text-r"><span class="col-f00">*</span>图片：</td>
+                <td class="text-l">
+                    <div class="" style="width: 100px;margin: 0 0 10px 40px;">
+                        <input type="file" class="" placeholder="浏览">
+                    </div>
+                    <div>
+                        <ul class="addTemplate-mar">
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fl">
+                                <div class="marb-10" style="width: 200px;height: 200px"><img src="../img/product.png" alt=""/></div>
+                                <div class="marb-10">
+                                    <input type="text" class="wid-200" name="username" ng-model="productPackage.name" placeholder="图片名称">
+                                </div>
+                                <div class="marb-10">
+                                    <div class="fl">
+                                        <input name="radio" type="radio">设为封面
+                                    </div>
+                                    <div class="fr">
+                                        删除
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-layout item">
+        <button class="btn-first" ng-click="save()">保存</button>
+        <button ng-click="cancel()">返回</button>
+    </div>
+</div>

@@ -9,6 +9,9 @@ ul,ol,dl,dt,dd,li{
 .fl{
   float: left;
 }
+.fr{
+    float: right;
+}
 .clear:after{ clear: both; display: block; content: "";}
 .col-f00{
     color: #f00;
@@ -136,4 +139,13 @@ ul,ol,dl,dt,dd,li{
 }
 .inlineBlock{
     display: inline-block;
+}
+.wid-200{
+    width: 200px;
+}
+.marb-10{
+    margin-bottom: 10px;
+}
+.addTemplate-mar li{
+    margin: 0 10px 10px 0;
 }
