@@ -1,1 +1,87 @@
-获取手机号
+<p class="detailsTitle">查询范围</p>
+<div class="ui-view ng-scope">
+    <form name="accountForm" role="form" class="form-horizontal  ng-scope ng-pristine ng-invalid-required ng-valid" style="margin-top: 30px;">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">注册时间：</label>
+            <div class="col-sm-10">
+                    <p class="" style="width: 100px;display: inline-block">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataStart.dt" is-open="dateDataStart.opened" min-date="dateDataStart.minDate" max-date="dateDataStart.maxDate" datepicker-options="dateDataStart.dateOptions" date-disabled="dateDataStart.disabled(date, mode)" ng-required="true" close-text="{{dateDataStart.closeTxt}}"  ng-click="dateDataStart.open($event)"/>
+
+                    </p>
+                    <p class="" style="width: 10px;display: inline-block;margin-right: 5px">—</p>
+                    <p class="" style="width: 100px;display: inline-block">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataEnd.dt" is-open="dateDataEnd.opened" min-date="dateDataEnd.minDate" max-date="dateDataEnd.maxDate" datepicker-options="dateDataEnd.dateOptions" date-disabled="dateDataEnd.disabled(date, mode)" ng-required="true" close-text="{{dateDataEnd.closeTxt}}"  ng-click="dateDataEnd.open($event)"/>
+                    </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">商城版本：</label>
+            <div class="col-sm-10">
+                <p>
+                     <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="checkbox" class="ng-pristine ng-valid">
+                        试用版用户
+                    </label>
+                    <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="checkbox" class="ng-pristine ng-valid">
+                        基础版用户
+                    </label>
+                    <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="checkbox" class="ng-pristine ng-valid">
+                        专业版用户
+                    </label>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">过期情况：</label>
+            <div class="col-sm-10">
+                <p>
+                    <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="radio" class="ng-pristine ng-valid">
+                        不限
+                    </label>
+                    <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="radio" class="ng-pristine ng-valid">
+                        已过期
+                    </label>
+                    <label class="checkbox-inline ng-binding ng-scope">
+                        <input type="radio" class="ng-pristine ng-valid">
+                        未过期
+                    </label>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="col-f00"></span></label>
+            <div class="col-sm-10">
+                <button class="getPhone-btn btn">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+<p class="detailsTitle">查询结果</p>
+<div class="ui-view ng-scope">
+    <form name="accountForm" role="form" class="form-horizontal  ng-scope ng-pristine ng-invalid-required ng-valid" style="margin-top: 30px;">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">数量：</label>
+            <div class="col-sm-10">
+                165
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">商城版本：</label>
+            <div class="col-sm-10">
+                <p style="width: 80%;height: 200px;border: 1px solid #ccc">
+
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="col-f00"></span></label>
+            <div class="col-sm-10">
+                <button class="getPhone-btn btn">复制</button>
+            </div>
+        </div>
+    </form>
+</div>

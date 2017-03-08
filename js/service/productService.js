@@ -14,6 +14,10 @@ operApp.service("productService",["ms", function (ms) {
     function productPackage(option){
         return ms("Product.productPackage",option)
     }
+    function saveProductPackage(option){
+        return ms("Product.saveProductPackage",option)
+    }
+
     function basicsTechniqueProduct(option){
         return ms("Product.basicsTechniqueProduct",option)
     }
@@ -25,6 +29,7 @@ operApp.service("productService",["ms", function (ms) {
         saleOnShelves:saleOnShelves,
         productPackageDetails:productPackageDetails,
         productPackage:productPackage,
+        saveProductPackage:saveProductPackage,
         basicsTechniqueProduct:basicsTechniqueProduct,
         meteringTechniqueProduct:meteringTechniqueProduct
     }

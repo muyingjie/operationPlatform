@@ -603,8 +603,8 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", func
                                             {txt:"50G",id:"2",isChecked:false},
                                             {txt:"100G",id:"3",isChecked:false},
                                             {txt:"500G",id:"4",isChecked:false},
-                                            {txt:"1T",id:"4",isChecked:false},
-                                            {txt:"不限",id:"5",isChecked:false}
+                                            {txt:"1T",id:"5",isChecked:false},
+                                            {txt:"不限",id:"6",isChecked:false}
                                         ],
                                         bandwidth:[
                                             {txt:"共享",id:"0",isChecked:true},
@@ -613,7 +613,7 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", func
                                         ],
                                         template:[
                                             {txt:"默认",id:"0",isChecked:true},
-                                            {txt:"朝霞",id:"1",isChecked:false},
+                                            {txt:"朝霞",id:"1",isChecked:true},
                                             {txt:"冷艳",id:"2",isChecked:false},
                                             {txt:"绿润",id:"3",isChecked:false}
                                         ],
@@ -635,6 +635,12 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", func
                                         ],
                                         priceRule:"1"
                                     }
+                                };
+                                break;
+                            case "saveProductPackage":
+                                console.log(data);
+                                res = {
+                                    status:true
                                 };
                                 break;
                             case "basicsTechniqueProduct":

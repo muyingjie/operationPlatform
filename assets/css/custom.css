@@ -124,3 +124,16 @@ ul,ol,dl,dt,dd,li{
 .radio-inline, .checkbox-inline{
     padding-right: 20px;
 }
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    position: static;
+    margin: 0;
+}
+.col-self-60{
+    width: 60%;
+}
+.getPhone-btn{
+    width: 105px;
+}
+.inlineBlock{
+    display: inline-block;
+}

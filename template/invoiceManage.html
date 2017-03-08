@@ -1,0 +1,87 @@
+<div class="panel panel-default" ng-controller="OrderListController">
+    <ul class="nav nav-tabs">
+        <li class="active" ng-repeat="menu in tabMenus">
+            <a href="javascript:;" ng-click="selectedMenu($index)" ng-class="{selected: $index == selectedTab}">
+                <span class="hidden-xs">{{menu.menuName}}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="roleForm">
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="name" ng-model="member.cellphone" placeholder="会员手机"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="username" ng-model="member.name" placeholder="名称"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" size="15" name="username" ng-model="member.twoLevelDomainName" placeholder="二级域"/>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">下单时间：</label>
+            </div>
+            <div class="form-group">
+                <p class="input-group" style="width: 100px">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataStart.dt" is-open="dateDataStart.opened" min-date="dateDataStart.minDate" max-date="dateDataStart.maxDate" datepicker-options="dateDataStart.dateOptions" date-disabled="dateDataStart.disabled(date, mode)" ng-required="true" close-text="{{dateDataStart.closeTxt}}"  ng-click="dateDataStart.open($event)"/>
+                    <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                </p>
+            </div>
+            <div class="form-group">
+                —
+            </div>
+            <div class="form-group">
+                <p class="input-group" style="width: 100px">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataEnd.dt" is-open="dateDataEnd.opened" min-date="dateDataEnd.minDate" max-date="dateDataEnd.maxDate" datepicker-options="dateDataEnd.dateOptions" date-disabled="dateDataEnd.disabled(date, mode)" ng-required="true" close-text="{{dateDataEnd.closeTxt}}"  ng-click="dateDataEnd.open($event)"/>
+                    <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                </p>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">分类：</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="role" ng-model="pageData.curOrderStatusItem" ng-options="item.txt for item in statusList.orderStatusList"></select>
+            </div>
+            <div class="form-group" ng-show="menuStateShow">
+                <label class="cbr-inline">协议状态：</label>
+            </div>
+            <div class="form-group" ng-show="menuStateShow">
+                <select class="form-control" name="role" ng-model="pageData.curProtocolStatusItem" ng-options="item.txt for item in statusList.protocolStatusList"></select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">搜索</button>
+            </div>
+        </form>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr role="row">
+                <th>申请时间</th>
+                <th>会员ID</th>
+                <th>手机</th>
+                <th>发票类型</th>
+                <th>发票抬头</th>
+                <th>开票金额</th>
+
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="account in accountList track by $index">
+                <td class="sorting_1">{{account.member}}</td>
+                <td>{{account.memberName}}</td>
+                <td>{{account.twoLevelDomainName}}</td>
+                <td>{{account.orderTime}}</td>
+                <td>{{account.classify}}</td>
+                <td>{{account.commodity}}</td>
+                <td><a href="javascript:;" ng-click="goToOrderDetail(account.memberID)">{{account.operation}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <my-pagination conf="paginationConf"></my-pagination>
+</div>

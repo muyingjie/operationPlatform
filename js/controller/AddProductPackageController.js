@@ -22,12 +22,36 @@ operApp.controller("AddProductPackageController",["$scope", "$state","$statePara
     ];
 
     $scope.configuration = {};
-
+    $scope.productPackage ={};
     $scope.save = function () {
-        console.log($scope.configuration.applicationMall);
-        console.log($scope.configuration.docker);
-        console.log($scope.configuration.template);
-        //$state.go("productPackage")
+        function getCheckedId(ary){
+            var newAry = [];
+            angular.forEach(ary, function (data, index) {
+                if(data.isChecked){
+                    newAry.push(data.id)
+                }
+            });
+            return newAry;
+        }
+
+        var data = {
+            applicationMall:$scope.configuration.applicationMall,
+            docker:$scope.configuration.docker,
+            storage:$scope.configuration.storage,
+            bandwidth:$scope.configuration.bandwidth,
+            messages:$scope.configuration.messages,
+            emails:$scope.configuration.emails,
+            template:getCheckedId($scope.productConfiguration.template),
+            application:getCheckedId($scope.productConfiguration.application),
+            productPackageName:$scope.productPackage.name,
+            price:$scope.productPackage.price,
+            priceRule:$scope.pageDate.id,
+            priority:$scope.productPackage.priority,
+            remarks:$scope.productPackage.remarks
+        };
+        productService.saveProductPackage(data).then(function (data) {
+            $state.go("productPackage")
+        })
     };
 
     $scope.cancel = function () {
