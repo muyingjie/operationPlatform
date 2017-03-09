@@ -1,0 +1,69 @@
+<div class="panel panel-default" ng-controller="TechniqueProductController">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="javascript:;" class="selected">
+                <span class="hidden-xs">带解绑域名</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="javascript:;" class="">
+                <span class="hidden-xs">已解绑域名</span>
+            </a>
+        </li>
+    </ul>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped" ng-if="showProductList">
+            <thead>
+            <tr role="row">
+                <th>商城名称</th>
+                <th>企业域名</th>
+                <th>绑定域名</th>
+                <th>备案号</th>
+                <th>提交时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="basiProduct in basiProductDate track by $index">
+                <td class="sorting_1">{{basiProduct.Identification}}</td>
+                <td>{{basiProduct.classify}}</td>
+                <td>{{basiProduct.name}}</td>
+                <td>{{basiProduct.version}}</td>
+                <td>{{basiProduct.releaseTime}}</td>
+                <td>{{basiProduct.state}}</td>
+                <td>
+                    <a href="">解绑</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped" ng-if="!showProductList">
+            <thead>
+            <tr role="row">
+                <th>标识</th>
+                <th>分类</th>
+                <th>名称</th>
+                <th>数值</th>
+                <th>发布时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="metringProduct in metringProductDate track by $index">
+                <td class="sorting_1">{{metringProduct.Identification}}</td>
+                <td>{{metringProduct.classify}}</td>
+                <td>{{metringProduct.name}}</td>
+                <td>{{metringProduct.numVal}}</td>
+                <td>{{metringProduct.releaseTime}}</td>
+                <td>{{metringProduct.state}}</td>
+                <td>
+                    <prompt-box params="params" ext-data="product"></prompt-box>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <my-pagination conf="paginationConf" ng-if="showProductList"></my-pagination>
+</div>

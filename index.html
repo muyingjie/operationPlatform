@@ -199,6 +199,22 @@
                     subTitle:"应用列表"
                 }
             });
+            //服务管理
+            $stateProvider.state("domainBindManage",{
+                url:"/domainBindManage",
+                templateUrl:"template/domainBindManage.html",
+                data:{
+                    title:"服务管理",
+                    subTitle:"域名管理 > 域名审核"
+                }
+            }).state("domainUnbindManage",{
+                url:"/domainUnbindManage",
+                templateUrl:"template/domainUnbindManage.html",
+                data:{
+                    title:"服务管理",
+                    subTitle:"域名管理 > 域名审核"
+                }
+            });
             //日志管理  @liqin
             $stateProvider.state("loginLog", {
                 url:"/loginLog",
