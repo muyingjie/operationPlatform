@@ -177,6 +177,27 @@
                     title:"产品管理",
                     subTitle:"添加模板"
                 }
+            }).state("templateList",{
+                url:"/templateList",
+                templateUrl:"template/templateList.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"模板列表"
+                }
+            }).state("addApplication",{
+                url:"/addApplication",
+                templateUrl:"template/addApplication.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"添加应用"
+                }
+            }).state("applicationList",{
+                url:"/applicationList",
+                templateUrl:"template/applicationList.html",
+                data:{
+                    title:"产品管理",
+                    subTitle:"应用列表"
+                }
             });
             //日志管理  @liqin
             $stateProvider.state("loginLog", {

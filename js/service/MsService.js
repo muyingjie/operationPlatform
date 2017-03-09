@@ -90,6 +90,18 @@ operApp.service("ms", ["$q", "LocalStorageService", "ToolService", "$http", func
                                                     hash:"addTemplate"
                                                 },
                                                 {
+                                                    name:"模板列表",
+                                                    hash:"templateList"
+                                                },
+                                                {
+                                                    name:"添加应用",
+                                                    hash:"addApplication"
+                                                },
+                                                {
+                                                    name:"应用列表",
+                                                    hash:"applicationList"
+                                                },
+                                                {
                                                     name: "产品套餐",
                                                     hash: "productPackage"
                                                 },
