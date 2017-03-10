@@ -1,0 +1,88 @@
+<div class="panel panel-default" ng-controller="OrderListController">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="javascript:;" class="selected">
+                <span class="hidden-xs">按天</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="javascript:;" class="">
+                <span class="hidden-xs">按周</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="javascript:;" class="">
+                <span class="hidden-xs">按月</span>
+            </a>
+        </li>
+        <li style="float: right">
+            <span>总注册会员：123869</span>&nbsp;&nbsp;
+            <span>总付费会员：123</span>
+        </li>
+    </ul>
+    <div class="panel-body">
+        <form role="form" class="form-inline" novalidate name="roleForm">
+            <div class="form-group">
+                <button>近15天</button>
+            </div>
+            <div class="form-group">
+                <button>近30天</button>
+            </div>
+            <div class="form-group">
+                <label class="cbr-inline">选择日期：</label>
+            </div>
+            <div class="form-group">
+                <p class="input-group" style="width: 100px">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataStart.dt" is-open="dateDataStart.opened" min-date="dateDataStart.minDate" max-date="dateDataStart.maxDate" datepicker-options="dateDataStart.dateOptions" date-disabled="dateDataStart.disabled(date, mode)" ng-required="true" close-text="{{dateDataStart.closeTxt}}"  ng-click="dateDataStart.open($event)"/>
+                </p>
+            </div>
+            <div class="form-group">
+                —
+            </div>
+            <div class="form-group">
+                <p class="input-group" style="width: 100px">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dateDataEnd.dt" is-open="dateDataEnd.opened" min-date="dateDataEnd.minDate" max-date="dateDataEnd.maxDate" datepicker-options="dateDataEnd.dateOptions" date-disabled="dateDataEnd.disabled(date, mode)" ng-required="true" close-text="{{dateDataEnd.closeTxt}}"  ng-click="dateDataEnd.open($event)"/>
+                </p>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-secondary btn-single" ng-click="search()">搜索</button>
+            </div>
+        </form>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr role="row">
+                <th>日期</th>
+                <th>注册</th>
+                <th>当日注册付费</th>
+                <th>往日注册付费</th>
+                <th>续费</th>
+                <th>总付费</th>
+                <th>转化率</th>
+                <th>续费率</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="account in accountList track by $index">
+                <td class="sorting_1">{{account.member}}</td>
+                <td>{{account.memberName}}</td>
+                <td>{{account.twoLevelDomainName}}</td>
+                <td>{{account.orderTime}}</td>
+                <td>{{account.classify}}</td>
+                <td>{{account.commodity}}</td>
+                <td>{{account.cost}}</td>
+                <td>{{account.timeLimit}}</td>
+                <td>{{account.effectiveDate}}</td>
+                <td>{{account.payStatus}}</td>
+                <td>{{account.deliveryStatus}}</td>
+                <td>{{account.protocolState}}</td>
+                <td><a href="javascript:;" ng-click="goToOrderDetail(account.memberID)">{{account.operation}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<my-pagination conf="paginationConf"></my-pagination>-->
+    <button>下载数据表</button>
+</div>

@@ -215,6 +215,31 @@
                     subTitle:"域名管理 > 域名审核"
                 }
             });
+
+            //统计查询
+            $stateProvider.state("memberCensus",{
+                url:"/memberCensus",
+                templateUrl:"template/memberCensus.html",
+                data:{
+                    title:"统计查询",
+                    subTitle:"会员统计"
+                }
+            }).state("mallCensus",{
+                url:"/mallCensus",
+                templateUrl:"template/mallCensus.html",
+                data:{
+                    title:"统计查询",
+                    subTitle:"商城统计"
+                }
+            }).state("incomeCensus",{
+                url:"/incomeCensus",
+                templateUrl:"template/incomeCensus.html",
+                data:{
+                    title:"统计查询",
+                    subTitle:"收入统计"
+                }
+            });
+
             //日志管理  @liqin
             $stateProvider.state("loginLog", {
                 url:"/loginLog",
